@@ -382,6 +382,17 @@ td{background:rgba(8,37,76,.7)!important;color:#e3edff!important;border-color:rg
 @media(max-width:850px){.sectionhead h2{font-size:clamp(1.9rem,6vw,2.7rem)}.section{padding:70px 0!important}}
 @media(max-width:580px){.section{padding:56px 0!important}.sectionhead{margin-bottom:28px}.sectionhead h2{font-size:clamp(1.85rem,8vw,2.5rem)}.card{min-height:0}.panel,.adminbox{padding:22px!important}}
 
+
+/* Alignment fix: image and clickable zones share the exact same coordinates.
+   Prevent hover rectangles from covering the navigation artwork. */
+@media(min-width:901px){
+  html,body{max-width:100%;overflow-x:clip}
+  .hero{width:100%!important;aspect-ratio:1774 / 887!important;background-image:url('/kkp-exact-homepage.jpg')!important;background-position:0 0!important;background-size:100% 100%!important;background-repeat:no-repeat!important}
+  .kkp-exact-overlay{inset:0!important}
+  .kkp-exact-overlay>a,.kkp-exact-overlay>a:hover,.kkp-exact-overlay>a:active{background:transparent!important;border:0!important;box-shadow:none!important}
+  .kkp-exact-overlay>a:focus-visible{outline:2px solid #55baff!important;outline-offset:0;background:transparent!important}
+}
+
 </style>
 </head>
 <body>
