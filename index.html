@@ -137,6 +137,57 @@ a{transition:color .15s ease}
 @media(max-width:580px){.kkp-floating-contact{right:12px;bottom:14px;gap:9px}.kkp-floating-contact .kkp-float-link{width:50px;height:50px}.kkp-floating-contact .kkp-float-icon{width:48px;height:48px}.kkp-floating-contact .kkp-float-link:hover,.kkp-floating-contact .kkp-float-link:focus-visible{width:50px}.kkp-floating-contact .kkp-float-label{display:none}.kkp-floating-contact svg{width:22px;height:22px}.kkp-location iframe{height:260px}}
 @media(prefers-reduced-motion:reduce){.kkp-floating-contact .kkp-float-link,.kkp-floating-contact .kkp-float-label{transition:none}}
 @media print{.kkp-floating-contact{display:none}}
+
+/* KKP 2026 visual refresh — public pages only; portal logic unchanged */
+:root{--gold:#f4c24e;--gold2:#ffe8a3}
+body{font-family:Inter,"Segoe UI",Arial,sans-serif}
+.wrap{width:min(1220px,92%)}
+.topbar{font-size:.76rem;letter-spacing:.035em}
+.navbar{box-shadow:0 8px 24px rgba(0,15,40,.10)}
+.navinner{min-height:88px}
+.brand{gap:14px;letter-spacing:.015em}
+.brand img{width:152px!important;height:64px!important;object-fit:contain!important;flex-shrink:0}
+.brand span{font-size:.92rem;line-height:1.35}
+.brand small{font-size:.60rem;letter-spacing:.07em;margin-top:3px}
+.navlinks{gap:15px}
+.navlinks a{font-size:.86rem}
+.navlinks a:not(.btn){padding:9px 2px}
+.navlinks .btn{padding:10px 13px;font-size:.80rem}
+.btn{border-radius:12px;transition:transform .2s ease,box-shadow .2s ease,background .2s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn:focus-visible,a:focus-visible{outline:3px solid #f5b91d;outline-offset:3px}
+.hero{isolation:isolate;min-height:580px;background:linear-gradient(95deg,rgba(2,17,42,.97) 0%,rgba(3,31,67,.92) 48%,rgba(4,32,68,.63) 100%),url('assets/kkp_gallery_6.jpg') center/cover no-repeat}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(3,15,35,.4),transparent 50%);z-index:-1}
+.hero-grid{grid-template-columns:1.15fr .85fr;gap:48px;padding:100px 0}
+.hero h1{font-size:clamp(2.7rem,5vw,4.7rem);line-height:1.08;letter-spacing:-.04em;text-wrap:balance}
+.hero p{font-size:1.08rem;line-height:1.75}
+.hero .eyebrow{display:inline-block;padding:8px 13px;border:1px solid rgba(255,220,100,.45);border-radius:99px;background:rgba(0,0,0,.2);letter-spacing:.13em}
+.hero-note{border-radius:22px;padding:30px;box-shadow:0 20px 60px rgba(0,0,0,.24)}
+.hero-note h3{font-size:1.75rem}
+.stat{border-radius:13px}
+.section{padding:88px 0}
+.sectionhead{margin-bottom:35px}
+.sectionhead h2{font-size:clamp(2rem,3.6vw,3rem);letter-spacing:-.025em}
+.cards{gap:22px}
+.card{border-radius:20px;padding:30px;transition:transform .22s ease,box-shadow .22s ease}
+.card:hover{transform:translateY(-5px);box-shadow:0 16px 38px rgba(0,0,0,.2)}
+.card h3{font-size:1.23rem}
+.iconbox{width:56px;height:56px;font-size:1.65rem}
+.plan{border-radius:22px}
+.planhead{padding:29px}
+.planbody{padding:29px}
+.planprice{font-size:2.6rem}
+.plan.featured{transform:translateY(-5px)}
+.kkp-slideshow{border-radius:22px;box-shadow:0 16px 40px rgba(0,0,0,.2)}
+.panel,.adminbox{border-radius:20px}
+.field input,.field select,.field textarea{border-radius:10px}
+.footer{padding-top:55px}
+.footergrid{gap:36px}
+@media(max-width:1120px){.navinner{gap:10px}.brand img{width:110px!important;height:56px!important}.brand span{font-size:.78rem}.brand small{font-size:.53rem}.navlinks{gap:10px}.navlinks a{font-size:.78rem}}
+@media(max-width:850px){.navinner{min-height:78px}.brand img{width:108px!important;height:54px!important}.hero-grid{grid-template-columns:1fr;padding:70px 0;gap:25px}.hero{background-position:65% center}.hero-note{max-width:660px}.navlinks{top:78px;box-shadow:0 20px 30px rgba(0,0,0,.12)}.navlinks a{font-size:1rem}.section{padding:65px 0}}
+@media(max-width:580px){.brand img{width:92px!important;height:48px!important}.brand span{font-size:.70rem}.brand small{font-size:.48rem;letter-spacing:0}.hero h1{font-size:clamp(2.2rem,10vw,3rem)}.hero-grid{padding:58px 0}.hero-note{padding:21px}.statgrid{gap:9px}.stat{padding:11px}.section{padding:55px 0}.card{padding:23px}.plan.featured{transform:none}.planhead,.planbody{padding:22px}}
+@media(prefers-reduced-motion:reduce){.btn,.card{transition:none}.btn:hover,.card:hover{transform:none}}
+
 </style>
 </head>
 <body>
@@ -148,7 +199,7 @@ a{transition:color .15s ease}
 </div></nav>
 <main id="home">
 <section class="hero"><div class="wrap hero-grid">
-<div><div class="eyebrow">TRUCKING • TRANSPORT • PLANNING</div><h1>BEYOND SUCCESSIVE TRUCKING.<br><span>A PATHWAY TO TRUCK OWNERSHIP.</span></h1><p>KKP Trucking Services brings together trucking services and a structured LOGISTICS / FINANCING / TRUCK OWNERSHIP PROGRAM, with clear figures and records to support informed discussions.</p><div class="hero-actions"><a class="btn btn-gold" href="#plans">Explore the Plans →</a><a class="btn btn-outline" style="color:white;border-color:#71849a" href="#contact">Make an Inquiry</a></div></div>
+<div><div class="eyebrow">TRUCKING • TRANSPORT • PLANNING</div><h1>BUILT TO MOVE PROJECTS FORWARD.<br><span>DRIVEN BY RELIABILITY.</span></h1><p>From hauling and project logistics to truck acquisition inquiries, KKP Trucking Services connects capable equipment, efficient planning, and dependable operations.</p><div class="hero-actions"><a class="btn btn-gold" href="#plans">Explore Truck Ownership →</a><a class="btn btn-outline" style="color:white;border-color:#71849a" href="#contact">Request a Quote</a></div></div>
 <div class="hero-note"><div class="mini">LOGISTICS / FINANCING / TRUCK OWNERSHIP PROGRAM</div><h3>A 24-month planning framework</h3><p>Compare two proposed participation levels and review the projected down-payment credits for an indicative 10-wheeler dump truck purchase.</p><div class="statgrid"><div class="stat"><strong>₱250K</strong><span>Plan A initial capital</span></div><div class="stat"><strong>₱500K</strong><span>Plan B initial capital</span></div><div class="stat"><strong>24 months</strong><span>Illustrative term</span></div><div class="stat"><strong>₱2.5M</strong><span>Indicative truck price</span></div></div></div>
 </div></section>
 <section class="section white" id="services"><div class="wrap"><div class="sectionhead"><div class="eyebrow">WHAT WE DO</div><h2>Hauling, subcontracting, and truck ownership solutions.</h2><p>Explore KKP's hauling, subcontracting, and truck dealership and financing services.</p></div>
@@ -172,10 +223,10 @@ a{transition:color .15s ease}
 <article class="plan"><div class="planhead"><small>MONTHLY INCOME + CAPITAL ACCUMULATION PLAN</small><h3>₱250,000 PLAN</h3><div>24-month illustrative term</div></div><div class="planbody"><div class="planprice">₱250,000</div><div class="muted">Initial capital participation</div><div class="metricrow"><span>Monthly cash allocation shown</span><strong>₱12,500</strong></div><div class="metricrow"><span>Monthly accumulation credit</span><strong>₱12,500</strong></div><div class="metricrow"><span>Accumulation after 24 months</span><strong>₱300,000</strong></div><div class="metricrow"><span>Projected total down-payment credit</span><strong>₱550,000</strong></div><a class="btn btn-navy plan-apply" data-plan="250000" href="#contact">Apply / inquire about this plan</a></div></article>
 <article class="plan featured"><div class="planhead"><small>MONTHLY INCOME + CAPITAL ACCUMULATION PLAN</small><h3>₱500,000 PLAN</h3><div>24-month illustrative term</div></div><div class="planbody"><div class="planprice">₱500,000</div><div class="muted">Initial capital participation</div><div class="metricrow"><span>Monthly cash allocation shown</span><strong>₱30,000</strong></div><div class="metricrow"><span>Monthly accumulation credit</span><strong>₱30,000</strong></div><div class="metricrow"><span>Accumulation after 24 months</span><strong>₱720,000</strong></div><div class="metricrow"><span>Projected total down-payment credit</span><strong>₱1,220,000</strong></div><a class="btn btn-gold plan-apply" data-plan="500000" href="#contact">Apply / inquire about this plan</a></div></article>
 </div>
-<div class="note"><strong>Important:</strong> These are illustrative plan figures, not a guarantee of earnings, payment, financing approval, or truck acquisition. Confirm the payment source, legal terms, fees, ownership rights, cancellation and settlement provisions with qualified advisers before accepting funds.</div>
+<p class="smallprint" style="margin-top:22px">Plan figures are illustrative. Actual terms, eligibility, payment obligations, and ownership rights are governed by the applicable written agreement.</p>
 </div></section>
 
-<section class="section" id="about"><div class="wrap"><div class="sectionhead"><div class="eyebrow">ABOUT KKP</div><h2>Built around clear communication and records.</h2><p>KKP Trucking Services can use this website to present its confirmed company information, hauling services, and plan details in one place. Complete the contact details and legal business information before publishing publicly.</p></div><div class="cards"><div class="card"><h3>Transparent figures</h3><p>Plan figures are shown separately as monthly cash allocation and monthly accumulation credit.</p></div><div class="card"><h3>Documented process</h3><p>Use signed agreements, receipts, and a maintained ledger to record actual transactions.</p></div><div class="card"><h3>Clear next steps</h3><p>Confirm acquisition terms, financing responsibilities, and ownership rights in signed documents.</p></div></div></div></section>
+<section class="section" id="about"><div class="wrap"><div class="sectionhead"><div class="eyebrow">ABOUT KKP</div><h2>Built around clear communication and records.</h2><p>KKP Trucking Services brings together equipment, operational planning, and responsive coordination to support hauling requirements and discuss truck ownership options.</p></div><div class="cards"><div class="card"><h3>Transparent figures</h3><p>Plan figures are shown separately as monthly cash allocation and monthly accumulation credit.</p></div><div class="card"><h3>Documented process</h3><p>Use signed agreements, receipts, and a maintained ledger to record actual transactions.</p></div><div class="card"><h3>Clear next steps</h3><p>Confirm acquisition terms, financing responsibilities, and ownership rights in signed documents.</p></div></div></div></section>
 <section class="section white" id="contact"><div class="wrap"><div class="sectionhead"><div class="eyebrow">GET IN TOUCH</div><h2>Discuss a hauling requirement or plan inquiry.</h2><p>Contact KKP Holdings Corporate Office for inquiries about trucking services and plan information.</p></div><div class="calculator"><div class="panel"><h3>Company contact details</h3><p><strong>Business:</strong> KKP Trucking Services</p><p><strong>Office:</strong> KKP HOLDINGS CORPORATE Office</p><p><strong>Address:</strong> Unit 2802, 31 Atlanta Center Building, Annapolis St., San Juan, Greenhills</p><p><strong>Phone:</strong> <a href="tel:+639758614215">09758614215</a></p><p><strong>Email:</strong> <a href="mailto:kkpholdingsofficial2026@gmail.com">kkpholdingsofficial2026@gmail.com</a></p>
 <p><strong>Cabanatuan Branch:</strong><br>Kar Fuel, Circumferential Road, Cabanatuan City, Nueva Ecija</p><div class="kkp-contact-actions" aria-label="Quick contact options">
 <a href="https://www.facebook.com/kkptruckingservices" target="_blank" rel="noopener noreferrer" aria-label="Open KKP Trucking Services Facebook Page to message us">💬 Message on Facebook</a>
@@ -218,7 +269,7 @@ a{transition:color .15s ease}
 <div class="field"><label for="inviteEmail">Client email address</label><input id="inviteEmail" type="email" autocomplete="off" required placeholder="client@example.com"></div>
 <button class="btn btn-gold" id="inviteClientBtn" type="submit">Send Client Invitation</button>
 </form><p id="inviteClientMsg" class="formmsg" role="status" aria-live="polite"></p>
-<p class="smallprint">Invitations require the separately deployed Supabase Edge Function <code>invite-client</code>. Do not put a service-role key in this HTML file.</p>
+
 </div>
 <div id="ledgerPanel" class="adminbox hidden" style="margin-top:20px"><div class="toolbar"><div><h3 id="ledgerTitle">Participant ledger</h3><div class="smallprint" id="ledgerSub"></div></div><div class="right"><button class="btn btn-outline" id="exportCsv" type="button">Export CSV</button><button class="btn btn-outline" onclick="window.print()" type="button">Print</button></div></div><div class="dashstats"><div class="tile"><span>Initial capital</span><strong id="dashInitial">—</strong></div><div class="tile"><span>Total credited</span><strong id="dashAccum">—</strong></div><div class="tile"><span>Total down-payment credit</span><strong id="dashTotal">—</strong></div></div><div class="tablewrap"><table><thead><tr><th>Month</th><th>Due date</th><th>Credit due</th><th>Amount credited</th><th>Cumulative credits</th><th>Status</th><th>Receipt / reference</th><th>Remarks</th></tr></thead><tbody id="ledgerRows"></tbody></table></div><p class="smallprint">Ledger entries are stored in the KKP database. Keep payment receipt/reference details accurate and retain source documents for reconciliation.</p></div>
 </div></section>
@@ -229,7 +280,7 @@ a{transition:color .15s ease}
 <a class="kkp-float-link kkp-float-email" href="mailto:kkpholdingsofficial2026@gmail.com?subject=KKP%20Trucking%20Services%20Inquiry" aria-label="Email KKP Trucking Services" title="Email KKP"><span class="kkp-float-label" aria-hidden="true">Email KKP</span><span class="kkp-float-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span></a>
 </aside>
 
-<footer class="footer"><div class="wrap"><div class="footergrid"><div><h3>KKP TRUCKING SERVICES</h3><p>Trucking services and structured LOGISTICS / FINANCING / TRUCK OWNERSHIP PROGRAM information, presented with a focus on clear figures and documented processes.</p></div><div><h4>Explore</h4><ul><li><a href="#services">Services</a></li><li><a href="#plans">Plan options</a></li></ul></div><div><h4>Contact</h4><p><strong>KKP HOLDINGS CORPORATE Office</strong><br>Unit 2802, 31 Atlanta Center Building, Annapolis St., San Juan, Greenhills</p><p>Phone: <a href="tel:+639758614215">09758614215</a><br>Email: <a href="mailto:kkpholdingsofficial2026@gmail.com">kkpholdingsofficial2026@gmail.com</a><br><strong>Cabanatuan Branch:</strong> Kar Fuel, Circumferential Road, Cabanatuan City, Nueva Ecija</p></div></div><div class="copyright">© <span id="year"></span> KKP Trucking Services. All rights reserved. <span style="float:right">Navy blue & gold edition</span></div></div></footer>
+<footer class="footer"><div class="wrap"><div class="footergrid"><div><h3>KKP TRUCKING SERVICES</h3><p>Trucking services and structured LOGISTICS / FINANCING / TRUCK OWNERSHIP PROGRAM information, presented with a focus on clear figures and documented processes.</p></div><div><h4>Explore</h4><ul><li><a href="#services">Services</a></li><li><a href="#plans">Plan options</a></li></ul></div><div><h4>Contact</h4><p><strong>KKP HOLDINGS CORPORATE Office</strong><br>Unit 2802, 31 Atlanta Center Building, Annapolis St., San Juan, Greenhills</p><p>Phone: <a href="tel:+639758614215">09758614215</a><br>Email: <a href="mailto:kkpholdingsofficial2026@gmail.com">kkpholdingsofficial2026@gmail.com</a><br><strong>Cabanatuan Branch:</strong> Kar Fuel, Circumferential Road, Cabanatuan City, Nueva Ecija</p></div></div><div class="copyright">© <span id="year"></span> KKP Trucking Services. All rights reserved.</div></div></footer>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const money = n => new Intl.NumberFormat('en-PH',{style:'currency',currency:'PHP',maximumFractionDigits:0}).format(Number(n)||0);
