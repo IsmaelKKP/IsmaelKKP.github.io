@@ -206,12 +206,22 @@ a{transition:color .15s ease}
 <p id="inquiryMsg" class="formmsg smallprint">Your submission will be sent through Formspree. Required documents apply only to plan applications. Do not include passwords, PINs, or card security codes.</p>
 </form></div></div></section>
 <section class="section white" id="participant-portal"><div class="wrap"><div class="sectionhead"><div class="eyebrow">INVITATION-ONLY ACCESS</div><h2>Client Sign In</h2><p>Sign in with the email address invited by KKP to view your personal 24-month ledger. Accounts must be linked by an administrator.</p></div>
-<div class="adminlayout"><div class="adminbox"><h3>Client Sign In</h3><form id="participantLoginForm"><div class="field"><label for="participantEmail">Email address</label><input id="participantEmail" type="email" autocomplete="username" required></div><div class="field"><label for="participantPassword">Password</label><input id="participantPassword" type="password" autocomplete="current-password" required></div><button class="btn btn-gold" type="submit" id="participantLoginBtn">Sign in</button></form><div style="margin-top:18px;padding-top:16px;border-top:1px solid var(--line)"><h3 style="margin:0 0 8px">New participant? Sign up / Activate account</h3><p class="smallprint">KKP uses invitation-only registration. Request an invitation from the administrator, then open the secure link in your email to create your password. You cannot register for another participant’s ledger.</p><a class="btn btn-outline" style="background:#fff;color:#08224a" href="mailto:kkpholdingsofficial2026@gmail.com?subject=KKP%20Participant%20Account%20Invitation%20Request">Request account invitation</a><p class="smallprint">Already invited? Open your invitation email on this device. The password setup form will appear automatically.</p></div><div id="participantSignedIn" class="hidden"><p class="formmsg success">Signed in as <strong id="participantSignedInEmail"></strong></p><button type="button" class="btn btn-outline" id="participantSignOut">Sign out</button></div><p id="participantLoginMsg" class="formmsg" role="status" aria-live="polite"></p></div>
+<div class="adminlayout"><div class="adminbox"><h3>Client Sign In</h3><form id="participantLoginForm"><div class="field"><label for="participantEmail">Email address</label><input id="participantEmail" type="email" autocomplete="username" required></div><div class="field"><label for="participantPassword">Password</label><input id="participantPassword" type="password" autocomplete="current-password" required></div><button class="btn btn-gold" type="submit" id="participantLoginBtn">Sign in</button></form><div style="margin-top:18px;padding-top:16px;border-top:1px solid var(--line)"><h3 style="margin:0 0 8px">New client? Activate your account</h3><p class="smallprint">KKP uses invitation-only registration. KKP administrators send invitations by email. Open your secure invitation link to create your password. Your account can access only the ledger assigned to you.</p><a class="btn btn-outline" style="background:#fff;color:#08224a" href="mailto:kkpholdingsofficial2026@gmail.com?subject=KKP%20Client%20Account%20Invitation%20Request">Request client invitation</a><p class="smallprint">Already invited? Open your invitation email on this device. The password setup form will appear automatically.</p></div><div id="participantSignedIn" class="hidden"><p class="formmsg success">Signed in as <strong id="participantSignedInEmail"></strong></p><button type="button" class="btn btn-outline" id="participantSignOut">Sign out</button></div><p id="participantLoginMsg" class="formmsg" role="status" aria-live="polite"></p></div>
 <div class="adminbox hidden" id="participantSetupBox"><h3>Set your account password</h3><p class="smallprint">After opening your invitation email, create a password to secure your account.</p><form id="participantSetupForm"><div class="field"><label for="participantNewPassword">New password (at least 12 characters)</label><input id="participantNewPassword" type="password" autocomplete="new-password" minlength="12" required></div><div class="field"><label for="participantConfirmPassword">Confirm password</label><input id="participantConfirmPassword" type="password" autocomplete="new-password" minlength="12" required></div><button type="submit" class="btn btn-gold">Save password</button></form><p id="participantSetupMsg" class="formmsg" role="status" aria-live="polite"></p></div></div>
 <div class="adminbox hidden" id="participantLedgerPanel" style="margin-top:20px"><div class="toolbar"><div><h3 id="participantLedgerTitle">Your ledger</h3><p class="smallprint" id="participantLedgerSub"></p></div><button class="btn btn-outline" type="button" id="participantExportCsv">Download CSV</button></div><div class="dashstats"><div class="tile"><span>Initial capital</span><strong id="participantInitial">—</strong></div><div class="tile"><span>Total credited</span><strong id="participantCredited">—</strong></div><div class="tile"><span>Total down-payment credit</span><strong id="participantTotal">—</strong></div></div><div class="tablewrap"><table><thead><tr><th>Month</th><th>Due date</th><th>Credit due</th><th>Amount credited</th><th>Cumulative credits</th><th>Status</th><th>Receipt / reference</th><th>Remarks</th></tr></thead><tbody id="participantLedgerRows"></tbody></table></div><p class="smallprint">Read-only records. Contact KKP to request corrections or clarification.</p></div></div></section>
 <section class="section admin-section" id="admin"><div class="wrap"><div class="sectionhead"><div class="eyebrow">ADMINISTRATOR ACCESS</div><h2>24-month down-payment ledger</h2><p>Sign in with an authorized administrator account. Participant records and ledger entries are saved to the KKP Supabase database, protected by database access policies.</p></div>
 <div class="adminlayout"><div class="adminbox" id="loginBox"><h3>KKP Admin sign in</h3><p class="smallprint">Use the email address and password for the account you created in your Supabase project.</p><form id="adminLoginForm"><div class="field"><label for="adminEmail">Administrator email</label><input id="adminEmail" type="email" autocomplete="username" required placeholder="admin@example.com"></div><div class="field"><label for="adminPassword">Password</label><input id="adminPassword" type="password" autocomplete="current-password" required placeholder="Enter your password"></div><button class="btn btn-navy" id="loginBtn" type="submit">Sign in securely</button></form><div id="authSignedIn" class="hidden"><p class="formmsg success">Signed in as <strong id="signedInEmail"></strong></p><button class="btn btn-outline" id="signOutBtn" type="button">Sign out</button></div><p id="loginMsg" class="formmsg" role="status" aria-live="polite"></p></div>
 <div class="adminbox hidden" id="ledgerTools"><h3>Participant ledger</h3><p class="muted">Participant records and monthly ledger entries are saved in the KKP Supabase database and protected by administrator-only access policies.</p><div class="field"><label for="participant">Participant full name</label><input id="participant" autocomplete="off" placeholder="e.g. Juan Dela Cruz"></div><div class="field"><label for="ledgerPlan">Plan</label><select id="ledgerPlan"><option value="250000">₱250,000 Plan</option><option value="500000">₱500,000 Plan</option></select></div><button class="btn btn-gold" id="createLedger" type="button">Load / create participant ledger</button><p id="ledgerMsg" class="formmsg smallprint" role="status" aria-live="polite"></p></div></div>
+<div class="adminbox hidden" id="clientInviteTools" style="margin-top:20px">
+<h3>Invite Client by Email</h3>
+<p class="smallprint">First create the client's ledger using the administrator tools above. Then select the correct ledger and send a secure email invitation. The client will set their own password.</p>
+<form id="clientInviteForm">
+<div class="field"><label for="inviteLedger">Client ledger</label><select id="inviteLedger" required><option value="">Select an existing client ledger</option></select></div>
+<div class="field"><label for="inviteEmail">Client email address</label><input id="inviteEmail" type="email" autocomplete="off" required placeholder="client@example.com"></div>
+<button class="btn btn-gold" id="inviteClientBtn" type="submit">Send Client Invitation</button>
+</form><p id="inviteClientMsg" class="formmsg" role="status" aria-live="polite"></p>
+<p class="smallprint">Invitations require the separately deployed Supabase Edge Function <code>invite-client</code>. Do not put a service-role key in this HTML file.</p>
+</div>
 <div id="ledgerPanel" class="adminbox hidden" style="margin-top:20px"><div class="toolbar"><div><h3 id="ledgerTitle">Participant ledger</h3><div class="smallprint" id="ledgerSub"></div></div><div class="right"><button class="btn btn-outline" id="exportCsv" type="button">Export CSV</button><button class="btn btn-outline" onclick="window.print()" type="button">Print</button></div></div><div class="dashstats"><div class="tile"><span>Initial capital</span><strong id="dashInitial">—</strong></div><div class="tile"><span>Total credited</span><strong id="dashAccum">—</strong></div><div class="tile"><span>Total down-payment credit</span><strong id="dashTotal">—</strong></div></div><div class="tablewrap"><table><thead><tr><th>Month</th><th>Due date</th><th>Credit due</th><th>Amount credited</th><th>Cumulative credits</th><th>Status</th><th>Receipt / reference</th><th>Remarks</th></tr></thead><tbody id="ledgerRows"></tbody></table></div><p class="smallprint">Ledger entries are stored in the KKP database. Keep payment receipt/reference details accurate and retain source documents for reconciliation.</p></div>
 </div></section>
 </main>
@@ -298,6 +308,7 @@ async function refreshAuthUI(session) {
   const user = session && session.user ? session.user : null;
   loggedIn = false;
   document.getElementById('ledgerTools').classList.add('hidden');
+  inviteTools.classList.add('hidden');
   document.getElementById('ledgerPanel').classList.add('hidden');
   document.getElementById('participantLedgerPanel').classList.add('hidden');
   document.getElementById('participantSignedIn').classList.toggle('hidden', !user);
@@ -328,6 +339,8 @@ async function refreshAuthUI(session) {
     }
     loggedIn = true;
     document.getElementById('ledgerTools').classList.remove('hidden');
+    inviteTools.classList.remove('hidden');
+    await refreshInviteLedgers();
     setLoginMessage('Administrator authenticated. Database access is enabled for this account.', 'success');
     setParticipantMessage('Administrator signed in. Use the Admin Dashboard to manage ledgers.');
   } catch (error) {
@@ -519,6 +532,46 @@ document.getElementById('exportCsv').addEventListener('click', () => {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a'); a.href = url; a.download = 'kkp-ledger-' + currentParticipantId + '.csv'; a.click();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
+});
+
+// Admin-only client invitations: Supabase Edge Function performs privileged operations.
+const inviteTools = document.getElementById('clientInviteTools');
+function inviteFeedback(message, error=false) {
+ const node=document.getElementById('inviteClientMsg');node.textContent=message;
+ node.className='formmsg '+(error?'danger':'success');
+}
+async function refreshInviteLedgers(){
+ const select=document.getElementById('inviteLedger');
+ const old=select.value;
+ select.replaceChildren(new Option('Select an existing client ledger',''));
+ const {data,error}=await supabaseClient.from('kkp_participants')
+   .select('id,full_name,plan,auth_user_id').order('full_name',{ascending:true});
+ if(error){inviteFeedback('Unable to list client ledgers: '+error.message,true);return;}
+ for(const p of (data||[])){
+   const opt=new Option(p.full_name+' — '+p.plan+(p.auth_user_id?' (account linked)':''),p.id);
+   opt.disabled=Boolean(p.auth_user_id);select.add(opt);
+ }
+ if([...select.options].some(o=>o.value===old&&!o.disabled))select.value=old;
+}
+document.getElementById('inviteLedger').addEventListener('focus',()=>{if(loggedIn)refreshInviteLedgers();});
+document.getElementById('clientInviteForm').addEventListener('submit',async event=>{
+ event.preventDefault();
+ if(!loggedIn){inviteFeedback('Administrator sign-in required.',true);return;}
+ const participant_id=document.getElementById('inviteLedger').value;
+ const email=document.getElementById('inviteEmail').value.trim().toLowerCase();
+ if(!participant_id||!email){inviteFeedback('Choose a ledger and enter the client email.',true);return;}
+ const button=document.getElementById('inviteClientBtn');button.disabled=true;button.textContent='Sending invitation…';
+ try{
+   const {data,error}=await supabaseClient.functions.invoke('invite-client',{
+     body:{participant_id,email}
+   });
+   if(error)throw new Error(error.message||'Invitation request failed');
+   if(!data?.success)throw new Error(data?.error||'Invitation was not completed');
+   inviteFeedback('Invitation sent to '+email+'. Ask the client to check their inbox and spam folder.');
+   document.getElementById('inviteEmail').value='';
+   await refreshInviteLedgers();
+ }catch(err){inviteFeedback('Could not send invitation: '+(err.message||'Unknown error')+'. Confirm the invite-client Edge Function is deployed.',true);}
+ finally{button.disabled=false;button.textContent='Send Client Invitation';}
 });
 
 // Participant access: only SELECT operations; RLS is the real access control.
