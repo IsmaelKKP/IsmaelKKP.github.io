@@ -675,7 +675,7 @@ document.getElementById('kkpOpenContracts').addEventListener('click', () => {
   const opening = wrap.classList.contains('hidden');
   wrap.classList.toggle('hidden', !opening);
   document.getElementById('kkpOpenContracts').setAttribute('aria-expanded', String(opening));
-  if (opening) frame.src = frame.dataset.src;
+  if (opening) frame.src = '/contract-studio/index.html';
   else frame.removeAttribute('src');
 });
 supabaseClient.auth.onAuthStateChange((event, session) => {
