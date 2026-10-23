@@ -393,6 +393,10 @@ td{background:rgba(8,37,76,.7)!important;color:#e3edff!important;border-color:rg
   .kkp-exact-overlay>a:focus-visible{outline:2px solid #55baff!important;outline-offset:0;background:transparent!important}
 }
 
+.kkp-account-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:12px 0}
+.kkp-account-actions .btn{min-height:43px}
+#participantSetupBox{border-color:rgba(89,173,255,.55)!important}
+@media(max-width:580px){.kkp-account-actions .btn{flex:1;min-width:135px}}
 </style>
 </head>
 <body>
@@ -464,8 +468,8 @@ td{background:rgba(8,37,76,.7)!important;color:#e3edff!important;border-color:rg
 <p id="inquiryMsg" class="formmsg smallprint">Your submission will be sent through Formspree. Required documents apply only to plan applications. Do not include passwords, PINs, or card security codes.</p>
 </form></div></div></section>
 <section class="section white" id="participant-portal"><div class="wrap"><div class="sectionhead"><div class="eyebrow">INVITATION-ONLY ACCESS</div><h2>Client Sign In</h2><p>Sign in with the email address invited by KKP to view your personal 24-month ledger. Accounts must be linked by an administrator.</p></div>
-<div class="adminlayout"><div class="adminbox"><h3>Client Sign In</h3><form id="participantLoginForm"><div class="field"><label for="participantEmail">Email address</label><input id="participantEmail" type="email" autocomplete="username" required></div><div class="field"><label for="participantPassword">Password</label><input id="participantPassword" type="password" autocomplete="current-password" required></div><button class="btn btn-gold" type="submit" id="participantLoginBtn">Sign in</button></form><div style="margin-top:18px;padding-top:16px;border-top:1px solid var(--line)"><h3 style="margin:0 0 8px">New client? Activate your account</h3><p class="smallprint">KKP uses invitation-only registration. KKP administrators send invitations by email. Your login email and unique temporary password will be sent to you. You may keep that password or change it after signing in. Your account can access only the ledger assigned to you.</p><a class="btn btn-outline" style="background:#fff;color:#08224a" href="mailto:kkpholdingsofficial2026@gmail.com?subject=KKP%20Client%20Account%20Invitation%20Request">Request client invitation</a><p class="smallprint">Already invited? Use the email and temporary password from your welcome email to sign in.</p></div><div id="participantSignedIn" class="hidden"><p class="formmsg success">Signed in as <strong id="participantSignedInEmail"></strong></p><button type="button" class="btn btn-outline" id="participantSignOut">Sign out</button></div><p id="participantLoginMsg" class="formmsg" role="status" aria-live="polite"></p></div>
-<div class="adminbox hidden" id="participantSetupBox"><h3>Set your account password</h3><p class="smallprint">You may change your password here after signing in. This is optional.</p><form id="participantSetupForm"><div class="field"><label for="participantNewPassword">New password (at least 12 characters)</label><input id="participantNewPassword" type="password" autocomplete="new-password" minlength="12" required></div><div class="field"><label for="participantConfirmPassword">Confirm password</label><input id="participantConfirmPassword" type="password" autocomplete="new-password" minlength="12" required></div><button type="submit" class="btn btn-gold">Save password</button></form><p id="participantSetupMsg" class="formmsg" role="status" aria-live="polite"></p></div></div>
+<div class="adminlayout"><div class="adminbox"><h3>Client Sign In</h3><form id="participantLoginForm"><div class="field"><label for="participantEmail">Email address</label><input id="participantEmail" type="email" autocomplete="username" required></div><div class="field"><label for="participantPassword">Password</label><input id="participantPassword" type="password" autocomplete="current-password" required></div><button class="btn btn-gold" type="submit" id="participantLoginBtn">Sign in</button></form><div style="margin-top:18px;padding-top:16px;border-top:1px solid var(--line)"><h3 style="margin:0 0 8px">New client? Activate your account</h3><p class="smallprint">KKP uses invitation-only registration. KKP administrators send invitations by email. Your login email and unique temporary password will be sent to you. You may keep that password or change it after signing in. Your account can access only the ledger assigned to you.</p><a class="btn btn-outline" style="background:#fff;color:#08224a" href="mailto:kkpholdingsofficial2026@gmail.com?subject=KKP%20Client%20Account%20Invitation%20Request">Request client invitation</a><p class="smallprint">Already invited? Use the email and temporary password from your welcome email to sign in.</p></div><div id="participantSignedIn" class="hidden"><p class="formmsg success">Signed in as <strong id="participantSignedInEmail"></strong></p><div class="kkp-account-actions"><button type="button" class="btn btn-gold" id="participantChangePassword" aria-controls="participantSetupBox" aria-expanded="false">Change Password</button><button type="button" class="btn btn-outline" id="participantSignOut">Sign out</button></div></div><p id="participantLoginMsg" class="formmsg" role="status" aria-live="polite"></p></div>
+<div class="adminbox hidden" id="participantSetupBox"><h3>Change Your Password</h3><p class="smallprint">Choose a new password with at least 12 characters. Your ledger and account details will stay the same.</p><form id="participantSetupForm"><div class="field"><label for="participantNewPassword">New password (at least 12 characters)</label><input id="participantNewPassword" type="password" autocomplete="new-password" minlength="12" required></div><div class="field"><label for="participantConfirmPassword">Confirm password</label><input id="participantConfirmPassword" type="password" autocomplete="new-password" minlength="12" required></div><button type="submit" class="btn btn-gold">Save password</button></form><p id="participantSetupMsg" class="formmsg" role="status" aria-live="polite"></p></div></div>
 <div class="adminbox hidden" id="participantLedgerPanel" style="margin-top:20px"><div class="toolbar"><div><h3 id="participantLedgerTitle">Your ledger</h3><p class="smallprint" id="participantLedgerSub"></p></div><button class="btn btn-outline" type="button" id="participantExportCsv">Download CSV</button></div><div class="dashstats"><div class="tile"><span>Initial capital</span><strong id="participantInitial">—</strong></div><div class="tile"><span>Total credited</span><strong id="participantCredited">—</strong></div><div class="tile"><span>Total down-payment credit</span><strong id="participantTotal">—</strong></div></div><div class="tablewrap"><table><thead><tr><th>Month</th><th>Due date</th><th>Credit due</th><th>Amount credited</th><th>Cumulative credits</th><th>Status</th><th>Receipt / reference</th><th>Remarks</th></tr></thead><tbody id="participantLedgerRows"></tbody></table></div><p class="smallprint">Read-only records. Contact KKP to request corrections or clarification.</p></div></div></section>
 <section class="section admin-section" id="admin"><div class="wrap"><div class="sectionhead"><div class="eyebrow">ADMINISTRATOR ACCESS</div><h2>24-month down-payment ledger</h2><p>Sign in with an authorized administrator account. Participant records and ledger entries are saved to the KKP Supabase database, protected by database access policies.</p></div>
 <div class="adminlayout"><div class="adminbox" id="loginBox"><h3>KKP Admin sign in</h3><p class="smallprint">Use the email address and password for the account you created in your Supabase project.</p><form id="adminLoginForm"><div class="field"><label for="adminEmail">Administrator email</label><input id="adminEmail" type="email" autocomplete="username" required placeholder="admin@example.com"></div><div class="field"><label for="adminPassword">Password</label><input id="adminPassword" type="password" autocomplete="current-password" required placeholder="Enter your password"></div><button class="btn btn-navy" id="loginBtn" type="submit">Sign in securely</button></form><div id="authSignedIn" class="hidden"><p class="formmsg success">Signed in as <strong id="signedInEmail"></strong></p><button class="btn btn-outline" id="signOutBtn" type="button">Sign out</button></div><p id="loginMsg" class="formmsg" role="status" aria-live="polite"></p></div>
@@ -569,6 +573,11 @@ async function refreshAuthUI(session) {
   document.getElementById('ledgerPanel').classList.add('hidden');
   document.getElementById('participantLedgerPanel').classList.add('hidden');
   document.getElementById('participantSignedIn').classList.toggle('hidden', !user);
+  if (!user) {
+    document.getElementById('participantSetupBox').classList.add('hidden');
+    document.getElementById('participantSetupForm').reset();
+    document.getElementById('participantChangePassword').setAttribute('aria-expanded', 'false');
+  }
   document.getElementById('participantLoginForm').classList.toggle('hidden', Boolean(user));
   document.getElementById('participantSignedInEmail').textContent = user?.email || '';
   participantViewRows = []; participantViewId = null;
@@ -883,6 +892,25 @@ document.getElementById('participantLoginForm').addEventListener('submit',async 
   }catch(error){setParticipantMessage(error?.message||'Login failed','danger');}
   finally{btn.disabled=false;}
 });
+// Show the existing secure Supabase password-change form for signed-in clients.
+document.getElementById('participantChangePassword').addEventListener('click', async () => {
+  const { data: { session } } = await supabaseClient.auth.getSession();
+  if (!session) {
+    setParticipantMessage('Please sign in before changing your password.', 'danger');
+    return;
+  }
+  const panel = document.getElementById('participantSetupBox');
+  const opening = panel.classList.contains('hidden');
+  panel.classList.toggle('hidden', !opening);
+  document.getElementById('participantChangePassword').setAttribute('aria-expanded', String(opening));
+  if (opening) {
+    document.getElementById('participantSetupMsg').textContent = '';
+    panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    document.getElementById('participantNewPassword').focus({ preventScroll: true });
+  } else {
+    document.getElementById('participantSetupForm').reset();
+  }
+});
 document.getElementById('participantSignOut').addEventListener('click',async()=>{
   const {error}=await supabaseClient.auth.signOut();
   if(error)setParticipantMessage(error.message,'danger');
@@ -901,6 +929,7 @@ document.getElementById('participantSetupForm').addEventListener('submit',async 
   document.getElementById('participantConfirmPassword').value='';
   document.getElementById('participantSetupMsg').textContent='Password saved. Your account is ready.';
   document.getElementById('participantSetupBox').classList.add('hidden');
+  document.getElementById('participantChangePassword').setAttribute('aria-expanded', 'false');
   history.replaceState(null,'',location.pathname+location.search);
 });
 document.getElementById('participantExportCsv').addEventListener('click',()=>{
