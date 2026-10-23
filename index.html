@@ -398,9 +398,16 @@ td{background:rgba(8,37,76,.7)!important;color:#e3edff!important;border-color:rg
 .kkp-account-actions .btn{min-height:43px}
 #participantSetupBox{border-color:rgba(89,173,255,.55)!important}
 @media(max-width:580px){.kkp-account-actions .btn{flex:1;min-width:135px}}
+/* Separate admin ledger workspace; authorization remains controlled by Supabase. */
+body:not(.kkp-ledger-window) #ledgerTools,body:not(.kkp-ledger-window) #ledgerPanel{display:none!important}
+body.kkp-ledger-window .topbar,body.kkp-ledger-window .navbar,body.kkp-ledger-window .hero,body.kkp-ledger-window main > section:not(#admin),body.kkp-ledger-window .footer,body.kkp-ledger-window .kkp-floating-contact,body.kkp-ledger-window #clientInviteTools,body.kkp-ledger-window #kkpContractTools,body.kkp-ledger-window #ledgerLaunch{display:none!important}
+body.kkp-ledger-window #admin{min-height:100vh;padding-top:35px!important}
+body.kkp-ledger-window #admin .adminlayout{grid-template-columns:1fr 1.3fr}
+@media(max-width:850px){body.kkp-ledger-window #admin .adminlayout{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
+<script>if(new URLSearchParams(location.search).get('workspace')==='ledger'){document.body.classList.add('kkp-ledger-window');document.title='KKP Participant Ledger — Admin';}</script>
 
 <nav class="navbar"><div class="wrap navinner">
 <a class="brand" href="#home"><img src="/kkp-logo.png" alt="KKP Trucking Services Logo" style="width:180px;height:auto;object-fit:contain;display:block;"><span>KKP TRUCKING SERVICES<small>LOGISTICS / FINANCING / TRUCK OWNERSHIP PROGRAM</small></span></a>
@@ -474,6 +481,7 @@ td{background:rgba(8,37,76,.7)!important;color:#e3edff!important;border-color:rg
 <div class="adminbox hidden" id="participantLedgerPanel" style="margin-top:20px"><div class="toolbar"><div><h3 id="participantLedgerTitle">Your ledger</h3><p class="smallprint" id="participantLedgerSub"></p></div><button class="btn btn-outline" type="button" id="participantExportCsv">Download CSV</button></div><div class="dashstats"><div class="tile"><span>Initial capital</span><strong id="participantInitial">—</strong></div><div class="tile"><span>Total credited</span><strong id="participantCredited">—</strong></div><div class="tile"><span>Total down-payment credit</span><strong id="participantTotal">—</strong></div></div><div class="tablewrap"><table><thead><tr><th>Month</th><th>Due date</th><th>Credit due</th><th>Amount credited</th><th>Cumulative credits</th><th>Status</th><th>Receipt / reference</th><th>Remarks</th></tr></thead><tbody id="participantLedgerRows"></tbody></table></div><p class="smallprint">Read-only records. Contact KKP to request corrections or clarification.</p></div></div></section>
 <section class="section admin-section" id="admin"><div class="wrap"><div class="sectionhead"><div class="eyebrow">ADMINISTRATOR ACCESS</div><h2>24-month down-payment ledger</h2><p>Sign in with an authorized administrator account. Participant records and ledger entries are saved to the KKP Supabase database, protected by database access policies.</p></div>
 <div class="adminlayout"><div class="adminbox" id="loginBox"><h3>KKP Admin sign in</h3><p class="smallprint">Use the email address and password for the account you created in your Supabase project.</p><form id="adminLoginForm"><div class="field"><label for="adminEmail">Administrator email</label><input id="adminEmail" type="email" autocomplete="username" required placeholder="admin@example.com"></div><div class="field"><label for="adminPassword">Password</label><input id="adminPassword" type="password" autocomplete="current-password" required placeholder="Enter your password"></div><button class="btn btn-navy" id="loginBtn" type="submit">Sign in securely</button></form><div id="authSignedIn" class="hidden"><p class="formmsg success">Signed in as <strong id="signedInEmail"></strong></p><button class="btn btn-outline" id="signOutBtn" type="button">Sign out</button></div><p id="loginMsg" class="formmsg" role="status" aria-live="polite"></p></div>
+<div class="adminbox hidden" id="ledgerLaunch"><h3>Participant Ledger</h3><p class="smallprint">Open the participant ledger management workspace in a separate browser tab. Your existing administrator login and Supabase records are used.</p><a class="btn btn-gold" href="./?workspace=ledger#admin" target="_blank" rel="noopener noreferrer">Open Participant Ledger ↗</a></div>
 <div class="adminbox hidden" id="ledgerTools"><h3>Participant ledger</h3><p class="muted">Participant records and monthly ledger entries are saved in the KKP Supabase database and protected by administrator-only access policies.</p><div class="field"><label for="participant">Participant full name</label><input id="participant" autocomplete="off" placeholder="e.g. Juan Dela Cruz"></div><div class="field"><label for="ledgerPlan">Plan</label><select id="ledgerPlan"><option value="250000">₱250,000 Plan</option><option value="500000">₱500,000 Plan</option></select></div><button class="btn btn-gold" id="createLedger" type="button">Load / create participant ledger</button><p id="ledgerMsg" class="formmsg smallprint" role="status" aria-live="polite"></p></div></div>
 <div class="adminbox hidden" id="clientInviteTools" style="margin-top:20px">
 <h3>Invite Client by Email</h3>
@@ -488,7 +496,7 @@ td{background:rgba(8,37,76,.7)!important;color:#e3edff!important;border-color:rg
 <div id="kkpContractTools" class="adminbox hidden" style="margin-top:20px">
   <div class="toolbar"><div><h3>KKP Contract Generator</h3>
   <p class="smallprint">Prepare trucking and lending agreements from the original templates. Partner information and capital-management terms can be updated per request.</p></div></div>
-  <a id="kkpOpenContracts" class="btn btn-gold" href="/contract-studio/index.html" target="_blank" rel="noopener noreferrer">Open Contract Generator ↗</a>
+  <a id="kkpOpenContracts" class="btn btn-gold" href="./contract-studio/index.html" target="_blank" rel="noopener noreferrer">Open Contract Generator ↗</a>
   <p class="smallprint">Opens the working Contract Studio in a separate tab while keeping your Admin Dashboard available.</p>
   <p class="smallprint">For authorized KKP administrators only. Review completed agreements before signing.</p>
 </div>
@@ -577,6 +585,7 @@ async function refreshAuthUI(session) {
   const user = session && session.user ? session.user : null;
   loggedIn = false;
   document.getElementById('ledgerTools').classList.add('hidden');
+  document.getElementById('ledgerLaunch').classList.add('hidden');
   document.getElementById('kkpContractTools').classList.add('hidden');
   inviteTools.classList.add('hidden');
   document.getElementById('ledgerPanel').classList.add('hidden');
@@ -614,6 +623,7 @@ async function refreshAuthUI(session) {
     }
     loggedIn = true;
     document.getElementById('ledgerTools').classList.remove('hidden');
+    document.getElementById('ledgerLaunch').classList.remove('hidden');
     document.getElementById('kkpContractTools').classList.remove('hidden');
     inviteTools.classList.remove('hidden');
     await refreshInviteLedgers();
