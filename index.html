@@ -91,6 +91,28 @@ a{transition:color .15s ease}
 .gallery-item figcaption{padding:12px 15px;color:#ffe078;font-size:.9rem;font-weight:700}
 @media(max-width:850px){.gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.gallery-item img{height:230px}}
 @media(max-width:580px){.gallery-grid{grid-template-columns:1fr}.gallery-item img{height:auto;max-height:420px}.gallery-feature img{max-height:440px}}
+
+/* Full-photo, responsive slideshow: contain prevents cropping */
+.kkp-slideshow{position:relative;background:#07182e;border:2px solid #d6a51a;border-radius:16px;overflow:hidden;margin:20px 0}
+.kkp-slide{display:none;margin:0;text-align:center}
+.kkp-slide.active{display:block}
+.kkp-slide img{display:block;width:100%;height:min(70vw,650px);object-fit:contain;background:#07182e;cursor:zoom-in}
+.kkp-slide figcaption{color:#ffe078;padding:12px 65px;font-weight:700}
+.kkp-slide-arrow{position:absolute;top:45%;transform:translateY(-50%);border:0;border-radius:50%;background:rgba(4,22,47,.8);color:white;width:46px;height:46px;font-size:28px;cursor:pointer;z-index:2}
+.kkp-slide-arrow:hover,.kkp-slide-arrow:focus-visible{background:#b58a17}
+.kkp-slide-arrow.prev{left:12px}.kkp-slide-arrow.next{right:12px}
+.kkp-slide-footer{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;padding:12px}
+.kkp-slide-dot{width:11px;height:11px;border:0;border-radius:50%;background:#8996a7;cursor:pointer;padding:0}
+.kkp-slide-dot.active{background:#e9bd36;outline:2px solid #e9bd36;outline-offset:2px}
+.kkp-slide-action{border:1px solid #d6a51a;border-radius:8px;background:transparent;color:#ffe078;padding:7px 11px;cursor:pointer}
+.kkp-slide-counter{color:#fff;font-size:.9rem;min-width:44px;text-align:center}
+.kkp-lightbox{border:0;padding:0;background:#030912;color:white;width:100vw;max-width:100vw;height:100vh;max-height:100vh}
+.kkp-lightbox::backdrop{background:rgba(0,0,0,.95)}
+.kkp-lightbox-inner{display:flex;align-items:center;justify-content:center;height:100%;padding:52px 18px 22px;box-sizing:border-box}
+.kkp-lightbox img{max-width:100%;max-height:100%;object-fit:contain}
+.kkp-lightbox-close{position:absolute;top:10px;right:15px;background:#223247;color:white;border:1px solid #fff;border-radius:8px;padding:8px 14px;cursor:pointer}
+@media(max-width:580px){.kkp-slide img{height:65vw;min-height:240px}.kkp-slide figcaption{padding:10px 12px}.kkp-slide-arrow{width:38px;height:38px;font-size:23px}}
+@media(prefers-reduced-motion:reduce){.kkp-slide{transition:none}}
 </style>
 </head>
 <body>
@@ -109,15 +131,18 @@ a{transition:color .15s ease}
 <div class="cards"><article class="card"><div class="iconbox">🚚</div><h3>Hauling / Stock piling</h3><p>Hauling and stockpiling support for construction materials and project sites, subject to availability and confirmed requirements.</p></article><article class="card"><div class="iconbox">📋</div><h3>Sub contracting</h3><p>Subcontracting support for hauling, logistics, and project-related work based on agreed scope, schedule, and terms.</p></article><article class="card"><div class="iconbox">🚛</div><h3>Truck dealership &amp; financing</h3><p>Truck acquisition and financing options for qualified customers, with program details discussed and confirmed directly with KKP.</p></article></div>
 </div></section>
 <section class="section white" id="gallery"><div class="wrap">
-<div class="sectionhead"><div class="eyebrow">KKP IN ACTION</div><h2>Our Trucks &amp; Project Operations</h2><p>A look at KKP trucking equipment, hauling operations, and project-site activities.</p></div>
-<div class="gallery-feature"><img src="assets/kkp_gallery_6.jpg" alt="KKP Infra Builders armor rock quarry operations project banner" loading="lazy"></div>
-<div class="gallery-grid">
-<figure class="gallery-item"><img src="assets/kkp_gallery_5.jpg" alt="KKP Infra Builders quarry and infrastructure operations" loading="lazy"><figcaption>Infrastructure &amp; quarry operations</figcaption></figure>
-<figure class="gallery-item"><img src="assets/kkp_gallery_4.jpg" alt="KKP trucking site planning and equipment overview" loading="lazy"><figcaption>Equipment, planning &amp; execution</figcaption></figure>
-<figure class="gallery-item"><img src="assets/kkp_gallery_3.jpg" alt="KKP Isuzu dump truck on an active hauling site" loading="lazy"><figcaption>Dump truck operations</figcaption></figure>
-<figure class="gallery-item"><img src="assets/kkp_gallery_2.jpg" alt="KKP Isuzu truck at a construction site" loading="lazy"><figcaption>Hauling equipment</figcaption></figure>
-<figure class="gallery-item"><img src="assets/kkp_gallery_1.jpg" alt="KKP trucking site operations and excavator" loading="lazy"><figcaption>Behind every haul</figcaption></figure>
+<div class="sectionhead"><div class="eyebrow">KKP IN ACTION</div><h2>Our Trucks &amp; Project Operations</h2><p>View the complete photos in our automatic project slideshow. Select a photo to enlarge it.</p></div>
+<div class="kkp-slideshow" aria-label="KKP trucking photo slideshow" aria-roledescription="carousel">
+<figure class="kkp-slide active"><img src="assets/kkp_gallery_6.jpg" alt="Armor rock quarry operations in Botolan, Zambales" loading="eager" decoding="async"><figcaption>Armor rock quarry operations in Botolan, Zambales</figcaption></figure>
+<figure class="kkp-slide"><img src="assets/kkp_gallery_5.jpg" alt="Infrastructure & quarry operations" loading="lazy" decoding="async"><figcaption>Infrastructure & quarry operations</figcaption></figure>
+<figure class="kkp-slide"><img src="assets/kkp_gallery_4.jpg" alt="Equipment, planning & execution" loading="lazy" decoding="async"><figcaption>Equipment, planning & execution</figcaption></figure>
+<figure class="kkp-slide"><img src="assets/kkp_gallery_3.jpg" alt="Dump truck operations" loading="lazy" decoding="async"><figcaption>Dump truck operations</figcaption></figure>
+<figure class="kkp-slide"><img src="assets/kkp_gallery_2.jpg" alt="Hauling equipment" loading="lazy" decoding="async"><figcaption>Hauling equipment</figcaption></figure>
+<figure class="kkp-slide"><img src="assets/kkp_gallery_1.jpg" alt="Behind every haul" loading="lazy" decoding="async"><figcaption>Behind every haul</figcaption></figure>
+<button type="button" class="kkp-slide-arrow prev" aria-label="Previous photo">&#8249;</button><button type="button" class="kkp-slide-arrow next" aria-label="Next photo">&#8250;</button>
+<div class="kkp-slide-footer"><button type="button" class="kkp-slide-action" id="kkpPause">Pause slideshow</button><span class="kkp-slide-counter" aria-live="polite">1 / 6</span><button type="button" class="kkp-slide-dot active" aria-label="Show photo 1" data-slide="0"></button><button type="button" class="kkp-slide-dot" aria-label="Show photo 2" data-slide="1"></button><button type="button" class="kkp-slide-dot" aria-label="Show photo 3" data-slide="2"></button><button type="button" class="kkp-slide-dot" aria-label="Show photo 4" data-slide="3"></button><button type="button" class="kkp-slide-dot" aria-label="Show photo 5" data-slide="4"></button><button type="button" class="kkp-slide-dot" aria-label="Show photo 6" data-slide="5"></button><button type="button" class="kkp-slide-action" id="kkpFullscreen">View full screen</button></div>
 </div></div></section>
+<dialog class="kkp-lightbox" id="kkpLightbox" aria-label="Full-size project photo"><button class="kkp-lightbox-close" type="button" id="kkpLightboxClose">Close ✕</button><div class="kkp-lightbox-inner"><img id="kkpLightboxImage" alt="Full-size KKP project photo"></div></dialog>
 <section class="section" id="plans"><div class="wrap"><div class="sectionhead"><div class="eyebrow">PLAN OPTIONS</div><h2>LOGISTICS / FINANCING / TRUCK OWNERSHIP PROGRAM</h2><p>The figures below reproduce the supplied plan assumptions for comparison. Review the written agreement for actual obligations and conditions.</p></div>
 <div class="plan-grid">
 <article class="plan"><div class="planhead"><small>MONTHLY INCOME + CAPITAL ACCUMULATION PLAN</small><h3>₱250,000 PLAN</h3><div>24-month illustrative term</div></div><div class="planbody"><div class="planprice">₱250,000</div><div class="muted">Initial capital participation</div><div class="metricrow"><span>Monthly cash allocation shown</span><strong>₱12,500</strong></div><div class="metricrow"><span>Monthly accumulation credit</span><strong>₱12,500</strong></div><div class="metricrow"><span>Accumulation after 24 months</span><strong>₱300,000</strong></div><div class="metricrow"><span>Projected total down-payment credit</span><strong>₱550,000</strong></div><a class="btn btn-navy plan-apply" data-plan="250000" href="#contact">Apply / inquire about this plan</a></div></article>
@@ -502,5 +527,32 @@ document.getElementById('participantExportCsv').addEventListener('click',()=>{
   setTimeout(()=>URL.revokeObjectURL(url),1000);
 });
 
+</script>
+
+<script>
+(()=>{
+ const gallery=document.querySelector('.kkp-slideshow');if(!gallery)return;
+ const slides=[...gallery.querySelectorAll('.kkp-slide')],dots=[...gallery.querySelectorAll('.kkp-slide-dot')];
+ const counter=gallery.querySelector('.kkp-slide-counter'),pause=document.getElementById('kkpPause');
+ const dialog=document.getElementById('kkpLightbox'),large=document.getElementById('kkpLightboxImage');
+ let current=0,timer=null,playing=!window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ function show(i){current=(i+slides.length)%slides.length;slides.forEach((s,n)=>{s.classList.toggle('active',n===current);s.setAttribute('aria-hidden',String(n!==current));});dots.forEach((d,n)=>{d.classList.toggle('active',n===current);d.setAttribute('aria-current',String(n===current));});counter.textContent=`${current+1} / ${slides.length}`;if(dialog.open){openImage();}}
+ function stop(){if(timer)clearInterval(timer);timer=null;}
+ function start(){stop();if(playing&&!dialog.open)timer=setInterval(()=>show(current+1),4500);}
+ function move(n){show(current+n);start();}
+ function openImage(){const img=slides[current].querySelector('img');large.src=img.currentSrc||img.src;large.alt=img.alt;}
+ gallery.querySelector('.prev').addEventListener('click',()=>move(-1));gallery.querySelector('.next').addEventListener('click',()=>move(1));
+ dots.forEach(d=>d.addEventListener('click',()=>{show(Number(d.dataset.slide));start();}));
+ pause.addEventListener('click',()=>{playing=!playing;pause.textContent=playing?'Pause slideshow':'Play slideshow';start();});
+ function openDialog(){openImage();if(typeof dialog.showModal==='function')dialog.showModal();else dialog.setAttribute('open','');stop();}
+ document.getElementById('kkpFullscreen').addEventListener('click',openDialog);
+ slides.forEach(s=>s.querySelector('img').addEventListener('click',openDialog));
+ document.getElementById('kkpLightboxClose').addEventListener('click',()=>dialog.close());
+ dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close();});
+ dialog.addEventListener('close',start);
+ document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'&&(dialog.open||gallery.matches(':hover')))move(1);if(e.key==='ArrowLeft'&&(dialog.open||gallery.matches(':hover')))move(-1);});
+ gallery.addEventListener('mouseenter',stop);gallery.addEventListener('mouseleave',start);
+ show(0);pause.textContent=playing?'Pause slideshow':'Play slideshow';start();
+})();
 </script>
 </body></html>
