@@ -266,7 +266,7 @@ async function loadOrCreateParticipantLedger() {
     if (!participant) {
       const inserted = await supabaseClient
         .from('kkp_participants')
-        .insert({ full_name: name, plan_amount: cap })
+        .insert({ full_name: name, plan: planInfo(cap).label, plan_amount: cap })
         .select('id, full_name, plan_amount')
         .single();
       if (inserted.error) throw inserted.error;
