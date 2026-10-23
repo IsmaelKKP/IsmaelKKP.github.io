@@ -143,7 +143,7 @@ a{transition:color .15s ease}
 <nav class="navbar"><div class="wrap navinner">
 <a class="brand" href="#home"><img src="assets/kkp_logo.png" alt="KKP logo" onerror="this.style.display='none'"><span>KKP TRUCKING SERVICES<small>LOGISTICS / FINANCING / TRUCK OWNERSHIP PROGRAM</small></span></a>
 <button class="btn btn-outline hamb" id="menuBtn" aria-label="Open navigation">☰</button>
-<div class="navlinks" id="navlinks"><a href="#services">Services</a><a href="#gallery">Project Gallery</a><a href="#plans">Plans</a><a href="#calculator">Calculator</a><a href="#about">About</a><a href="#contact">Contact</a><a href="#participant-portal" class="btn btn-navy">Participant Login</a><a href="#admin" class="btn btn-navy">Admin Dashboard</a></div>
+<div class="navlinks" id="navlinks"><a href="#services">Services</a><a href="#gallery">Project Gallery</a><a href="#plans">Plans</a><a href="#calculator">Calculator</a><a href="#about">About</a><a href="#contact">Contact</a><a href="#participant-portal" class="btn btn-navy">Client Sign In</a><a href="#admin" class="btn btn-navy">Admin Dashboard</a></div>
 </div></nav>
 <main id="home">
 <section class="hero"><div class="wrap hero-grid">
@@ -188,19 +188,25 @@ a{transition:color .15s ease}
 <p>Circumferential Road, Cabanatuan City, Nueva Ecija. Map results are based on the provided location description; confirm the exact pin before visiting.</p>
 <iframe title="Map showing Kar Fuel area, Circumferential Road, Cabanatuan City" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Kar%20Fuel%2C%20Circumferential%20Road%2C%20Cabanatuan%20City%2C%20Nueva%20Ecija%2C%20Philippines&amp;output=embed"></iframe>
 <a class="kkp-map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Kar%20Fuel%2C%20Circumferential%20Road%2C%20Cabanatuan%20City%2C%20Nueva%20Ecija%2C%20Philippines" target="_blank" rel="noopener noreferrer">Open in Google Maps / Get Directions ↗</a>
-</div></div><form class="panel" id="inquiryForm" action="https://formspree.io/f/xwllednv" method="POST">
+</div></div><form class="panel" id="inquiryForm" action="https://formspree.io/f/xwllednv" method="POST" enctype="multipart/form-data">
 <h3>Inquiry / Plan Application</h3>
 <input type="hidden" name="_subject" value="New KKP Trucking Website Inquiry or Plan Application">
 <div class="field"><label for="inqName">Full name</label><input id="inqName" name="full_name" autocomplete="name" required></div>
 <div class="field"><label for="inqEmail">Email address</label><input id="inqEmail" name="email" type="email" autocomplete="email" required></div>
 <div class="field"><label for="inqPhone">Contact number</label><input id="inqPhone" name="phone" type="tel" autocomplete="tel" required></div>
 <div class="field"><label for="inqType">Inquiry / plan applied for</label><select id="inqType" name="inquiry_type" required><option value="Trucking / hauling">Trucking / hauling</option><option value="₱250,000 Plan">₱250,000 Plan</option><option value="₱500,000 Plan">₱500,000 Plan</option><option value="Other">Other</option></select></div>
+<div id="applicationDocuments" class="hidden" aria-label="Required plan application documents">
+  <div class="note" style="margin:16px 0"><strong>Required for plan applications:</strong> Upload a clear government-issued photo ID and a recent bank statement. Accepted formats: PDF, JPG, or PNG; maximum 10 MB per file. Do not upload passwords, PINs, or card security codes.</div>
+  <div class="field"><label for="governmentIdFile">Valid government-issued ID <span aria-hidden="true">*</span></label><input id="governmentIdFile" name="government_id" type="file" accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png" aria-describedby="governmentIdHelp"><span id="governmentIdHelp" class="smallprint">Upload a clear image or PDF of your valid government-issued ID.</span></div>
+  <div class="field"><label for="bankStatementFile">Recent bank statement <span aria-hidden="true">*</span></label><input id="bankStatementFile" name="bank_statement" type="file" accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png" aria-describedby="bankStatementHelp"><span id="bankStatementHelp" class="smallprint">Upload a recent bank statement as a PDF or clear image.</span></div>
+  <div class="field"><label style="display:flex;gap:10px;align-items:flex-start;color:inherit;font-weight:500"><input id="documentConsent" name="document_processing_consent" type="checkbox" value="Yes" style="width:auto;margin-top:5px"> <span>I understand that KKP will use these documents to review my application and that they will be submitted through the website's third-party form provider.</span></label></div>
+</div>
 <div class="field"><label for="inqMessage">Message / application details</label><textarea id="inqMessage" name="message" rows="4" required placeholder="Tell us about your inquiry or plan application. Please do not include passwords or sensitive financial account details."></textarea></div>
 <button class="btn btn-gold" type="submit">Send inquiry / application</button>
-<p id="inquiryMsg" class="formmsg smallprint">Your submission will be sent to KKP through Formspree. Do not include passwords or sensitive financial account details.</p>
+<p id="inquiryMsg" class="formmsg smallprint">Your submission will be sent through Formspree. Required documents apply only to plan applications. Do not include passwords, PINs, or card security codes.</p>
 </form></div></div></section>
-<section class="section white" id="participant-portal"><div class="wrap"><div class="sectionhead"><div class="eyebrow">INVITATION-ONLY ACCESS</div><h2>Participant Portal</h2><p>Sign in with the email address invited by KKP to view your personal 24-month ledger. Accounts must be linked by an administrator.</p></div>
-<div class="adminlayout"><div class="adminbox"><h3>Participant sign in</h3><form id="participantLoginForm"><div class="field"><label for="participantEmail">Email address</label><input id="participantEmail" type="email" autocomplete="username" required></div><div class="field"><label for="participantPassword">Password</label><input id="participantPassword" type="password" autocomplete="current-password" required></div><button class="btn btn-gold" type="submit" id="participantLoginBtn">Sign in</button></form><div style="margin-top:18px;padding-top:16px;border-top:1px solid var(--line)"><h3 style="margin:0 0 8px">New participant? Sign up / Activate account</h3><p class="smallprint">KKP uses invitation-only registration. Request an invitation from the administrator, then open the secure link in your email to create your password. You cannot register for another participant’s ledger.</p><a class="btn btn-outline" style="background:#fff;color:#08224a" href="mailto:kkpholdingsofficial2026@gmail.com?subject=KKP%20Participant%20Account%20Invitation%20Request">Request account invitation</a><p class="smallprint">Already invited? Open your invitation email on this device. The password setup form will appear automatically.</p></div><div id="participantSignedIn" class="hidden"><p class="formmsg success">Signed in as <strong id="participantSignedInEmail"></strong></p><button type="button" class="btn btn-outline" id="participantSignOut">Sign out</button></div><p id="participantLoginMsg" class="formmsg" role="status" aria-live="polite"></p></div>
+<section class="section white" id="participant-portal"><div class="wrap"><div class="sectionhead"><div class="eyebrow">INVITATION-ONLY ACCESS</div><h2>Client Sign In</h2><p>Sign in with the email address invited by KKP to view your personal 24-month ledger. Accounts must be linked by an administrator.</p></div>
+<div class="adminlayout"><div class="adminbox"><h3>Client Sign In</h3><form id="participantLoginForm"><div class="field"><label for="participantEmail">Email address</label><input id="participantEmail" type="email" autocomplete="username" required></div><div class="field"><label for="participantPassword">Password</label><input id="participantPassword" type="password" autocomplete="current-password" required></div><button class="btn btn-gold" type="submit" id="participantLoginBtn">Sign in</button></form><div style="margin-top:18px;padding-top:16px;border-top:1px solid var(--line)"><h3 style="margin:0 0 8px">New participant? Sign up / Activate account</h3><p class="smallprint">KKP uses invitation-only registration. Request an invitation from the administrator, then open the secure link in your email to create your password. You cannot register for another participant’s ledger.</p><a class="btn btn-outline" style="background:#fff;color:#08224a" href="mailto:kkpholdingsofficial2026@gmail.com?subject=KKP%20Participant%20Account%20Invitation%20Request">Request account invitation</a><p class="smallprint">Already invited? Open your invitation email on this device. The password setup form will appear automatically.</p></div><div id="participantSignedIn" class="hidden"><p class="formmsg success">Signed in as <strong id="participantSignedInEmail"></strong></p><button type="button" class="btn btn-outline" id="participantSignOut">Sign out</button></div><p id="participantLoginMsg" class="formmsg" role="status" aria-live="polite"></p></div>
 <div class="adminbox hidden" id="participantSetupBox"><h3>Set your account password</h3><p class="smallprint">After opening your invitation email, create a password to secure your account.</p><form id="participantSetupForm"><div class="field"><label for="participantNewPassword">New password (at least 12 characters)</label><input id="participantNewPassword" type="password" autocomplete="new-password" minlength="12" required></div><div class="field"><label for="participantConfirmPassword">Confirm password</label><input id="participantConfirmPassword" type="password" autocomplete="new-password" minlength="12" required></div><button type="submit" class="btn btn-gold">Save password</button></form><p id="participantSetupMsg" class="formmsg" role="status" aria-live="polite"></p></div></div>
 <div class="adminbox hidden" id="participantLedgerPanel" style="margin-top:20px"><div class="toolbar"><div><h3 id="participantLedgerTitle">Your ledger</h3><p class="smallprint" id="participantLedgerSub"></p></div><button class="btn btn-outline" type="button" id="participantExportCsv">Download CSV</button></div><div class="dashstats"><div class="tile"><span>Initial capital</span><strong id="participantInitial">—</strong></div><div class="tile"><span>Total credited</span><strong id="participantCredited">—</strong></div><div class="tile"><span>Total down-payment credit</span><strong id="participantTotal">—</strong></div></div><div class="tablewrap"><table><thead><tr><th>Month</th><th>Due date</th><th>Credit due</th><th>Amount credited</th><th>Cumulative credits</th><th>Status</th><th>Receipt / reference</th><th>Remarks</th></tr></thead><tbody id="participantLedgerRows"></tbody></table></div><p class="smallprint">Read-only records. Contact KKP to request corrections or clarification.</p></div></div></section>
 <section class="section admin-section" id="admin"><div class="wrap"><div class="sectionhead"><div class="eyebrow">ADMINISTRATOR ACCESS</div><h2>24-month down-payment ledger</h2><p>Sign in with an authorized administrator account. Participant records and ledger entries are saved to the KKP Supabase database, protected by database access policies.</p></div>
@@ -225,7 +231,39 @@ document.getElementById('calcBtn').addEventListener('click',calculate);['planSel
 document.getElementById('year').textContent=new Date().getFullYear();
 document.getElementById('menuBtn').addEventListener('click',()=>document.getElementById('navlinks').classList.toggle('open'));
 document.querySelectorAll('#navlinks a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navlinks').classList.remove('open')));
-document.querySelectorAll('.plan-apply').forEach(a=>a.addEventListener('click',()=>{document.getElementById('inqType').value=a.dataset.plan==='500000'?'₱500,000 Plan':'₱250,000 Plan';}));
+document.querySelectorAll('.plan-apply').forEach(a=>a.addEventListener('click',()=>{document.getElementById('inqType').value=a.dataset.plan==='500000'?'₱500,000 Plan':'₱250,000 Plan';document.getElementById('inqType').dispatchEvent(new Event('change'));}));
+
+// Plan applications require two supporting files; general hauling inquiries do not.
+const applicationForm = document.getElementById('inquiryForm');
+const applicationType = document.getElementById('inqType');
+const applicationDocs = document.getElementById('applicationDocuments');
+const documentInputs = [document.getElementById('governmentIdFile'), document.getElementById('bankStatementFile')];
+const documentConsent = document.getElementById('documentConsent');
+function updateApplicationDocuments() {
+  const needsDocuments = applicationType.value === '₱250,000 Plan' || applicationType.value === '₱500,000 Plan';
+  applicationDocs.classList.toggle('hidden', !needsDocuments);
+  documentInputs.forEach(input => { input.required = needsDocuments; input.disabled = !needsDocuments; });
+  documentConsent.required = needsDocuments;
+  documentConsent.disabled = !needsDocuments;
+}
+applicationType.addEventListener('change', updateApplicationDocuments);
+documentInputs.forEach(input => input.addEventListener('change', () => input.setCustomValidity('')));
+applicationForm.addEventListener('submit', event => {
+  const allowed = ['application/pdf','image/jpeg','image/png'];
+  for (const input of documentInputs) {
+    if (input.disabled || !input.files.length) continue;
+    const file = input.files[0];
+    if (!allowed.includes(file.type) || file.size > 10 * 1024 * 1024) {
+      event.preventDefault();
+      input.setCustomValidity('Upload a PDF, JPG, or PNG file no larger than 10 MB.');
+      input.reportValidity();
+      return;
+    }
+    input.setCustomValidity('');
+  }
+});
+updateApplicationDocuments();
+
 // Contact inquiries continue to submit directly to Formspree.
 // Supabase Auth + database-backed KKP ledger.
 const KKP_SUPABASE_URL = 'https://ivmondultefemtjrqwbw.supabase.co';
@@ -284,7 +322,7 @@ async function refreshAuthUI(session) {
     if (check !== authCheckSequence) return;
     if (error) throw error;
     if (!data) {
-      setLoginMessage('Signed in as a non-administrator. Use the Participant Portal below.');
+      setLoginMessage('Signed in as a non-administrator. Use Client Sign In below.');
       await loadParticipantView(user, check);
       return;
     }
