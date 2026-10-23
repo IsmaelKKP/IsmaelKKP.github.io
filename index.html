@@ -121,13 +121,14 @@ a{transition:color .15s ease}
 <button class="btn btn-gold" type="submit">Send inquiry / application</button>
 <p id="inquiryMsg" class="formmsg smallprint">Your submission will be sent to KKP through Formspree. Do not include passwords or sensitive financial account details.</p>
 </form></div></div></section>
-<section class="section admin-section" id="admin"><div class="wrap"><div class="sectionhead"><div class="eyebrow">PRIVATE ADMIN AREA — DEMO</div><h2>24-month down-payment ledger</h2><p>This front-end prototype stores sample ledger entries in this browser only. It is not secure authentication and must not be used for real participant data until a server-side login and database are implemented.</p></div>
-<div class="adminlayout"><div class="adminbox" id="loginBox"><h3>Admin sign-in preview</h3><p class="smallprint">Demo access code: <strong>KKP-DEMO</strong>. This is only a visual prototype gate; it is not real security.</p><div class="field"><label for="adminCode">Demo access code</label><input id="adminCode" type="password" placeholder="Enter demo code"></div><button class="btn btn-navy" id="loginBtn">Open demo ledger</button><p id="loginMsg" class="formmsg"></p></div>
-<div class="adminbox"><h3>Ledger overview</h3><p class="muted">Create a local demo ledger entry and track its 24-month accumulation rows. For production, data must be stored in a secure database with access controls and backups.</p><div class="field"><label for="participant">Participant name (demo)</label><input id="participant" placeholder="e.g. Juan Dela Cruz"></div><div class="field"><label for="ledgerPlan">Plan</label><select id="ledgerPlan"><option value="250000">₱250,000 Plan</option><option value="500000">₱500,000 Plan</option></select></div><button class="btn btn-gold" id="createLedger">Create / load local ledger</button><button class="btn btn-outline" id="clearLedger">Clear local demo data</button><p id="ledgerMsg" class="formmsg smallprint"></p></div></div>
-<div id="ledgerPanel" class="adminbox hidden" style="margin-top:20px"><div class="toolbar"><div><h3 id="ledgerTitle">Participant ledger</h3><div class="smallprint" id="ledgerSub"></div></div><div class="right"><button class="btn btn-outline" id="exportCsv">Export CSV</button><button class="btn btn-outline" onclick="window.print()">Print</button></div></div><div class="dashstats"><div class="tile"><span>Initial capital</span><strong id="dashInitial">—</strong></div><div class="tile"><span>Total credited</span><strong id="dashAccum">—</strong></div><div class="tile"><span>Total down-payment credit</span><strong id="dashTotal">—</strong></div></div><div class="tablewrap"><table><thead><tr><th>Month</th><th>Due date</th><th>Credit due</th><th>Amount credited</th><th>Cumulative credits</th><th>Status</th><th>Receipt / reference</th><th>Remarks</th></tr></thead><tbody id="ledgerRows"></tbody></table></div><p class="smallprint">Enter actual credited amounts and references. A ledger entry is an administrative record, not proof of payment without supporting receipts.</p></div>
+<section class="section admin-section" id="admin"><div class="wrap"><div class="sectionhead"><div class="eyebrow">ADMINISTRATOR ACCESS</div><h2>24-month down-payment ledger</h2><p>Sign in with the administrator email and password created in Supabase Authentication. The ledger below is still a browser-local demo; do not enter real participant or payment records until a secured database and access policies are connected.</p></div>
+<div class="adminlayout"><div class="adminbox" id="loginBox"><h3>KKP Admin sign in</h3><p class="smallprint">Use the email address and password for the account you created in your Supabase project.</p><form id="adminLoginForm"><div class="field"><label for="adminEmail">Administrator email</label><input id="adminEmail" type="email" autocomplete="username" required placeholder="admin@example.com"></div><div class="field"><label for="adminPassword">Password</label><input id="adminPassword" type="password" autocomplete="current-password" required placeholder="Enter your password"></div><button class="btn btn-navy" id="loginBtn" type="submit">Sign in securely</button></form><div id="authSignedIn" class="hidden"><p class="formmsg success">Signed in as <strong id="signedInEmail"></strong></p><button class="btn btn-outline" id="signOutBtn" type="button">Sign out</button></div><p id="loginMsg" class="formmsg" role="status" aria-live="polite"></p></div>
+<div class="adminbox hidden" id="ledgerTools"><h3>Ledger overview — local demo</h3><p class="muted">Authentication is connected to Supabase, but these sample ledger entries still save only in this browser. Do not store real customer details or payment records here yet.</p><div class="field"><label for="participant">Participant name (demo only)</label><input id="participant" placeholder="e.g. Juan Dela Cruz"></div><div class="field"><label for="ledgerPlan">Plan</label><select id="ledgerPlan"><option value="250000">₱250,000 Plan</option><option value="500000">₱500,000 Plan</option></select></div><button class="btn btn-gold" id="createLedger" type="button">Create / load local demo ledger</button> <button class="btn btn-outline" id="clearLedger" type="button">Clear local demo data</button><p id="ledgerMsg" class="formmsg smallprint" role="status" aria-live="polite"></p></div></div>
+<div id="ledgerPanel" class="adminbox hidden" style="margin-top:20px"><div class="toolbar"><div><h3 id="ledgerTitle">Participant ledger</h3><div class="smallprint" id="ledgerSub"></div></div><div class="right"><button class="btn btn-outline" id="exportCsv" type="button">Export CSV</button><button class="btn btn-outline" onclick="window.print()" type="button">Print</button></div></div><div class="dashstats"><div class="tile"><span>Initial capital</span><strong id="dashInitial">—</strong></div><div class="tile"><span>Total credited</span><strong id="dashAccum">—</strong></div><div class="tile"><span>Total down-payment credit</span><strong id="dashTotal">—</strong></div></div><div class="tablewrap"><table><thead><tr><th>Month</th><th>Due date</th><th>Credit due</th><th>Amount credited</th><th>Cumulative credits</th><th>Status</th><th>Receipt / reference</th><th>Remarks</th></tr></thead><tbody id="ledgerRows"></tbody></table></div><p class="smallprint">The local ledger is only a prototype and is not proof of payment. A production ledger must be backed by server-side data access rules and supporting receipts.</p></div>
 </div></section>
 </main>
 <footer class="footer"><div class="wrap"><div class="footergrid"><div><h3>KKP TRUCKING SERVICES</h3><p>Trucking services and structured LOGISTICS / FINANCING / TRUCK OWNERSHIP PROGRAM information, presented with a focus on clear figures and documented processes.</p></div><div><h4>Explore</h4><ul><li><a href="#services">Services</a></li><li><a href="#plans">Plan options</a></li><li><a href="#calculator">Plan calculator</a></li></ul></div><div><h4>Contact</h4><p><strong>KKP HOLDINGS CORPORATE Office</strong><br>Unit 2802, 31 Atlanta Center Building, Annapolis St., San Juan, Greenhills</p><p>Phone: <a href="tel:+639758614215">09758614215</a><br>Email: <a href="mailto:kkpholdingsofficial2026@gmail.com">kkpholdingsofficial2026@gmail.com</a><br><strong>Cabanatuan Branch:</strong> Kar Fuel, Circumferential Road</p></div></div><div class="copyright">© <span id="year"></span> KKP Trucking Services. All rights reserved. <span style="float:right">Navy blue & gold edition</span></div></div></footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const money = n => new Intl.NumberFormat('en-PH',{style:'currency',currency:'PHP',maximumFractionDigits:0}).format(Number(n)||0);
 const planInfo = cap => cap===500000 ? {cap:500000,monthly:30000,cash:30000,label:'₱500,000 Plan'} : {cap:250000,monthly:12500,cash:12500,label:'₱250,000 Plan'};
@@ -137,13 +138,75 @@ document.getElementById('year').textContent=new Date().getFullYear();
 document.getElementById('menuBtn').addEventListener('click',()=>document.getElementById('navlinks').classList.toggle('open'));
 document.querySelectorAll('#navlinks a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navlinks').classList.remove('open')));
 document.querySelectorAll('.plan-apply').forEach(a=>a.addEventListener('click',()=>{document.getElementById('inqType').value=a.dataset.plan==='500000'?'₱500,000 Plan':'₱250,000 Plan';}));
-// Form submits directly to Formspree using its action and method attributes.
-let loggedIn=false, currentKey='';
-document.getElementById('loginBtn').addEventListener('click',()=>{if(document.getElementById('adminCode').value==='KKP-DEMO'){loggedIn=true;document.getElementById('loginMsg').textContent='Demo ledger unlocked in this browser.';document.getElementById('loginMsg').className='formmsg success';}else{document.getElementById('loginMsg').textContent='Incorrect demo code.';document.getElementById('loginMsg').className='formmsg danger';}});
+// Contact inquiries continue to submit directly to Formspree.
+// Supabase Auth replaces the previous demo-code gate.
+const KKP_SUPABASE_URL = 'https://ivmondultefemtjrqwbw.supabase.co';
+const KKP_SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_QdME62DYwk95H06k9m4KZw_B3KAUeQQ';
+const supabaseClient = window.supabase.createClient(KKP_SUPABASE_URL, KKP_SUPABASE_PUBLISHABLE_KEY);
+let loggedIn = false, currentKey = '';
+const loginForm = document.getElementById('adminLoginForm');
+const loginButton = document.getElementById('loginBtn');
+const loginMessage = document.getElementById('loginMsg');
+
+function setLoginMessage(message, type='') {
+  loginMessage.textContent = message;
+  loginMessage.className = 'formmsg' + (type ? ' ' + type : '');
+}
+function updateAuthUI(session) {
+  const user = session && session.user ? session.user : null;
+  loggedIn = Boolean(user);
+  document.getElementById('ledgerTools').classList.toggle('hidden', !loggedIn);
+  loginForm.classList.toggle('hidden', loggedIn);
+  document.getElementById('authSignedIn').classList.toggle('hidden', !loggedIn);
+  if (!loggedIn) document.getElementById('ledgerPanel').classList.add('hidden');
+  if (user) {
+    document.getElementById('signedInEmail').textContent = user.email || 'Authenticated administrator';
+    setLoginMessage('Authentication succeeded. Note: ledger records are still stored locally in this browser.', 'success');
+  } else {
+    document.getElementById('signedInEmail').textContent = '';
+  }
+}
+
+loginForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const email = document.getElementById('adminEmail').value.trim();
+  const password = document.getElementById('adminPassword').value;
+  loginButton.disabled = true;
+  loginButton.textContent = 'Signing in…';
+  setLoginMessage('Connecting to Supabase…');
+  try {
+    const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
+    if (error) throw error;
+    document.getElementById('adminPassword').value = '';
+    updateAuthUI(data.session);
+  } catch (error) {
+    setLoginMessage(error && error.message ? error.message : 'Sign-in failed. Check your connection and credentials.', 'danger');
+  } finally {
+    loginButton.disabled = false;
+    loginButton.textContent = 'Sign in securely';
+  }
+});
+
+document.getElementById('signOutBtn').addEventListener('click', async () => {
+  const { error } = await supabaseClient.auth.signOut();
+  if (error) {
+    setLoginMessage(error.message || 'Could not sign out.', 'danger');
+    return;
+  }
+  document.getElementById('adminPassword').value = '';
+  setLoginMessage('You have signed out.', 'success');
+  updateAuthUI(null);
+});
+
+supabaseClient.auth.onAuthStateChange((_event, session) => updateAuthUI(session));
+supabaseClient.auth.getSession().then(({ data, error }) => {
+  if (error) setLoginMessage('Unable to check the Supabase session: ' + error.message, 'danger');
+  updateAuthUI(data ? data.session : null);
+}).catch(() => setLoginMessage('Unable to connect to Supabase. Check the project URL and publishable key.', 'danger'));
 function storageKey(name,cap){return 'kkp-ledger-v1:'+name.trim().toLowerCase()+':'+cap}
 function loadRows(){return JSON.parse(localStorage.getItem(currentKey)||'[]')}
 function saveRows(rows){localStorage.setItem(currentKey,JSON.stringify(rows))}
-document.getElementById('createLedger').addEventListener('click',()=>{if(!loggedIn){document.getElementById('ledgerMsg').textContent='Open the demo ledger first using the demo access code.';return;}const name=document.getElementById('participant').value.trim();if(!name){document.getElementById('ledgerMsg').textContent='Enter a participant name.';return;}const cap=Number(document.getElementById('ledgerPlan').value);currentKey=storageKey(name,cap);let rows=JSON.parse(localStorage.getItem(currentKey)||'null');if(!rows){const p=planInfo(cap);rows=Array.from({length:24},(_,i)=>({month:i+1,dueDate:'',due:p.monthly,credited:'',status:'Pending',receipt:'',remarks:''}));saveRows(rows);}document.getElementById('ledgerPanel').classList.remove('hidden');document.getElementById('ledgerTitle').textContent=name+' — '+planInfo(cap).label;document.getElementById('ledgerSub').textContent='24-month local demo ledger';renderRows();document.getElementById('ledgerMsg').textContent='Ledger loaded. Changes save in this browser only.';});
+document.getElementById('createLedger').addEventListener('click',()=>{if(!loggedIn){document.getElementById('ledgerMsg').textContent='Sign in with your Supabase administrator account first.';return;}const name=document.getElementById('participant').value.trim();if(!name){document.getElementById('ledgerMsg').textContent='Enter a participant name.';return;}const cap=Number(document.getElementById('ledgerPlan').value);currentKey=storageKey(name,cap);let rows=JSON.parse(localStorage.getItem(currentKey)||'null');if(!rows){const p=planInfo(cap);rows=Array.from({length:24},(_,i)=>({month:i+1,dueDate:'',due:p.monthly,credited:'',status:'Pending',receipt:'',remarks:''}));saveRows(rows);}document.getElementById('ledgerPanel').classList.remove('hidden');document.getElementById('ledgerTitle').textContent=name+' — '+planInfo(cap).label;document.getElementById('ledgerSub').textContent='24-month local demo ledger — saved in this browser only';renderRows();document.getElementById('ledgerMsg').textContent='Ledger loaded. Changes save in this browser only.';});
 function renderRows(){const rows=loadRows();const cap=Number(document.getElementById('ledgerPlan').value);const p=planInfo(cap);const body=document.getElementById('ledgerRows');body.innerHTML='';let sum=0;rows.forEach((row,i)=>{sum+=Number(row.credited)||0;const tr=document.createElement('tr');tr.innerHTML=`<td>${i+1}</td><td><input type="date" data-i="${i}" data-k="dueDate" value="${row.dueDate||''}"></td><td>${money(row.due)}</td><td><input type="number" min="0" step="0.01" data-i="${i}" data-k="credited" value="${row.credited}" placeholder="0"></td><td>${money(sum)}</td><td><select data-i="${i}" data-k="status">${['Pending','Posted','Partial','Overdue','Waived'].map(s=>`<option ${row.status===s?'selected':''}>${s}</option>`).join('')}</select></td><td><input data-i="${i}" data-k="receipt" value="${escapeHtml(row.receipt||'')}"></td><td><input data-i="${i}" data-k="remarks" value="${escapeHtml(row.remarks||'')}"></td>`;body.appendChild(tr)});const total=sum+cap;document.getElementById('dashInitial').textContent=money(cap);document.getElementById('dashAccum').textContent=money(sum);document.getElementById('dashTotal').textContent=money(total);body.querySelectorAll('input,select').forEach(el=>el.addEventListener('change',()=>{const all=loadRows();all[Number(el.dataset.i)][el.dataset.k]=el.value;saveRows(all);renderRows();}));}
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 document.getElementById('exportCsv').addEventListener('click',()=>{if(!currentKey)return;const rows=loadRows();const cols=['Month','Due Date','Credit Due','Amount Credited','Status','Receipt / Reference','Remarks'];const lines=[cols,...rows.map(r=>[r.month,r.dueDate,r.due,r.credited,r.status,r.receipt,r.remarks])].map(row=>row.map(v=>`"${String(v??'').replace(/"/g,'""')}"`).join(',')).join('\r\n');const blob=new Blob([lines],{type:'text/csv;charset=utf-8;'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='kkp-downpayment-ledger.csv';a.click();URL.revokeObjectURL(a.href);});
