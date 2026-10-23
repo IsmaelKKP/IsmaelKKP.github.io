@@ -80,6 +80,17 @@ a{transition:color .15s ease}
 @media(max-width:850px){.navlinks{background:#fff}.hero-grid{padding:48px 0}.hero-note{padding:22px}}
 @media(max-width:580px){.hero h1{font-size:2.35rem}.planhead h3{font-size:1.35rem}.planbody{padding:18px}.metricrow{align-items:flex-start}.metricrow strong{max-width:48%}}
 
+
+/* KKP project photo gallery */
+.gallery-feature{position:relative;border:2px solid #d6a51a;border-radius:16px;overflow:hidden;margin:20px 0 22px;background:#04162f}
+.gallery-feature img{display:block;width:100%;max-height:540px;object-fit:cover;object-position:center}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.gallery-item{margin:0;border:1px solid #c99a18;background:#082c56;border-radius:14px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+.gallery-item img{width:100%;height:265px;display:block;object-fit:cover;transition:transform .2s ease}
+.gallery-item:hover img{transform:scale(1.025)}
+.gallery-item figcaption{padding:12px 15px;color:#ffe078;font-size:.9rem;font-weight:700}
+@media(max-width:850px){.gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.gallery-item img{height:230px}}
+@media(max-width:580px){.gallery-grid{grid-template-columns:1fr}.gallery-item img{height:auto;max-height:420px}.gallery-feature img{max-height:440px}}
 </style>
 </head>
 <body>
@@ -87,7 +98,7 @@ a{transition:color .15s ease}
 <nav class="navbar"><div class="wrap navinner">
 <a class="brand" href="#home"><img src="assets/kkp_logo.png" alt="KKP logo" onerror="this.style.display='none'"><span>KKP TRUCKING SERVICES<small>LOGISTICS / FINANCING / TRUCK OWNERSHIP PROGRAM</small></span></a>
 <button class="btn btn-outline hamb" id="menuBtn" aria-label="Open navigation">☰</button>
-<div class="navlinks" id="navlinks"><a href="#services">Services</a><a href="#plans">Plans</a><a href="#calculator">Calculator</a><a href="#about">About</a><a href="#contact">Contact</a><a href="#admin" class="btn btn-navy">Admin Dashboard</a></div>
+<div class="navlinks" id="navlinks"><a href="#services">Services</a><a href="#gallery">Project Gallery</a><a href="#plans">Plans</a><a href="#calculator">Calculator</a><a href="#about">About</a><a href="#contact">Contact</a><a href="#participant-portal" class="btn btn-navy">Participant Login</a><a href="#admin" class="btn btn-navy">Admin Dashboard</a></div>
 </div></nav>
 <main id="home">
 <section class="hero"><div class="wrap hero-grid">
@@ -97,6 +108,16 @@ a{transition:color .15s ease}
 <section class="section white" id="services"><div class="wrap"><div class="sectionhead"><div class="eyebrow">WHAT WE DO</div><h2>Hauling, subcontracting, and truck ownership solutions.</h2><p>Explore KKP's hauling, subcontracting, and truck dealership and financing services.</p></div>
 <div class="cards"><article class="card"><div class="iconbox">🚚</div><h3>Hauling / Stock piling</h3><p>Hauling and stockpiling support for construction materials and project sites, subject to availability and confirmed requirements.</p></article><article class="card"><div class="iconbox">📋</div><h3>Sub contracting</h3><p>Subcontracting support for hauling, logistics, and project-related work based on agreed scope, schedule, and terms.</p></article><article class="card"><div class="iconbox">🚛</div><h3>Truck dealership &amp; financing</h3><p>Truck acquisition and financing options for qualified customers, with program details discussed and confirmed directly with KKP.</p></article></div>
 </div></section>
+<section class="section white" id="gallery"><div class="wrap">
+<div class="sectionhead"><div class="eyebrow">KKP IN ACTION</div><h2>Our Trucks &amp; Project Operations</h2><p>A look at KKP trucking equipment, hauling operations, and project-site activities.</p></div>
+<div class="gallery-feature"><img src="assets/kkp_gallery_6.jpg" alt="KKP Infra Builders armor rock quarry operations project banner" loading="lazy"></div>
+<div class="gallery-grid">
+<figure class="gallery-item"><img src="assets/kkp_gallery_5.jpg" alt="KKP Infra Builders quarry and infrastructure operations" loading="lazy"><figcaption>Infrastructure &amp; quarry operations</figcaption></figure>
+<figure class="gallery-item"><img src="assets/kkp_gallery_4.jpg" alt="KKP trucking site planning and equipment overview" loading="lazy"><figcaption>Equipment, planning &amp; execution</figcaption></figure>
+<figure class="gallery-item"><img src="assets/kkp_gallery_3.jpg" alt="KKP Isuzu dump truck on an active hauling site" loading="lazy"><figcaption>Dump truck operations</figcaption></figure>
+<figure class="gallery-item"><img src="assets/kkp_gallery_2.jpg" alt="KKP Isuzu truck at a construction site" loading="lazy"><figcaption>Hauling equipment</figcaption></figure>
+<figure class="gallery-item"><img src="assets/kkp_gallery_1.jpg" alt="KKP trucking site operations and excavator" loading="lazy"><figcaption>Behind every haul</figcaption></figure>
+</div></div></section>
 <section class="section" id="plans"><div class="wrap"><div class="sectionhead"><div class="eyebrow">PLAN OPTIONS</div><h2>LOGISTICS / FINANCING / TRUCK OWNERSHIP PROGRAM</h2><p>The figures below reproduce the supplied plan assumptions for comparison. Review the written agreement for actual obligations and conditions.</p></div>
 <div class="plan-grid">
 <article class="plan"><div class="planhead"><small>MONTHLY INCOME + CAPITAL ACCUMULATION PLAN</small><h3>₱250,000 PLAN</h3><div>24-month illustrative term</div></div><div class="planbody"><div class="planprice">₱250,000</div><div class="muted">Initial capital participation</div><div class="metricrow"><span>Monthly cash allocation shown</span><strong>₱12,500</strong></div><div class="metricrow"><span>Monthly accumulation credit</span><strong>₱12,500</strong></div><div class="metricrow"><span>Accumulation after 24 months</span><strong>₱300,000</strong></div><div class="metricrow"><span>Projected total down-payment credit</span><strong>₱550,000</strong></div><a class="btn btn-navy plan-apply" data-plan="250000" href="#contact">Apply / inquire about this plan</a></div></article>
@@ -121,6 +142,10 @@ a{transition:color .15s ease}
 <button class="btn btn-gold" type="submit">Send inquiry / application</button>
 <p id="inquiryMsg" class="formmsg smallprint">Your submission will be sent to KKP through Formspree. Do not include passwords or sensitive financial account details.</p>
 </form></div></div></section>
+<section class="section white" id="participant-portal"><div class="wrap"><div class="sectionhead"><div class="eyebrow">INVITATION-ONLY ACCESS</div><h2>Participant Portal</h2><p>Sign in with the email address invited by KKP to view your personal 24-month ledger. Accounts must be linked by an administrator.</p></div>
+<div class="adminlayout"><div class="adminbox"><h3>Participant sign in</h3><form id="participantLoginForm"><div class="field"><label for="participantEmail">Email address</label><input id="participantEmail" type="email" autocomplete="username" required></div><div class="field"><label for="participantPassword">Password</label><input id="participantPassword" type="password" autocomplete="current-password" required></div><button class="btn btn-gold" type="submit" id="participantLoginBtn">Sign in</button></form><div style="margin-top:18px;padding-top:16px;border-top:1px solid var(--line)"><h3 style="margin:0 0 8px">New participant? Sign up / Activate account</h3><p class="smallprint">KKP uses invitation-only registration. Request an invitation from the administrator, then open the secure link in your email to create your password. You cannot register for another participant’s ledger.</p><a class="btn btn-outline" style="background:#fff;color:#08224a" href="mailto:kkpholdingsofficial2026@gmail.com?subject=KKP%20Participant%20Account%20Invitation%20Request">Request account invitation</a><p class="smallprint">Already invited? Open your invitation email on this device. The password setup form will appear automatically.</p></div><div id="participantSignedIn" class="hidden"><p class="formmsg success">Signed in as <strong id="participantSignedInEmail"></strong></p><button type="button" class="btn btn-outline" id="participantSignOut">Sign out</button></div><p id="participantLoginMsg" class="formmsg" role="status" aria-live="polite"></p></div>
+<div class="adminbox hidden" id="participantSetupBox"><h3>Set your account password</h3><p class="smallprint">After opening your invitation email, create a password to secure your account.</p><form id="participantSetupForm"><div class="field"><label for="participantNewPassword">New password (at least 12 characters)</label><input id="participantNewPassword" type="password" autocomplete="new-password" minlength="12" required></div><div class="field"><label for="participantConfirmPassword">Confirm password</label><input id="participantConfirmPassword" type="password" autocomplete="new-password" minlength="12" required></div><button type="submit" class="btn btn-gold">Save password</button></form><p id="participantSetupMsg" class="formmsg" role="status" aria-live="polite"></p></div></div>
+<div class="adminbox hidden" id="participantLedgerPanel" style="margin-top:20px"><div class="toolbar"><div><h3 id="participantLedgerTitle">Your ledger</h3><p class="smallprint" id="participantLedgerSub"></p></div><button class="btn btn-outline" type="button" id="participantExportCsv">Download CSV</button></div><div class="dashstats"><div class="tile"><span>Initial capital</span><strong id="participantInitial">—</strong></div><div class="tile"><span>Total credited</span><strong id="participantCredited">—</strong></div><div class="tile"><span>Total down-payment credit</span><strong id="participantTotal">—</strong></div></div><div class="tablewrap"><table><thead><tr><th>Month</th><th>Due date</th><th>Credit due</th><th>Amount credited</th><th>Cumulative credits</th><th>Status</th><th>Receipt / reference</th><th>Remarks</th></tr></thead><tbody id="participantLedgerRows"></tbody></table></div><p class="smallprint">Read-only records. Contact KKP to request corrections or clarification.</p></div></div></section>
 <section class="section admin-section" id="admin"><div class="wrap"><div class="sectionhead"><div class="eyebrow">ADMINISTRATOR ACCESS</div><h2>24-month down-payment ledger</h2><p>Sign in with an authorized administrator account. Participant records and ledger entries are saved to the KKP Supabase database, protected by database access policies.</p></div>
 <div class="adminlayout"><div class="adminbox" id="loginBox"><h3>KKP Admin sign in</h3><p class="smallprint">Use the email address and password for the account you created in your Supabase project.</p><form id="adminLoginForm"><div class="field"><label for="adminEmail">Administrator email</label><input id="adminEmail" type="email" autocomplete="username" required placeholder="admin@example.com"></div><div class="field"><label for="adminPassword">Password</label><input id="adminPassword" type="password" autocomplete="current-password" required placeholder="Enter your password"></div><button class="btn btn-navy" id="loginBtn" type="submit">Sign in securely</button></form><div id="authSignedIn" class="hidden"><p class="formmsg success">Signed in as <strong id="signedInEmail"></strong></p><button class="btn btn-outline" id="signOutBtn" type="button">Sign out</button></div><p id="loginMsg" class="formmsg" role="status" aria-live="polite"></p></div>
 <div class="adminbox hidden" id="ledgerTools"><h3>Participant ledger</h3><p class="muted">Participant records and monthly ledger entries are saved in the KKP Supabase database and protected by administrator-only access policies.</p><div class="field"><label for="participant">Participant full name</label><input id="participant" autocomplete="off" placeholder="e.g. Juan Dela Cruz"></div><div class="field"><label for="ledgerPlan">Plan</label><select id="ledgerPlan"><option value="250000">₱250,000 Plan</option><option value="500000">₱500,000 Plan</option></select></div><button class="btn btn-gold" id="createLedger" type="button">Load / create participant ledger</button><p id="ledgerMsg" class="formmsg smallprint" role="status" aria-live="polite"></p></div></div>
@@ -142,6 +167,7 @@ document.querySelectorAll('.plan-apply').forEach(a=>a.addEventListener('click',(
 // Supabase Auth + database-backed KKP ledger.
 const KKP_SUPABASE_URL = 'https://ivmondultefemtjrqwbw.supabase.co';
 const KKP_SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_QdME62DYwk95H06k9m4KZw_B3KAUeQQ';
+const arrivedFromInvite = /(?:^|[&#])type=(?:invite|recovery)(?:&|$)/.test(window.location.hash);
 const supabaseClient = window.supabase.createClient(KKP_SUPABASE_URL, KKP_SUPABASE_PUBLISHABLE_KEY);
 let loggedIn = false;
 let currentParticipantId = null;
@@ -149,6 +175,8 @@ let currentParticipantName = '';
 let currentPlanCap = 250000;
 let currentRows = [];
 let authCheckSequence = 0;
+let participantViewRows = [];
+let participantViewId = null;
 const loginForm = document.getElementById('adminLoginForm');
 const loginButton = document.getElementById('loginBtn');
 const loginMessage = document.getElementById('loginMsg');
@@ -170,11 +198,17 @@ async function refreshAuthUI(session) {
   loggedIn = false;
   document.getElementById('ledgerTools').classList.add('hidden');
   document.getElementById('ledgerPanel').classList.add('hidden');
+  document.getElementById('participantLedgerPanel').classList.add('hidden');
+  document.getElementById('participantSignedIn').classList.toggle('hidden', !user);
+  document.getElementById('participantLoginForm').classList.toggle('hidden', Boolean(user));
+  document.getElementById('participantSignedInEmail').textContent = user?.email || '';
+  participantViewRows = []; participantViewId = null;
   loginForm.classList.toggle('hidden', Boolean(user));
   document.getElementById('authSignedIn').classList.toggle('hidden', !user);
   document.getElementById('signedInEmail').textContent = user ? (user.email || 'Signed-in user') : '';
   if (!user) {
     setLoginMessage('Sign in with an authorized KKP administrator account.');
+    setParticipantMessage('Sign in using your invited participant account.');
     return;
   }
   setLoginMessage('Checking administrator permissions…');
@@ -187,12 +221,14 @@ async function refreshAuthUI(session) {
     if (check !== authCheckSequence) return;
     if (error) throw error;
     if (!data) {
-      setLoginMessage('This account is signed in, but it is not authorized as a KKP administrator. Add its user to kkp_admin_users using the SQL setup instructions.', 'danger');
+      setLoginMessage('Signed in as a non-administrator. Use the Participant Portal below.');
+      await loadParticipantView(user, check);
       return;
     }
     loggedIn = true;
     document.getElementById('ledgerTools').classList.remove('hidden');
     setLoginMessage('Administrator authenticated. Database access is enabled for this account.', 'success');
+    setParticipantMessage('Administrator signed in. Use the Admin Dashboard to manage ledgers.');
   } catch (error) {
     if (check !== authCheckSequence) return;
     setLoginMessage('Sign-in succeeded, but administrator verification failed. Run the KKP database setup SQL and authorize this user. Details: ' + (error?.message || 'unknown error'), 'danger');
@@ -232,9 +268,15 @@ document.getElementById('signOutBtn').addEventListener('click', async () => {
   await refreshAuthUI(null);
 });
 
-supabaseClient.auth.onAuthStateChange((_event, session) => {
-  // Defer database work out of the auth callback to avoid locking auth internals.
-  Promise.resolve().then(() => refreshAuthUI(session));
+supabaseClient.auth.onAuthStateChange((event, session) => {
+  // Do not query Supabase inside the auth callback.
+  Promise.resolve().then(async () => {
+    if (event === 'PASSWORD_RECOVERY' || (event === 'SIGNED_IN' && arrivedFromInvite)) {
+      document.getElementById('participantSetupBox').classList.remove('hidden');
+      document.getElementById('participant-portal').scrollIntoView({behavior:'smooth'});
+    }
+    await refreshAuthUI(session);
+  });
 });
 supabaseClient.auth.getSession().then(({ data, error }) => {
   if (error) setLoginMessage('Unable to check the Supabase session: ' + error.message, 'danger');
@@ -377,5 +419,88 @@ document.getElementById('exportCsv').addEventListener('click', () => {
   const a = document.createElement('a'); a.href = url; a.download = 'kkp-ledger-' + currentParticipantId + '.csv'; a.click();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 });
+
+// Participant access: only SELECT operations; RLS is the real access control.
+function setParticipantMessage(message, type='') {
+  const el=document.getElementById('participantLoginMsg');
+  el.textContent=message; el.className='formmsg'+(type?' '+type:'');
+}
+async function loadParticipantView(user, check) {
+  setParticipantMessage('Checking your assigned ledger…');
+  try {
+    const {data: profile,error: profileError}=await supabaseClient.from('kkp_participants')
+      .select('id,full_name,plan,plan_amount').eq('auth_user_id',user.id).maybeSingle();
+    if(check!==authCheckSequence)return;
+    if(profileError)throw profileError;
+    if(!profile){setParticipantMessage('Your invitation is active, but KKP has not linked your ledger yet. Please contact the administrator.');return;}
+    const {data: rows,error: ledgerError}=await supabaseClient.from('kkp_ledger_entries')
+      .select('month_no,due_date,credit_due,amount_credited,status,receipt_reference,remarks')
+      .eq('participant_id',profile.id).order('month_no',{ascending:true});
+    if(check!==authCheckSequence)return;
+    if(ledgerError)throw ledgerError;
+    participantViewRows=rows||[]; participantViewId=profile.id;
+    document.getElementById('participantLedgerTitle').textContent=profile.full_name+' — '+profile.plan;
+    document.getElementById('participantLedgerSub').textContent='24-month ledger · Read-only';
+    document.getElementById('participantInitial').textContent=money(profile.plan_amount);
+    const total=participantViewRows.reduce((sum,r)=>sum+(Number(r.amount_credited)||0),0);
+    document.getElementById('participantCredited').textContent=money(total);
+    document.getElementById('participantTotal').textContent=money(Number(profile.plan_amount)+total);
+    const body=document.getElementById('participantLedgerRows'); body.replaceChildren();
+    let cumulative=0;
+    for(const r of participantViewRows){
+      cumulative+=Number(r.amount_credited)||0;
+      const tr=document.createElement('tr');
+      for(const value of [r.month_no,r.due_date||'—',money(r.credit_due),money(r.amount_credited),money(cumulative),r.status||'—',r.receipt_reference||'—',r.remarks||'—']){
+        const td=document.createElement('td');td.textContent=String(value);tr.appendChild(td);
+      }
+      body.appendChild(tr);
+    }
+    document.getElementById('participantLedgerPanel').classList.remove('hidden');
+    setParticipantMessage('Your ledger has been loaded successfully.', 'success');
+  }catch(error){setParticipantMessage('Unable to load your ledger: '+(error?.message||'Unknown error'),'danger');}
+}
+document.getElementById('participantLoginForm').addEventListener('submit',async event=>{
+  event.preventDefault();
+  const btn=document.getElementById('participantLoginBtn');btn.disabled=true;
+  try{
+    const {error}=await supabaseClient.auth.signInWithPassword({
+      email:document.getElementById('participantEmail').value.trim(),
+      password:document.getElementById('participantPassword').value
+    });
+    if(error)throw error;
+    document.getElementById('participantPassword').value='';
+  }catch(error){setParticipantMessage(error?.message||'Login failed','danger');}
+  finally{btn.disabled=false;}
+});
+document.getElementById('participantSignOut').addEventListener('click',async()=>{
+  const {error}=await supabaseClient.auth.signOut();
+  if(error)setParticipantMessage(error.message,'danger');
+});
+document.getElementById('participantSetupForm').addEventListener('submit',async event=>{
+  event.preventDefault();
+  const password=document.getElementById('participantNewPassword').value;
+  if(password.length<12||password!==document.getElementById('participantConfirmPassword').value){
+    document.getElementById('participantSetupMsg').textContent='Passwords must match and contain at least 12 characters.';return;
+  }
+  const {data:{session}}=await supabaseClient.auth.getSession();
+  if(!session){document.getElementById('participantSetupMsg').textContent='Open your valid invitation link first.';return;}
+  const {error}=await supabaseClient.auth.updateUser({password});
+  if(error){document.getElementById('participantSetupMsg').textContent=error.message;return;}
+  document.getElementById('participantNewPassword').value='';
+  document.getElementById('participantConfirmPassword').value='';
+  document.getElementById('participantSetupMsg').textContent='Password saved. Your account is ready.';
+  document.getElementById('participantSetupBox').classList.add('hidden');
+  history.replaceState(null,'',location.pathname+location.search);
+});
+document.getElementById('participantExportCsv').addEventListener('click',()=>{
+  if(!participantViewId||!participantViewRows.length)return;
+  const columns=['Month','Due Date','Credit Due','Amount Credited','Status','Receipt / Reference','Remarks'];
+  const lines=[columns,...participantViewRows.map(r=>[r.month_no,r.due_date,r.credit_due,r.amount_credited,r.status,r.receipt_reference,r.remarks])]
+    .map(row=>row.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\r\n');
+  const url=URL.createObjectURL(new Blob([lines],{type:'text/csv;charset=utf-8;'}));
+  const a=document.createElement('a');a.href=url;a.download='my-kkp-ledger.csv';a.click();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
+});
+
 </script>
 </body></html>
