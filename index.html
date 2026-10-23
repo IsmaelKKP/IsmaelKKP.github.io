@@ -11,6 +11,75 @@
 @media(max-width:850px){.navlinks{display:none;position:absolute;top:76px;left:0;right:0;background:white;padding:18px 4%;border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start}.navlinks.open{display:flex}.hamb{display:inline-flex}.hero-grid,.calculator,.adminlayout{grid-template-columns:1fr}.hero-grid{padding:58px 0}.cards{grid-template-columns:1fr 1fr}.footergrid{grid-template-columns:1fr 1fr}}
 @media(max-width:580px){.cards,.plan-grid,.footergrid{grid-template-columns:1fr}.hero h1{font-size:2.55rem}.section{padding:50px 0}.brand img{width:46px}.brand{font-size:.9rem}.dashstats{grid-template-columns:1fr}.resultgrid{grid-template-columns:1fr 1fr}}
 @media print{.topbar,.navbar,.hero-actions,.btn,.footer{display:none!important}body{background:white}.section{padding:20px 0}.panel,.card,.plan{box-shadow:none}}
+
+/* KKP navy-and-gold truck ownership program redesign */
+:root{--navy:#031d43;--navy2:#073d76;--gold:#f5b91d;--gold2:#ffe07a;--ink:#f5f8ff;--muted:#c2d3e8;--paper:#061b39;--white:#082b56;--line:rgba(255,211,74,.48);--shadow:0 14px 34px rgba(0,0,0,.28)}
+body{background:#061b39;color:#f5f8ff}
+.topbar{background:#03132b;color:#f4d66f}
+.navbar{background:#fff;color:#061b39;border-bottom:3px solid #f5b91d}
+.brand{color:#062657}
+.brand small{color:#b77c00}
+.navlinks a:hover{color:#b77c00}
+.btn-gold{background:linear-gradient(120deg,#ffe47a,#f4ad12);color:#08224a;border:1px solid #ffdf62;box-shadow:0 4px 0 #a86d00}
+.btn-navy{background:#061d43;color:#fff;border:1px solid #f4c43c}
+.btn-outline{border-color:#d7a51c;color:#08224a}
+.hero{background:radial-gradient(ellipse at 70% 10%,#17619a 0,transparent 36%),linear-gradient(145deg,#03142f,#064477 58%,#031a3b);border-bottom:4px solid #eeb51d}
+.hero:after{border-color:rgba(255,201,40,.5);box-shadow:0 0 0 25px rgba(255,201,40,.06),0 0 0 55px rgba(255,201,40,.04)}
+.hero-grid{padding:64px 0 68px;gap:34px}
+.hero .eyebrow{color:#ffdb59}
+.hero h1{text-transform:uppercase;letter-spacing:-.035em;font-size:clamp(2.2rem,4.5vw,4.1rem)}
+.hero h1 span{color:#ffd35a}
+.hero p{color:#e0edff}
+.hero-note{background:linear-gradient(145deg,rgba(9,52,101,.96),rgba(3,25,61,.97));border:2px solid #d9a91d;border-radius:16px;box-shadow:0 10px 28px rgba(0,0,0,.25)}
+.hero-note .mini{color:#ffdc61}
+.stat{background:linear-gradient(145deg,rgba(255,255,255,.13),rgba(255,255,255,.045));border:1px solid rgba(255,213,81,.24)}
+.stat strong{color:#ffda59}
+.section{background:#061b39;color:#f5f8ff}
+.section.white{background:#082c56}
+.sectionhead .eyebrow{color:#ffd45c}
+.sectionhead h2{color:#fff}
+.sectionhead p,.card p,.muted{color:#c4d7ee}
+.cards{gap:16px}
+.card{background:linear-gradient(150deg,#0b3c72,#041d43);border:1px solid #c99a18;border-radius:13px;box-shadow:0 8px 24px rgba(0,0,0,.18);color:#fff}
+.card h3{color:#ffe078}
+.iconbox{background:linear-gradient(140deg,#ffe27a,#e7a817);color:#08234b;border-radius:50%}
+.plan-grid{gap:18px}
+.plan{background:linear-gradient(150deg,#07396f,#031a3e);border:2px solid #dba91d;border-radius:15px;box-shadow:0 10px 28px rgba(0,0,0,.28)}
+.plan.featured{border:2px solid #ffd54c;box-shadow:0 0 0 2px rgba(255,210,57,.12),0 12px 30px rgba(0,0,0,.3)}
+.planhead{background:linear-gradient(115deg,#ffe37a,#edab13 62%,#ffd55b);color:#092653;padding:22px 24px;border-bottom:3px solid #fff0a8}
+.planhead small{color:#092653}
+.planhead h3{font-size:1.6rem;text-transform:uppercase;font-weight:900}
+.planbody{background:linear-gradient(155deg,#073c78,#031b41);color:#fff}
+.planprice{color:#ffda58;font-size:2.1rem}
+.metricrow{border-bottom:1px solid rgba(211,231,255,.27);padding:12px 10px}
+.metricrow:nth-of-type(even){background:rgba(255,255,255,.035)}
+.metricrow span{color:#d5e4f7}
+.metricrow strong{color:#fff}
+.plan-apply{margin-top:18px;width:100%}
+.note{border:2px solid #d8a91f;border-left:6px solid #ffd34f;background:#0b315c;color:#f7f9ff;border-radius:10px}
+.panel,.adminbox{background:#082c56;border:1px solid #d6a51a;color:#fff}
+.panel h3,.adminbox h3{color:#ffda59}
+.field label{color:#ffe17a}
+.field input,.field select,.field textarea{background:#f8fbff;color:#14253d;border-color:#d7a91e}
+.resultbox{background:linear-gradient(135deg,#041a3d,#07518b);border:2px solid #d8a91f}
+.resultbox small{color:#ffda59}
+.resulttile{background:rgba(255,255,255,.1);border:1px solid rgba(255,220,90,.22)}
+.admin-section{background:#04162f}
+.adminbox .smallprint,.smallprint{color:#c0d2e8}
+table{background:#082c56;color:#fff}
+th{background:linear-gradient(110deg,#ffd85e,#dba00e);color:#08234b}
+td{border-color:rgba(255,215,75,.25)}
+td input,td select{background:#f8fbff;color:#14253d}
+.status{background:#fbe7a0;color:#09234b}
+.dashstats .tile{background:#0b315c;border-color:#d2a41e}
+.tile span{color:#c7d9ef}.tile strong{color:#ffe078}
+.footer{background:#020f25;border-top:4px solid #e9b522}
+.footer p,.footer li{color:#c1d1e4}
+.pill{background:#ffe17a;color:#09234b}
+a{transition:color .15s ease}
+@media(max-width:850px){.navlinks{background:#fff}.hero-grid{padding:48px 0}.hero-note{padding:22px}}
+@media(max-width:580px){.hero h1{font-size:2.35rem}.planhead h3{font-size:1.35rem}.planbody{padding:18px}.metricrow{align-items:flex-start}.metricrow strong{max-width:48%}}
+
 </style>
 </head>
 <body>
@@ -22,16 +91,16 @@
 </div></nav>
 <main id="home">
 <section class="hero"><div class="wrap hero-grid">
-<div><div class="eyebrow">TRUCKING • TRANSPORT • PLANNING</div><h1>Moving projects forward. <span>Building capital with a plan.</span></h1><p>KKP Trucking Services brings together trucking services and a structured LOGISTICS / FINANCING / TRUCK OWNERSHIP PROGRAM, with clear figures and records to support informed discussions.</p><div class="hero-actions"><a class="btn btn-gold" href="#plans">Explore the Plans →</a><a class="btn btn-outline" style="color:white;border-color:#71849a" href="#contact">Make an Inquiry</a></div></div>
-<div class="hero-note"><div class="mini">MONTHLY INCOME & CAPITAL ACCUMULATION</div><h3>A 24-month planning framework</h3><p>Compare two proposed participation levels and review the projected down-payment credits for an indicative 10-wheeler dump truck purchase.</p><div class="statgrid"><div class="stat"><strong>₱250K</strong><span>Plan A initial capital</span></div><div class="stat"><strong>₱500K</strong><span>Plan B initial capital</span></div><div class="stat"><strong>24 months</strong><span>Illustrative term</span></div><div class="stat"><strong>₱2.5M</strong><span>Indicative truck price</span></div></div></div>
+<div><div class="eyebrow">TRUCKING • TRANSPORT • PLANNING</div><h1>BEYOND SUCCESSIVE TRUCKING.<br><span>A PATHWAY TO TRUCK OWNERSHIP.</span></h1><p>KKP Trucking Services brings together trucking services and a structured LOGISTICS / FINANCING / TRUCK OWNERSHIP PROGRAM, with clear figures and records to support informed discussions.</p><div class="hero-actions"><a class="btn btn-gold" href="#plans">Explore the Plans →</a><a class="btn btn-outline" style="color:white;border-color:#71849a" href="#contact">Make an Inquiry</a></div></div>
+<div class="hero-note"><div class="mini">LOGISTICS / FINANCING / TRUCK OWNERSHIP PROGRAM</div><h3>A 24-month planning framework</h3><p>Compare two proposed participation levels and review the projected down-payment credits for an indicative 10-wheeler dump truck purchase.</p><div class="statgrid"><div class="stat"><strong>₱250K</strong><span>Plan A initial capital</span></div><div class="stat"><strong>₱500K</strong><span>Plan B initial capital</span></div><div class="stat"><strong>24 months</strong><span>Illustrative term</span></div><div class="stat"><strong>₱2.5M</strong><span>Indicative truck price</span></div></div></div>
 </div></section>
-<section class="section white" id="services"><div class="wrap"><div class="sectionhead"><div class="eyebrow">WHAT WE DO</div><h2>Practical support for hauling and project planning.</h2><p>Use this section to introduce the company's confirmed services. Update the descriptions below to match your actual operations and service coverage.</p></div>
-<div class="cards"><article class="card"><div class="iconbox">🚚</div><h3>Dump Truck Hauling</h3><p>10-wheeler dump truck hauling support for construction materials and project requirements, subject to availability and confirmed terms.</p></article><article class="card"><div class="iconbox">📋</div><h3>Project Coordination</h3><p>Coordinate schedules, loads, and delivery requirements with customers and project teams.</p></article><article class="card"><div class="iconbox">📊</div><h3>LOGISTICS / FINANCING / TRUCK OWNERSHIP PROGRAM Records</h3><p>Structured monthly allocation summaries and a 24-month ledger format for tracking credited amounts and supporting records.</p></article></div>
+<section class="section white" id="services"><div class="wrap"><div class="sectionhead"><div class="eyebrow">WHAT WE DO</div><h2>Hauling, subcontracting, and truck ownership solutions.</h2><p>Explore KKP's hauling, subcontracting, and truck dealership and financing services.</p></div>
+<div class="cards"><article class="card"><div class="iconbox">🚚</div><h3>Hauling / Stock piling</h3><p>Hauling and stockpiling support for construction materials and project sites, subject to availability and confirmed requirements.</p></article><article class="card"><div class="iconbox">📋</div><h3>Sub contracting</h3><p>Subcontracting support for hauling, logistics, and project-related work based on agreed scope, schedule, and terms.</p></article><article class="card"><div class="iconbox">🚛</div><h3>Truck dealership &amp; financing</h3><p>Truck acquisition and financing options for qualified customers, with program details discussed and confirmed directly with KKP.</p></article></div>
 </div></section>
 <section class="section" id="plans"><div class="wrap"><div class="sectionhead"><div class="eyebrow">PLAN OPTIONS</div><h2>LOGISTICS / FINANCING / TRUCK OWNERSHIP PROGRAM</h2><p>The figures below reproduce the supplied plan assumptions for comparison. Review the written agreement for actual obligations and conditions.</p></div>
 <div class="plan-grid">
-<article class="plan"><div class="planhead"><small>PLAN A</small><h3>₱250,000 Plan</h3><div>24-month illustrative term</div></div><div class="planbody"><div class="planprice">₱250,000</div><div class="muted">Initial capital participation</div><div class="metricrow"><span>Monthly cash allocation shown</span><strong>₱12,500</strong></div><div class="metricrow"><span>Monthly accumulation credit</span><strong>₱12,500</strong></div><div class="metricrow"><span>Accumulation after 24 months</span><strong>₱300,000</strong></div><div class="metricrow"><span>Projected total down-payment credit</span><strong>₱550,000</strong></div><a class="btn btn-navy plan-apply" data-plan="250000" href="#contact">Apply / inquire about this plan</a></div></article>
-<article class="plan featured"><div class="planhead"><small>PLAN B</small><h3>₱500,000 Plan</h3><div>24-month illustrative term</div></div><div class="planbody"><div class="planprice">₱500,000</div><div class="muted">Initial capital participation</div><div class="metricrow"><span>Monthly cash allocation shown</span><strong>₱30,000</strong></div><div class="metricrow"><span>Monthly accumulation credit</span><strong>₱30,000</strong></div><div class="metricrow"><span>Accumulation after 24 months</span><strong>₱720,000</strong></div><div class="metricrow"><span>Projected total down-payment credit</span><strong>₱1,220,000</strong></div><a class="btn btn-gold plan-apply" data-plan="500000" href="#contact">Apply / inquire about this plan</a></div></article>
+<article class="plan"><div class="planhead"><small>MONTHLY INCOME + CAPITAL ACCUMULATION PLAN</small><h3>₱250,000 PLAN</h3><div>24-month illustrative term</div></div><div class="planbody"><div class="planprice">₱250,000</div><div class="muted">Initial capital participation</div><div class="metricrow"><span>Monthly cash allocation shown</span><strong>₱12,500</strong></div><div class="metricrow"><span>Monthly accumulation credit</span><strong>₱12,500</strong></div><div class="metricrow"><span>Accumulation after 24 months</span><strong>₱300,000</strong></div><div class="metricrow"><span>Projected total down-payment credit</span><strong>₱550,000</strong></div><a class="btn btn-navy plan-apply" data-plan="250000" href="#contact">Apply / inquire about this plan</a></div></article>
+<article class="plan featured"><div class="planhead"><small>MONTHLY INCOME + CAPITAL ACCUMULATION PLAN</small><h3>₱500,000 PLAN</h3><div>24-month illustrative term</div></div><div class="planbody"><div class="planprice">₱500,000</div><div class="muted">Initial capital participation</div><div class="metricrow"><span>Monthly cash allocation shown</span><strong>₱30,000</strong></div><div class="metricrow"><span>Monthly accumulation credit</span><strong>₱30,000</strong></div><div class="metricrow"><span>Accumulation after 24 months</span><strong>₱720,000</strong></div><div class="metricrow"><span>Projected total down-payment credit</span><strong>₱1,220,000</strong></div><a class="btn btn-gold plan-apply" data-plan="500000" href="#contact">Apply / inquire about this plan</a></div></article>
 </div>
 <div class="note"><strong>Important:</strong> These are illustrative plan figures, not a guarantee of earnings, payment, financing approval, or truck acquisition. Confirm the payment source, legal terms, fees, ownership rights, cancellation and settlement provisions with qualified advisers before accepting funds.</div>
 </div></section>
