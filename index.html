@@ -1,3 +1,4 @@
+```
 <!doctype html>
 <html lang="en">
 <head> 
@@ -487,16 +488,8 @@ td{background:rgba(8,37,76,.7)!important;color:#e3edff!important;border-color:rg
 <div id="kkpContractTools" class="adminbox hidden" style="margin-top:20px">
   <div class="toolbar"><div><h3>KKP Contract Generator</h3>
   <p class="smallprint">Prepare trucking and lending agreements from the original templates. Partner information and capital-management terms can be updated per request.</p></div></div>
-  <button type="button" id="kkpOpenContracts" class="btn btn-gold" aria-expanded="false" aria-controls="kkpContractFrameWrap">Open Contract Generator</button>
-  <div id="kkpContractFrameWrap" class="hidden" style="margin-top:20px">
-<iframe
-  id="kkpContractFrame"
-  title="KKP Contract Generator"
-  src="/contract-studio/index.html"
-  loading="lazy"
-  referrerpolicy="same-origin"
-  style="width:100%; min-height:1160px; border:1px solid #325783; border-radius:16px;">
-</iframe>  </div>
+  <a id="kkpOpenContracts" class="btn btn-gold" href="/contract-studio/index.html" target="_blank" rel="noopener noreferrer">Open Contract Generator ↗</a>
+  <p class="smallprint">Opens the working Contract Studio in a separate tab while keeping your Admin Dashboard available.</p>
   <p class="smallprint">For authorized KKP administrators only. Review completed agreements before signing.</p>
 </div>
 <div id="ledgerPanel" class="adminbox hidden" style="margin-top:20px"><div class="toolbar"><div><h3 id="ledgerTitle">Participant ledger</h3><div class="smallprint" id="ledgerSub"></div></div><div class="right"><button class="btn btn-outline" id="exportCsv" type="button">Export CSV</button><button class="btn btn-outline" onclick="window.print()" type="button">Print</button></div></div><div class="dashstats"><div class="tile"><span>Initial capital</span><strong id="dashInitial">—</strong></div><div class="tile"><span>Total credited</span><strong id="dashAccum">—</strong></div><div class="tile"><span>Total down-payment credit</span><strong id="dashTotal">—</strong></div></div><div class="tablewrap"><table><thead><tr><th>Month</th><th>Due date</th><th>Credit due</th><th>Amount credited</th><th>Cumulative credits</th><th>Status</th><th>Receipt / reference</th><th>Remarks</th></tr></thead><tbody id="ledgerRows"></tbody></table></div><p class="smallprint">Ledger entries are stored in the KKP database. Keep payment receipt/reference details accurate and retain source documents for reconciliation.</p></div>
@@ -585,9 +578,6 @@ async function refreshAuthUI(session) {
   loggedIn = false;
   document.getElementById('ledgerTools').classList.add('hidden');
   document.getElementById('kkpContractTools').classList.add('hidden');
-  document.getElementById('kkpContractFrameWrap').classList.add('hidden');
-  document.getElementById('kkpOpenContracts').setAttribute('aria-expanded','false');
-  document.getElementById('kkpContractFrame').removeAttribute('src');
   inviteTools.classList.add('hidden');
   document.getElementById('ledgerPanel').classList.add('hidden');
   document.getElementById('participantLedgerPanel').classList.add('hidden');
@@ -668,18 +658,6 @@ document.getElementById('signOutBtn').addEventListener('click', async () => {
   await refreshAuthUI(null);
 });
 
-document.getElementById('kkpOpenContracts').addEventListener('click', () => {
-  if (!loggedIn) return;
-  const wrap = document.getElementById('kkpContractFrameWrap');
-  const frame = document.getElementById('kkpContractFrame');
-  const opening = wrap.classList.contains('hidden');
-  wrap.classList.toggle('hidden', !opening);
-  document.getElementById('kkpOpenContracts').setAttribute('aria-expanded', String(opening));
-  if (opening) {
-  frame.src = 'https://www.kkptrucking.com/contract-studio/index.html';
-}
-  else frame.removeAttribute('src');
-});
 supabaseClient.auth.onAuthStateChange((event, session) => {
   // Do not query Supabase inside the auth callback.
   Promise.resolve().then(async () => {
@@ -1003,3 +981,4 @@ document.getElementById('participantExportCsv').addEventListener('click',()=>{
 })();
 </script>
 </body></html>
+```
