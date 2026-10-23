@@ -113,6 +113,29 @@ a{transition:color .15s ease}
 .kkp-lightbox-close{position:absolute;top:10px;right:15px;background:#223247;color:white;border:1px solid #fff;border-radius:8px;padding:8px 14px;cursor:pointer}
 @media(max-width:580px){.kkp-slide img{height:65vw;min-height:240px}.kkp-slide figcaption{padding:10px 12px}.kkp-slide-arrow{width:38px;height:38px;font-size:23px}}
 @media(prefers-reduced-motion:reduce){.kkp-slide{transition:none}}
+
+/* KKP Contact & Messenger Integration */
+.kkp-contact-actions{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0}
+.kkp-contact-actions a{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;border-radius:10px;padding:12px 16px;background:#082c56;color:#fff;border:1px solid #c99a18}
+.kkp-contact-actions a:hover,.kkp-contact-actions a:focus-visible{background:#164577;color:#fff}
+.kkp-contact-actions a:first-child{background:#1468c6;border-color:#1468c6}
+.kkp-location{margin-top:22px;border:1px solid #d5dde8;border-radius:14px;overflow:hidden;background:#fff}
+.kkp-location h3,.kkp-location p{margin:12px 16px}
+.kkp-location iframe{display:block;width:100%;height:330px;border:0}
+.kkp-map-link{display:inline-block;margin:0 16px 18px;font-weight:700;color:#083e7b}
+.kkp-floating-contact{position:fixed;right:20px;bottom:24px;z-index:1000;display:flex;flex-direction:column;align-items:flex-end;gap:12px}
+.kkp-floating-contact .kkp-float-link{position:relative;display:flex;align-items:center;justify-content:flex-end;gap:10px;width:56px;height:56px;padding:0;border:1.5px solid rgba(224,187,101,.85);border-radius:999px;background:linear-gradient(145deg,#12365d,#071b36);color:#fff!important;text-decoration:none;box-shadow:0 8px 22px rgba(3,18,39,.28),inset 0 1px 0 rgba(255,255,255,.15);overflow:hidden;transition:width .28s ease,transform .2s ease,box-shadow .2s ease}
+.kkp-floating-contact .kkp-float-link:hover,.kkp-floating-contact .kkp-float-link:focus-visible{width:174px;transform:translateY(-2px);box-shadow:0 12px 30px rgba(3,18,39,.4),0 0 0 3px rgba(209,168,77,.15);outline:none}
+.kkp-floating-contact .kkp-float-label{position:absolute;right:58px;white-space:nowrap;opacity:0;transform:translateX(8px);transition:opacity .18s ease,transform .18s ease;font-size:13px;font-weight:750;letter-spacing:.1px}
+.kkp-floating-contact .kkp-float-link:hover .kkp-float-label,.kkp-floating-contact .kkp-float-link:focus-visible .kkp-float-label{opacity:1;transform:none}
+.kkp-floating-contact .kkp-float-icon{position:absolute;right:0;top:0;width:54px;height:54px;display:flex;align-items:center;justify-content:center;flex-shrink:0;border-radius:50%;background:rgba(255,255,255,.04)}
+.kkp-floating-contact svg{width:24px;height:24px;stroke:#e8c47a;stroke-width:1.9;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.kkp-floating-contact .kkp-float-messenger{background:linear-gradient(145deg,#164575,#082445)}
+.kkp-floating-contact .kkp-float-email{background:linear-gradient(145deg,#cfa952,#a87a27);border-color:#f2d998}
+.kkp-floating-contact .kkp-float-email svg{stroke:#fff}
+@media(max-width:580px){.kkp-floating-contact{right:12px;bottom:14px;gap:9px}.kkp-floating-contact .kkp-float-link{width:50px;height:50px}.kkp-floating-contact .kkp-float-icon{width:48px;height:48px}.kkp-floating-contact .kkp-float-link:hover,.kkp-floating-contact .kkp-float-link:focus-visible{width:50px}.kkp-floating-contact .kkp-float-label{display:none}.kkp-floating-contact svg{width:22px;height:22px}.kkp-location iframe{height:260px}}
+@media(prefers-reduced-motion:reduce){.kkp-floating-contact .kkp-float-link,.kkp-floating-contact .kkp-float-label{transition:none}}
+@media print{.kkp-floating-contact{display:none}}
 </style>
 </head>
 <body>
@@ -156,7 +179,16 @@ a{transition:color .15s ease}
 </div></section>
 <section class="section" id="about"><div class="wrap"><div class="sectionhead"><div class="eyebrow">ABOUT KKP</div><h2>Built around clear communication and records.</h2><p>KKP Trucking Services can use this website to present its confirmed company information, hauling services, and plan details in one place. Complete the contact details and legal business information before publishing publicly.</p></div><div class="cards"><div class="card"><h3>Transparent figures</h3><p>Plan figures are shown separately as monthly cash allocation and monthly accumulation credit.</p></div><div class="card"><h3>Documented process</h3><p>Use signed agreements, receipts, and a maintained ledger to record actual transactions.</p></div><div class="card"><h3>Clear next steps</h3><p>Confirm acquisition terms, financing responsibilities, and ownership rights in signed documents.</p></div></div></div></section>
 <section class="section white" id="contact"><div class="wrap"><div class="sectionhead"><div class="eyebrow">GET IN TOUCH</div><h2>Discuss a hauling requirement or plan inquiry.</h2><p>Contact KKP Holdings Corporate Office for inquiries about trucking services and plan information.</p></div><div class="calculator"><div class="panel"><h3>Company contact details</h3><p><strong>Business:</strong> KKP Trucking Services</p><p><strong>Office:</strong> KKP HOLDINGS CORPORATE Office</p><p><strong>Address:</strong> Unit 2802, 31 Atlanta Center Building, Annapolis St., San Juan, Greenhills</p><p><strong>Phone:</strong> <a href="tel:+639758614215">09758614215</a></p><p><strong>Email:</strong> <a href="mailto:kkpholdingsofficial2026@gmail.com">kkpholdingsofficial2026@gmail.com</a></p>
-<p><strong>Cabanatuan Branch:</strong><br>Kar Fuel, Circumferential Road</p></div><form class="panel" id="inquiryForm" action="https://formspree.io/f/xwllednv" method="POST">
+<p><strong>Cabanatuan Branch:</strong><br>Kar Fuel, Circumferential Road, Cabanatuan City, Nueva Ecija</p><div class="kkp-contact-actions" aria-label="Quick contact options">
+<a href="https://www.facebook.com/kkptruckingservices" target="_blank" rel="noopener noreferrer" aria-label="Open KKP Trucking Services Facebook Page to message us">💬 Message on Facebook</a>
+<a href="tel:+639758614215">📞 Call 0975 861 4215</a>
+<a href="mailto:kkpholdingsofficial2026@gmail.com?subject=KKP%20Trucking%20Services%20Inquiry">✉️ Send Email</a>
+</div>
+<div class="kkp-location"><h3>📍 Cabanatuan, Nueva Ecija — Kar Fuel</h3>
+<p>Circumferential Road, Cabanatuan City, Nueva Ecija. Map results are based on the provided location description; confirm the exact pin before visiting.</p>
+<iframe title="Map showing Kar Fuel area, Circumferential Road, Cabanatuan City" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Kar%20Fuel%2C%20Circumferential%20Road%2C%20Cabanatuan%20City%2C%20Nueva%20Ecija%2C%20Philippines&amp;output=embed"></iframe>
+<a class="kkp-map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Kar%20Fuel%2C%20Circumferential%20Road%2C%20Cabanatuan%20City%2C%20Nueva%20Ecija%2C%20Philippines" target="_blank" rel="noopener noreferrer">Open in Google Maps / Get Directions ↗</a>
+</div></div><form class="panel" id="inquiryForm" action="https://formspree.io/f/xwllednv" method="POST">
 <h3>Inquiry / Plan Application</h3>
 <input type="hidden" name="_subject" value="New KKP Trucking Website Inquiry or Plan Application">
 <div class="field"><label for="inqName">Full name</label><input id="inqName" name="full_name" autocomplete="name" required></div>
@@ -177,7 +209,13 @@ a{transition:color .15s ease}
 <div id="ledgerPanel" class="adminbox hidden" style="margin-top:20px"><div class="toolbar"><div><h3 id="ledgerTitle">Participant ledger</h3><div class="smallprint" id="ledgerSub"></div></div><div class="right"><button class="btn btn-outline" id="exportCsv" type="button">Export CSV</button><button class="btn btn-outline" onclick="window.print()" type="button">Print</button></div></div><div class="dashstats"><div class="tile"><span>Initial capital</span><strong id="dashInitial">—</strong></div><div class="tile"><span>Total credited</span><strong id="dashAccum">—</strong></div><div class="tile"><span>Total down-payment credit</span><strong id="dashTotal">—</strong></div></div><div class="tablewrap"><table><thead><tr><th>Month</th><th>Due date</th><th>Credit due</th><th>Amount credited</th><th>Cumulative credits</th><th>Status</th><th>Receipt / reference</th><th>Remarks</th></tr></thead><tbody id="ledgerRows"></tbody></table></div><p class="smallprint">Ledger entries are stored in the KKP database. Keep payment receipt/reference details accurate and retain source documents for reconciliation.</p></div>
 </div></section>
 </main>
-<footer class="footer"><div class="wrap"><div class="footergrid"><div><h3>KKP TRUCKING SERVICES</h3><p>Trucking services and structured LOGISTICS / FINANCING / TRUCK OWNERSHIP PROGRAM information, presented with a focus on clear figures and documented processes.</p></div><div><h4>Explore</h4><ul><li><a href="#services">Services</a></li><li><a href="#plans">Plan options</a></li><li><a href="#calculator">Plan calculator</a></li></ul></div><div><h4>Contact</h4><p><strong>KKP HOLDINGS CORPORATE Office</strong><br>Unit 2802, 31 Atlanta Center Building, Annapolis St., San Juan, Greenhills</p><p>Phone: <a href="tel:+639758614215">09758614215</a><br>Email: <a href="mailto:kkpholdingsofficial2026@gmail.com">kkpholdingsofficial2026@gmail.com</a><br><strong>Cabanatuan Branch:</strong> Kar Fuel, Circumferential Road</p></div></div><div class="copyright">© <span id="year"></span> KKP Trucking Services. All rights reserved. <span style="float:right">Navy blue & gold edition</span></div></div></footer>
+<aside class="kkp-floating-contact" aria-label="Quick contact KKP Trucking Services">
+<a class="kkp-float-link kkp-float-messenger" href="https://www.facebook.com/kkptruckingservices" target="_blank" rel="noopener noreferrer" aria-label="Open KKP Trucking Services Facebook Page to send a message" title="Message KKP on Facebook"><span class="kkp-float-label" aria-hidden="true">Chat with us</span><span class="kkp-float-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 11.4c0 4.6-3.6 8.1-8.3 8.1-1 0-2-.1-2.9-.5L4 20l1.2-4.1A7.7 7.7 0 0 1 3.5 11.4c0-4.6 3.6-8 8.3-8S20 6.8 20 11.4Z"/><path d="m7.4 13.8 3.1-3.3 2.6 2 3.2-3.2-3 4.1-2.8-2-3.1 2.4Z"/></svg></span></a>
+<a class="kkp-float-link kkp-float-phone" href="tel:+639758614215" aria-label="Call KKP Trucking Services at 0975 861 4215" title="Call 0975 861 4215"><span class="kkp-float-label" aria-hidden="true">Call KKP</span><span class="kkp-float-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 16.5v2.8a2 2 0 0 1-2.2 2A17.7 17.7 0 0 1 3 5.2 2 2 0 0 1 5 3h2.8a2 2 0 0 1 2 1.7l.5 2.7a2 2 0 0 1-.6 1.8L8 10.9a14.1 14.1 0 0 0 5.1 5.1l1.7-1.7a2 2 0 0 1 1.8-.6l2.7.5a2 2 0 0 1 1.7 2Z"/></svg></span></a>
+<a class="kkp-float-link kkp-float-email" href="mailto:kkpholdingsofficial2026@gmail.com?subject=KKP%20Trucking%20Services%20Inquiry" aria-label="Email KKP Trucking Services" title="Email KKP"><span class="kkp-float-label" aria-hidden="true">Email KKP</span><span class="kkp-float-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span></a>
+</aside>
+
+<footer class="footer"><div class="wrap"><div class="footergrid"><div><h3>KKP TRUCKING SERVICES</h3><p>Trucking services and structured LOGISTICS / FINANCING / TRUCK OWNERSHIP PROGRAM information, presented with a focus on clear figures and documented processes.</p></div><div><h4>Explore</h4><ul><li><a href="#services">Services</a></li><li><a href="#plans">Plan options</a></li><li><a href="#calculator">Plan calculator</a></li></ul></div><div><h4>Contact</h4><p><strong>KKP HOLDINGS CORPORATE Office</strong><br>Unit 2802, 31 Atlanta Center Building, Annapolis St., San Juan, Greenhills</p><p>Phone: <a href="tel:+639758614215">09758614215</a><br>Email: <a href="mailto:kkpholdingsofficial2026@gmail.com">kkpholdingsofficial2026@gmail.com</a><br><strong>Cabanatuan Branch:</strong> Kar Fuel, Circumferential Road, Cabanatuan City, Nueva Ecija</p></div></div><div class="copyright">© <span id="year"></span> KKP Trucking Services. All rights reserved. <span style="float:right">Navy blue & gold edition</span></div></div></footer>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const money = n => new Intl.NumberFormat('en-PH',{style:'currency',currency:'PHP',maximumFractionDigits:0}).format(Number(n)||0);
