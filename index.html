@@ -4,6 +4,7 @@
   <link rel="icon" type="image/png" href="/kkp-logo.png">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#071b35">
 <meta name="description" content="KKP Trucking Services — trucking services and LOGISTICS / FINANCING / TRUCK OWNERSHIP PROGRAM information.">
 <title>KKP Trucking Services</title>
 <style>
@@ -188,6 +189,199 @@ body{font-family:Inter,"Segoe UI",Arial,sans-serif}
 @media(max-width:580px){.brand img{width:92px!important;height:48px!important}.brand span{font-size:.70rem}.brand small{font-size:.48rem;letter-spacing:0}.hero h1{font-size:clamp(2.2rem,10vw,3rem)}.hero-grid{padding:58px 0}.hero-note{padding:21px}.statgrid{gap:9px}.stat{padding:11px}.section{padding:55px 0}.card{padding:23px}.plan.featured{transform:none}.planhead,.planbody{padding:22px}}
 @media(prefers-reduced-motion:reduce){.btn,.card{transition:none}.btn:hover,.card:hover{transform:none}}
 
+
+/* Premium program terms panel */
+.kkp-terms{position:relative;isolation:isolate;overflow:hidden;margin-top:30px;padding:28px 30px 28px 32px;border:1px solid rgba(255,214,107,.55);border-left:5px solid #f5b91d;border-radius:18px;background:linear-gradient(115deg,#071d40 0%,#103e70 62%,#071d40 100%);box-shadow:0 16px 42px rgba(0,0,0,.20);color:#f4f8ff;animation:kkpTermsEnter .7s ease-out both}
+.kkp-terms::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(105deg,transparent 30%,rgba(255,224,122,.10) 49%,transparent 68%);transform:translateX(-110%);animation:kkpTermsShimmer 7s ease-in-out 1s infinite}
+.kkp-terms-header{display:flex;align-items:center;gap:13px;margin-bottom:11px}
+.kkp-terms-icon{width:44px;height:44px;display:grid;place-items:center;flex-shrink:0;border-radius:13px;background:linear-gradient(140deg,#ffe18b,#f0af19);color:#08224a;box-shadow:0 5px 16px rgba(245,185,29,.25);font-size:23px}
+.kkp-terms h3{margin:0;color:#ffe28a;font-size:clamp(1.1rem,2vw,1.35rem);letter-spacing:.01em}
+.kkp-terms p{margin:0 0 0 57px;color:#e2edfb;font-size:.95rem;line-height:1.85;max-width:900px}
+.kkp-terms .kkp-terms-detail{margin-top:9px;font-size:.86rem;color:#c5d7ed}
+@keyframes kkpTermsEnter{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+@keyframes kkpTermsShimmer{0%,75%,100%{transform:translateX(-110%)}88%{transform:translateX(110%)}}
+@media(max-width:580px){.kkp-terms{padding:21px 19px}.kkp-terms p{margin-left:0}.kkp-terms-icon{width:40px;height:40px}}
+@media(prefers-reduced-motion:reduce){.kkp-terms,.kkp-terms::before{animation:none}}
+
+
+/* KKP Modern UI 2026 — styling only, authentication and database logic untouched */
+:root{--navy:#071b35;--navy2:#123d69;--gold:#f4bd43;--gold2:#ffe3a0;--line:rgba(169,197,233,.22);--shadow:0 18px 48px rgba(0,0,0,.16)}
+html{scroll-padding-top:100px}
+body{font-family:Inter,"Segoe UI",system-ui,-apple-system,Arial,sans-serif;letter-spacing:-.008em}
+.wrap{width:min(1240px,92%)}
+.topbar{background:#061429;padding:10px 0;font-size:.76rem;letter-spacing:.055em}
+.navbar{background:rgba(255,255,255,.97);box-shadow:0 8px 35px rgba(3,22,48,.14);border-bottom:1px solid rgba(11,40,76,.12);backdrop-filter:blur(16px)}
+.navinner{min-height:88px;gap:15px}
+.brand{gap:14px;letter-spacing:0;min-width:0}
+.brand img{width:148px!important;height:68px!important;object-fit:contain!important;flex-shrink:0}
+.brand span{font-size:.88rem;line-height:1.32;font-weight:850}
+.brand small{font-size:.58rem;letter-spacing:.04em;line-height:1.5;margin-top:4px}
+.navlinks{gap:12px}
+.navlinks a:not(.btn){font-size:.84rem;font-weight:750;padding:9px 2px;position:relative}
+.navlinks a:not(.btn):after{content:"";position:absolute;bottom:4px;left:0;right:100%;height:2px;background:#dc9f24;transition:right .2s}
+.navlinks a:not(.btn):hover:after{right:0}
+.navlinks .btn{font-size:.79rem;padding:10px 12px}
+.btn{border-radius:12px;box-shadow:0 5px 14px rgba(0,0,0,.08);transition:transform .2s,box-shadow .2s,filter .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(0,0,0,.16);filter:brightness(1.04)}
+.btn:focus-visible,a:focus-visible,button:focus-visible{outline:3px solid #f6c45e;outline-offset:3px}
+.btn-gold{background:linear-gradient(135deg,#ffe4a0,#efb32f);color:#0b294a;border:1px solid #f8d17a;box-shadow:0 5px 16px rgba(239,179,47,.20)}
+.btn-navy{background:linear-gradient(135deg,#0d3564,#082244);color:white}
+.hero{isolation:isolate;min-height:620px;background:linear-gradient(98deg,rgba(2,17,40,.98) 0%,rgba(4,31,67,.95) 47%,rgba(5,40,78,.66) 100%),url('assets/kkp_gallery_6.jpg') center/cover no-repeat}
+.hero:before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(circle at 80% 40%,rgba(237,185,55,.10),transparent 38%)}
+.hero:after{opacity:.48}
+.hero-grid{grid-template-columns:1.12fr .88fr;gap:48px;padding:98px 0}
+.hero .eyebrow{display:inline-flex;align-items:center;padding:9px 15px;border-radius:50px;border:1px solid rgba(255,218,110,.38);background:rgba(8,32,62,.52);font-size:.72rem}
+.hero h1{font-size:clamp(2.8rem,5vw,4.8rem);line-height:1.09;letter-spacing:-.047em;text-wrap:balance;margin:21px 0}
+.hero p{line-height:1.8;font-size:1.08rem}
+.hero-actions{gap:14px;margin-top:32px}
+.hero-actions .btn{padding:15px 22px}
+.hero-note{border-radius:24px;background:linear-gradient(145deg,rgba(7,42,82,.93),rgba(3,22,49,.96));padding:30px;box-shadow:0 25px 60px rgba(0,0,0,.27);backdrop-filter:blur(12px)}
+.hero-note h3{font-size:1.65rem;line-height:1.25}
+.statgrid{gap:12px}
+.stat{border-radius:14px;padding:17px}
+.stat strong{font-size:1.42rem}
+.section{padding:88px 0}
+.sectionhead{max-width:790px;margin-bottom:38px}
+.sectionhead h2{font-size:clamp(2.05rem,3.4vw,3.05rem);letter-spacing:-.035em;line-height:1.18}
+.sectionhead p{font-size:1.02rem;line-height:1.8}
+.cards{gap:23px}
+.card{border-radius:22px;padding:31px;box-shadow:0 12px 34px rgba(0,0,0,.12);transition:transform .22s,box-shadow .22s}
+.card:hover{transform:translateY(-6px);box-shadow:0 22px 46px rgba(0,0,0,.23)}
+.card h3{font-size:1.24rem}
+.card p{line-height:1.8}
+.iconbox{width:58px;height:58px;font-size:1.75rem;border-radius:17px}
+.plan-grid{gap:25px}
+.plan{border-radius:23px;box-shadow:0 18px 46px rgba(0,0,0,.18);transition:transform .22s,box-shadow .22s}
+.plan:hover{transform:translateY(-5px);box-shadow:0 26px 55px rgba(0,0,0,.26)}
+.planhead{padding:30px}
+.planbody{padding:30px}
+.planprice{font-size:2.55rem;letter-spacing:-.035em}
+.metricrow{gap:24px;padding:14px 9px}
+.kkp-slideshow{border-radius:23px;box-shadow:0 20px 55px rgba(0,0,0,.2)}
+.kkp-slide-arrow{background:rgba(5,23,50,.85);backdrop-filter:blur(8px)}
+.panel,.adminbox{border-radius:22px;padding:30px;box-shadow:0 12px 36px rgba(0,0,0,.12)}
+.panel h3,.adminbox h3{font-size:1.25rem}
+.field{gap:8px;margin:17px 0}
+.field input,.field select,.field textarea{border-radius:12px;padding:13px 14px;transition:box-shadow .2s,border-color .2s}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:#e4ae2f;box-shadow:0 0 0 3px rgba(244,189,67,.20)}
+.dashstats .tile{border-radius:15px;padding:19px}
+.tablewrap{border-radius:14px;border:1px solid rgba(255,215,75,.20)}
+table{border-collapse:separate;border-spacing:0}
+th,td{padding:12px}
+.footer{padding-top:60px}
+.footergrid{gap:38px}
+.kkp-terms-panel{border-radius:22px!important;box-shadow:0 18px 45px rgba(0,0,0,.19)!important}
+@media(max-width:1170px){.navinner{gap:9px}.brand img{width:112px!important;height:57px!important}.brand span{font-size:.76rem}.brand small{font-size:.52rem}.navlinks{gap:8px}.navlinks a:not(.btn){font-size:.78rem}.navlinks .btn{padding:9px 10px;font-size:.74rem}}
+@media(max-width:850px){.navinner{min-height:78px}.navlinks{top:78px;box-shadow:0 22px 40px rgba(0,0,0,.16);gap:13px}.navlinks a:not(.btn){font-size:1rem}.hero{background-position:60% center}.hero-grid{grid-template-columns:1fr;gap:26px;padding:72px 0}.hero-note{max-width:650px}.section{padding:67px 0}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:580px){.topbar{font-size:.68rem}.brand img{width:90px!important;height:50px!important}.brand span{font-size:.69rem}.brand small{font-size:.47rem;letter-spacing:0}.hero-grid{padding:55px 0}.hero h1{font-size:clamp(2.25rem,10vw,3.1rem)}.hero p{font-size:.98rem}.hero-note{padding:22px}.stat{padding:12px}.section{padding:55px 0}.cards,.plan-grid{grid-template-columns:1fr}.card,.panel,.adminbox{padding:23px}.planhead,.planbody{padding:23px}.plan:hover{transform:none}.hero-actions .btn{width:100%}}
+@media(prefers-reduced-motion:reduce){.btn,.card,.plan{transition:none}.btn:hover,.card:hover,.plan:hover{transform:none}}
+
+
+/* KKP branded truck hero: design update only, app behavior preserved */
+:root{--gold:#e7c06a;--gold2:#f8e3b1}
+.navbar{background:rgba(4,19,43,.97)!important;color:#fff!important;border-bottom:1px solid rgba(125,178,235,.22)!important}
+.navbar .brand,.navbar .navlinks a:not(.btn){color:#fff!important}
+.navbar .brand small{color:#a9d0ff!important}
+.navbar .navlinks .btn-navy{background:rgba(12,44,85,.9)!important;color:#fff!important;border:1px solid rgba(160,201,255,.5)!important}
+.navbar .navlinks .btn-navy:last-child{background:linear-gradient(135deg,#f53d44,#bc101c)!important;border-color:#f55d63!important}
+.hero{background:linear-gradient(90deg,rgba(2,13,32,.96) 0%,rgba(3,24,56,.89) 32%,rgba(4,25,54,.38) 65%,rgba(3,18,43,.12) 100%),url('/kkp-hero-truck.jpg') center center/cover no-repeat!important;border-bottom:0!important;min-height:690px!important}
+.hero:before{background:linear-gradient(0deg,rgba(3,12,31,.74),transparent 35%)!important}
+.hero:after{display:none!important}
+.hero-grid{grid-template-columns:minmax(0,1fr)!important;min-height:690px;align-content:center;gap:22px!important;padding:85px 0 70px!important}
+.hero-grid>div:first-child{max-width:700px}
+.hero .eyebrow{color:#c9e6ff!important;background:rgba(3,20,46,.5)!important;border-color:rgba(117,180,252,.42)!important}
+.hero h1{font-size:clamp(2.6rem,5.2vw,5rem)!important;line-height:1.06!important;color:#fff!important;text-shadow:0 4px 22px rgba(0,0,0,.4);font-style:italic}
+.hero h1 span{color:#55b8ff!important}
+.hero p{max-width:600px!important;color:#f1f6ff!important;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+.hero-actions .btn-gold{background:linear-gradient(130deg,#fa3c43,#c90819)!important;color:#fff!important;border:1px solid #ff6469!important;box-shadow:0 12px 28px rgba(147,9,27,.35)!important}
+.hero-actions .btn-outline{background:rgba(7,31,66,.68)!important;border:1px solid #8bbdf3!important;color:#fff!important;backdrop-filter:blur(7px)}
+.hero-note{max-width:100%!important;margin-top:38px;display:grid;grid-template-columns:250px 1fr;gap:20px;align-items:center;background:rgba(3,15,36,.82)!important;border:1px solid rgba(115,170,234,.36)!important;border-radius:18px!important;box-shadow:0 18px 45px rgba(0,0,0,.32)!important}
+.hero-note .mini{grid-column:1;color:#69c1ff!important}
+.hero-note h3{grid-column:1;font-size:1.35rem!important;margin:0!important}
+.hero-note p{display:none}
+.hero-note .statgrid{grid-column:2;grid-row:1/span 2;grid-template-columns:repeat(4,minmax(0,1fr));margin:0}
+.hero-note .stat{background:rgba(10,51,99,.7)!important;text-align:center}
+.hero-note .stat strong{color:#fff!important}
+.hero-note .stat span{color:#bedcff!important}
+@media(max-width:850px){.navbar .navlinks{background:#071b35!important}.hero{min-height:0!important;background-position:60% center!important}.hero-grid{min-height:0;padding:85px 0 48px!important}.hero-note{grid-template-columns:1fr!important}.hero-note .mini,.hero-note h3,.hero-note .statgrid{grid-column:1;grid-row:auto}.hero-note .statgrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:580px){.hero{background:linear-gradient(90deg,rgba(2,13,32,.95),rgba(3,24,56,.65)),url('/kkp-hero-truck.jpg') 60% center/cover no-repeat!important}.hero-grid{padding:65px 0 40px!important}.hero h1{font-size:clamp(2.35rem,9vw,3.4rem)!important}.hero-note{margin-top:20px;padding:18px!important}.hero-note .statgrid{gap:8px}.hero-note .stat{padding:10px}}
+
+
+/* Exact approved desktop homepage artwork, with functional navigation hotspots. */
+.kkp-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.kkp-exact-overlay{display:none}
+@media(min-width:901px){
+ .topbar,.navbar{display:none!important}
+ .hero{position:relative!important;width:100%!important;min-height:0!important;height:auto!important;aspect-ratio:1774 / 887!important;background:url('/kkp-exact-homepage.jpg') center center/100% 100% no-repeat!important;border:0!important;overflow:hidden!important}
+ .hero:before,.hero:after{display:none!important}
+ .hero>.hero-grid{display:none!important}
+ .kkp-exact-overlay{position:absolute;inset:0;display:block;z-index:10}
+ .kkp-exact-overlay>a{position:absolute;display:block;border-radius:10px;cursor:pointer}
+ .kkp-exact-overlay>a:hover{background:rgba(255,255,255,.065)}
+ .kkp-exact-overlay>a:focus-visible{outline:3px solid #61c6ff;outline-offset:-3px;background:rgba(25,135,255,.18)}
+}
+@media(max-width:900px){.kkp-exact-overlay{display:none!important}.topbar,.navbar{display:block}.hero{background:linear-gradient(90deg,rgba(2,13,32,.96),rgba(3,24,56,.64)),url('/kkp-hero-truck.jpg') 60% center/cover no-repeat!important}}
+
+/* Unified KKP dark-blue/red visual system across every website section */
+:root{--navy:#04142e;--navy2:#082850;--ink:#f6faff;--paper:#061a38;--line:rgba(104,166,235,.26);--gold:#58b9ff;--gold2:#a9e1ff;--muted:#bdd0ea}
+html{scroll-behavior:smooth}
+body{background:#04142e!important;color:#edf5ff!important}
+.section,.section.white,.section.admin-section{position:relative;background:radial-gradient(ellipse at 80% 0%,rgba(13,72,133,.25),transparent 50%),linear-gradient(150deg,#061b3a,#04132c)!important;color:#f4f9ff!important;border-top:1px solid rgba(76,139,216,.16);overflow:hidden}
+#gallery,#contact,#participant-portal{background:radial-gradient(ellipse at 15% 0%,rgba(16,83,157,.20),transparent 48%),linear-gradient(145deg,#08264d,#061731)!important}
+#plans{background:radial-gradient(ellipse at 65% 20%,rgba(199,23,45,.12),transparent 42%),linear-gradient(145deg,#071a39,#031127)!important}
+#about{background:radial-gradient(ellipse at 18% 25%,rgba(22,106,188,.17),transparent 50%),#04152f!important}
+.section:before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 0%,rgba(53,140,235,.035) 55%,transparent 100%)}
+.section>.wrap{position:relative;z-index:1}
+.sectionhead{max-width:900px;margin-bottom:40px}
+.sectionhead .eyebrow{color:#61c2ff!important;letter-spacing:.23em;font-size:.76rem;font-weight:850;text-transform:uppercase}
+.sectionhead h2{color:#fff!important;font-size:clamp(2.1rem,3.7vw,3.25rem);line-height:1.16;font-weight:900;letter-spacing:-.04em;text-wrap:balance;margin:13px 0 16px}
+.sectionhead p{color:#b8cde7!important;font-size:1.04rem;line-height:1.8;max-width:760px}
+.sectionhead:after{content:"";display:block;width:80px;height:4px;margin-top:25px;border-radius:4px;background:linear-gradient(90deg,#1a96f5,#ed283e)}
+.card,.panel,.adminbox,.plan,.kkp-terms{background:linear-gradient(145deg,rgba(13,46,88,.97),rgba(5,27,57,.98))!important;border:1px solid rgba(86,159,240,.25)!important;color:#f6faff!important;box-shadow:0 16px 36px rgba(0,0,0,.23)!important;backdrop-filter:blur(6px)}
+.card{min-height:230px;border-radius:21px!important;position:relative;overflow:hidden}
+.card:before{content:"";position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,#168dff,#f02b43);opacity:.8}
+.card h3,.panel h3,.adminbox h3{color:#fff!important;font-weight:850}
+.card p,.panel p,.adminbox p,.plan p,.planbody,.planbody .muted{color:#c2d3eb!important}
+.card:hover{border-color:rgba(82,178,255,.7)!important;transform:translateY(-6px)}
+.iconbox{background:linear-gradient(140deg,#0d4a93,#082b64)!important;border:1px solid rgba(83,180,255,.5)!important;box-shadow:0 7px 22px rgba(0,0,0,.23);border-radius:18px!important}
+.plan-grid{gap:25px}
+.plan{overflow:hidden;border-radius:22px!important}
+.plan.featured{border-color:rgba(246,59,78,.65)!important}
+.planhead{background:linear-gradient(125deg,#0c3974,#081d46)!important;border-bottom:1px solid rgba(118,182,255,.24)!important}
+.plan.featured .planhead{background:linear-gradient(125deg,#8b152a,#173b77)!important}
+.planhead h3,.planhead small{color:#fff!important}
+.planprice,.metricrow strong{color:#fff!important}
+.metricrow{border-bottom:1px solid rgba(122,170,231,.18)!important}
+.metricrow span{color:#b9cce7!important}
+.planbody .btn,.panel .btn,.adminbox .btn{border-radius:12px!important}
+.btn-gold,.btn-nav{background:linear-gradient(130deg,#fb404a,#bf0b22)!important;color:#fff!important;border:1px solid rgba(255,117,129,.6)!important;box-shadow:0 8px 22px rgba(154,5,32,.22)!important}
+.btn-outline{color:#fff!important;border:1px solid rgba(123,188,255,.64)!important;background:rgba(14,45,89,.6)!important}
+.btn:hover{filter:brightness(1.1)}
+.kkp-slideshow{border:1px solid rgba(111,177,249,.35)!important;box-shadow:0 26px 70px rgba(0,0,0,.34)!important;overflow:hidden}
+.kkp-slide figcaption{background:linear-gradient(0deg,rgba(3,14,33,.95),rgba(3,14,33,.5))!important;color:#fff!important}
+.kkp-slide-arrow{background:rgba(5,30,65,.85)!important;color:#fff!important;border:1px solid rgba(123,188,255,.5)!important}
+.kkp-slideshow button{cursor:pointer}
+.kkp-terms{border-left:4px solid #ed3548!important}
+.kkp-terms h3{color:#fff!important}
+.kkp-terms-icon{background:linear-gradient(135deg,#249df6,#1053a4)!important;color:white!important}
+.kkp-terms p,.kkp-terms .kkp-terms-detail{color:#c6d9ef!important}
+.field label{color:#e7f1ff!important;font-weight:750}
+.field input,.field select,.field textarea,input,select,textarea{background:#f5f8ff;color:#102a4a;border:1px solid #93b4df;border-radius:12px}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:#45aaff!important;box-shadow:0 0 0 3px rgba(44,145,243,.25)!important}
+.adminbox .smallprint,.smallprint{color:#b6cbe7!important}
+.adminbox a,.panel a,.footer a{color:#8ccfff}
+table{color:#eaf4ff!important}
+th{background:#0a3567!important;color:#fff!important}
+td{background:rgba(8,37,76,.7)!important;color:#e3edff!important;border-color:rgba(100,167,237,.2)!important}
+.tablewrap{border:1px solid rgba(97,162,231,.35)!important;border-radius:15px;overflow:auto}
+.dashstats .tile{background:#0a3567!important;border:1px solid rgba(114,185,255,.24)!important}
+.footer{background:linear-gradient(135deg,#020c1e,#071c3a)!important;color:#c2d5ef!important;border-top:2px solid #1d67b6!important}
+.footer h3,.footer strong{color:#fff!important}
+.footer p{color:#b8cde7!important}
+.kkp-floating-contact{filter:drop-shadow(0 10px 18px rgba(0,0,0,.25))}
+@media(max-width:850px){.sectionhead h2{font-size:clamp(1.9rem,6vw,2.7rem)}.section{padding:70px 0!important}}
+@media(max-width:580px){.section{padding:56px 0!important}.sectionhead{margin-bottom:28px}.sectionhead h2{font-size:clamp(1.85rem,8vw,2.5rem)}.card{min-height:0}.panel,.adminbox{padding:22px!important}}
+
 </style>
 </head>
 <body>
@@ -198,8 +392,8 @@ body{font-family:Inter,"Segoe UI",Arial,sans-serif}
 <div class="navlinks" id="navlinks"><a href="#services">Services</a><a href="#gallery">Project Gallery</a><a href="#plans">Plans</a><a href="#about">About</a><a href="#contact">Contact</a><a href="#participant-portal" class="btn btn-navy">Client Sign In</a><a href="#admin" class="btn btn-navy">Admin Dashboard</a></div>
 </div></nav>
 <main id="home">
-<section class="hero"><div class="wrap hero-grid">
-<div><div class="eyebrow">TRUCKING • TRANSPORT • PLANNING</div><h1>BUILT TO MOVE PROJECTS FORWARD.<br><span>DRIVEN BY RELIABILITY.</span></h1><p>From hauling and project logistics to truck acquisition inquiries, KKP Trucking Services connects capable equipment, efficient planning, and dependable operations.</p><div class="hero-actions"><a class="btn btn-gold" href="#plans">Explore Truck Ownership →</a><a class="btn btn-outline" style="color:white;border-color:#71849a" href="#contact">Request a Quote</a></div></div>
+<section class="hero"><div class="kkp-exact-overlay" aria-label="KKP Trucking Services homepage navigation"><a href="#home" aria-label="Home" title="Home" style="left:24.0%;top:5.0%;width:5.0%;height:7.5%"><span class="kkp-sr-only">Home</span></a><a href="#about" aria-label="About Us" title="About Us" style="left:29.7%;top:5.0%;width:6.2%;height:7.5%"><span class="kkp-sr-only">About Us</span></a><a href="#plans" aria-label="Programs" title="Programs" style="left:36.0%;top:5.0%;width:6.0%;height:7.5%"><span class="kkp-sr-only">Programs</span></a><a href="#plans" aria-label="How It Works" title="How It Works" style="left:42.5%;top:5.0%;width:8.3%;height:7.5%"><span class="kkp-sr-only">How It Works</span></a><a href="#gallery" aria-label="Our Fleet" title="Our Fleet" style="left:51.0%;top:5.0%;width:6.7%;height:7.5%"><span class="kkp-sr-only">Our Fleet</span></a><a href="#contact" aria-label="Contact" title="Contact" style="left:57.7%;top:5.0%;width:6.5%;height:7.5%"><span class="kkp-sr-only">Contact</span></a><a href="#participant-portal" aria-label="Client Login" title="Client Login" style="left:75.6%;top:2.5%;width:11.0%;height:9.0%"><span class="kkp-sr-only">Client Login</span></a><a href="#contact" aria-label="Get Started" title="Get Started" style="left:87.0%;top:2.5%;width:10.0%;height:9.0%"><span class="kkp-sr-only">Get Started</span></a><a href="#plans" aria-label="View Programs" title="View Programs" style="left:4.4%;top:63.3%;width:16.0%;height:9.7%"><span class="kkp-sr-only">View Programs</span></a><a href="#contact" aria-label="Contact Us" title="Contact Us" style="left:21.4%;top:63.3%;width:14.0%;height:9.7%"><span class="kkp-sr-only">Contact Us</span></a></div><div class="wrap hero-grid">
+<div><div class="eyebrow">MOVE • TRANSFORM • GROW TOGETHER</div><h1>DRIVING <span>OPPORTUNITIES</span><br>FOR A BRIGHTER TOMORROW</h1><p>KKP Trucking Services connects reliable hauling, project logistics, and truck ownership opportunities to help businesses and communities move forward.</p><div class="hero-actions"><a class="btn btn-gold" href="#plans">View Programs →</a><a class="btn btn-outline" style="color:white;border-color:#71849a" href="#contact">Contact Us</a></div></div>
 <div class="hero-note"><div class="mini">LOGISTICS / FINANCING / TRUCK OWNERSHIP PROGRAM</div><h3>A 24-month planning framework</h3><p>Compare two proposed participation levels and review the projected down-payment credits for an indicative 10-wheeler dump truck purchase.</p><div class="statgrid"><div class="stat"><strong>₱250K</strong><span>Plan A initial capital</span></div><div class="stat"><strong>₱500K</strong><span>Plan B initial capital</span></div><div class="stat"><strong>24 months</strong><span>Illustrative term</span></div><div class="stat"><strong>₱2.5M</strong><span>Indicative truck price</span></div></div></div>
 </div></section>
 <section class="section white" id="services"><div class="wrap"><div class="sectionhead"><div class="eyebrow">WHAT WE DO</div><h2>Hauling, subcontracting, and truck ownership solutions.</h2><p>Explore KKP's hauling, subcontracting, and truck dealership and financing services.</p></div>
@@ -223,7 +417,11 @@ body{font-family:Inter,"Segoe UI",Arial,sans-serif}
 <article class="plan"><div class="planhead"><small>MONTHLY INCOME + CAPITAL ACCUMULATION PLAN</small><h3>₱250,000 PLAN</h3><div>24-month illustrative term</div></div><div class="planbody"><div class="planprice">₱250,000</div><div class="muted">Initial capital participation</div><div class="metricrow"><span>Monthly cash allocation shown</span><strong>₱12,500</strong></div><div class="metricrow"><span>Monthly accumulation credit</span><strong>₱12,500</strong></div><div class="metricrow"><span>Accumulation after 24 months</span><strong>₱300,000</strong></div><div class="metricrow"><span>Projected total down-payment credit</span><strong>₱550,000</strong></div><a class="btn btn-navy plan-apply" data-plan="250000" href="#contact">Apply / inquire about this plan</a></div></article>
 <article class="plan featured"><div class="planhead"><small>MONTHLY INCOME + CAPITAL ACCUMULATION PLAN</small><h3>₱500,000 PLAN</h3><div>24-month illustrative term</div></div><div class="planbody"><div class="planprice">₱500,000</div><div class="muted">Initial capital participation</div><div class="metricrow"><span>Monthly cash allocation shown</span><strong>₱30,000</strong></div><div class="metricrow"><span>Monthly accumulation credit</span><strong>₱30,000</strong></div><div class="metricrow"><span>Accumulation after 24 months</span><strong>₱720,000</strong></div><div class="metricrow"><span>Projected total down-payment credit</span><strong>₱1,220,000</strong></div><a class="btn btn-gold plan-apply" data-plan="500000" href="#contact">Apply / inquire about this plan</a></div></article>
 </div>
-<p class="smallprint" style="margin-top:22px">Plan figures are illustrative. Actual terms, eligibility, payment obligations, and ownership rights are governed by the applicable written agreement.</p>
+<aside class="kkp-terms" aria-labelledby="kkpTermsTitle">
+  <div class="kkp-terms-header"><span class="kkp-terms-icon" aria-hidden="true">✓</span><h3 id="kkpTermsTitle">Program Terms &amp; Conditions</h3></div>
+  <p>All participation plans are subject to the terms and conditions of the official KKP Trucking Services agreement. Payment schedules, eligibility requirements, and truck ownership arrangements will be discussed and documented before enrollment.</p>
+  <p class="kkp-terms-detail">Payment arrangements and projected figures are subject to the official agreement and applicable conditions.</p>
+</aside>
 </div></section>
 
 <section class="section" id="about"><div class="wrap"><div class="sectionhead"><div class="eyebrow">ABOUT KKP</div><h2>Built around clear communication and records.</h2><p>KKP Trucking Services brings together equipment, operational planning, and responsive coordination to support hauling requirements and discuss truck ownership options.</p></div><div class="cards"><div class="card"><h3>Transparent figures</h3><p>Plan figures are shown separately as monthly cash allocation and monthly accumulation credit.</p></div><div class="card"><h3>Documented process</h3><p>Use signed agreements, receipts, and a maintained ledger to record actual transactions.</p></div><div class="card"><h3>Clear next steps</h3><p>Confirm acquisition terms, financing responsibilities, and ownership rights in signed documents.</p></div></div></div></section>
