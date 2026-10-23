@@ -38,7 +38,31 @@ function clean(s){return String(s||'').trim().replace(/\s+/g,' ')}
 function download(bytes,name,mime){const blob=new Blob([bytes],{type:mime});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),30000)}
 function escapeXml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&apos;')}
 async function generateDocx(c,data,date){if(!window.JSZip)throw Error('DOCX library could not load. Check your internet connection.');const response=await fetch(c.file);if(!response.ok)throw Error('Template file missing: '+c.file);const zip=await JSZip.loadAsync(await response.arrayBuffer());const a=data.amount,monthly=a*data.rate/100;const replacements={PARTNER_NAME:data.name,PARTNER_ADDRESS:data.address,PARTNER_ID:data.idnumber||'________________',CO_PARTNER_NAME:data.coname||'________________',CO_PARTNER_ID:data.coid||'________________',PARTNER_ID_TYPE:data.idtype||'________________',CO_PARTNER_ID_TYPE:data.coidtype||'________________',DATE_ORDINAL:ordinal(date.day),MONTH_YEAR:date.month+' '+date.year,YEAR:date.year,AMOUNT:numeric(a),AMOUNT_WORDS:moneyWords(a),RATE:data.rate,RATE_WORDS:rateWords(data.rate),MONTHLY:numeric(monthly),MONTHLY_WORDS:moneyWords(monthly)};const docs=Object.keys(zip.files).filter(k=>/^word\/(document|header\d+|footer\d+)\.xml$/.test(k));for(const key of docs){let xml=await zip.file(key).async('string');for(const [field,value] of Object.entries(replacements))xml=xml.split('{{'+field+'}}').join(escapeXml(value));zip.file(key,xml)}const bytes=await zip.generateAsync({type:'uint8array',compression:'DEFLATE'});download(bytes,'KKP_'+$('type').value+'_'+date.year+'-'+String(date.day).padStart(2,'0')+'.docx','application/vnd.openxmlformats-officedocument.wordprocessingml.document')}
-async function generatePdf(c,data,date){if(!window.PDFLib)throw Error('PDF library could not load. Check your internet connection.');const [pdfResp,posResp]=await Promise.all([fetch(c.file),fetch(c.positions)]);if(!pdfResp.ok||!posResp.ok)throw Error('PDF template missing.');const pdf=await PDFLib.PDFDocument.load(await pdfResp.arrayBuffer());const positions=await posResp.json();const font=await pdf.embedFont(PDFLib.StandardFonts.Helvetica);const page=pdf.getPage(0),height=page.getHeight();const texts=[`executed this ${date.day} day of ${date.month}, ${date.year}, in the Republic of the Philippines, by and between:`,`${data.name}, of legal age, with address at`,`${data.address}, hereinafter referred to as the`];for(let i=0;i<3;i++){const pos=positions[i],text=texts[i];if(font.widthOfTextAtSize(text,9.1)>493)throw Error(i===1?'Partner name is too long for the PDF field. Please shorten the display name.':i===2?'Address is too long for the PDF field. Please use a shorter address.':'Date is too long for the PDF line.');page.drawRectangle({x:pos.x-1,y:height-pos.bottom-1,width:502,height:pos.bottom-pos.top+2,color:PDFLib.rgb(1,1,1)});page.drawText(text,{x:pos.x,y:height-pos.bottom+2.2,size:9.1,font,color:PDFLib.rgb(.09,.13,.20)})}download(await pdf.save(),`KKP_${$('type').value}_${date.year}-${String(date.day).padStart(2,'0')}.pdf`,'application/pdf')}
+async function generatePdf(c,data,date){
+ if(!window.PDFLib)throw Error('PDF library could not load.');
+ const response=await fetch(c.file);if(!response.ok)throw Error('PDF template missing.');
+ const pdf=await PDFLib.PDFDocument.load(await response.arrayBuffer());
+ const page=pdf.getPage(0),h=page.getHeight(),font=await pdf.embedFont(PDFLib.StandardFonts.Helvetica);
+ const ink=PDFLib.rgb(.09,.13,.20),white=PDFLib.rgb(1,1,1);
+ // Replace complete date and participant paragraphs, not individual overlapping lines.
+ // Coordinates correspond to the original KKP five-page source PDF.
+ const erase=(top,bottom)=>page.drawRectangle({x:56,y:h-bottom,width:502,height:bottom-top,color:white});
+ const line=(text,top,size=9.1)=>page.drawText(text,{x:57.6,y:h-top-size,size,font,color:ink});
+ const wrap=(text,maxWidth,size=9.1)=>{const words=text.trim().split(/\s+/),out=[];let current='';for(const word of words){const next=current?current+' '+word:word;if(font.widthOfTextAtSize(next,size)>maxWidth&&current){out.push(current);current=word}else current=next;}if(current)out.push(current);return out};
+ const dateText=`This MONTHLY INCOME AND CAPITAL ACCUMULATION PLAN AGREEMENT (the “Agreement”) is made and`;
+ // Only erase the second line of the date paragraph to preserve the source's first line.
+ erase(138.0,152.5);
+ line(`executed this ${date.day} day of ${date.month}, ${date.year}, in the Republic of the Philippines, by and between:`,138.3,9.1);
+ erase(234.5,273.2);
+ const nameLines=wrap(`${data.name}, of legal age, with address at`,485,9.1);
+ const addressLines=wrap(data.address,485,9.1);
+ const lines=[...nameLines,...addressLines,'hereinafter referred to as the “PARTICIPANT.”'];
+ if(lines.length>3)throw Error('Name or address is too long for the fixed PDF field. Please shorten it.');
+ lines.forEach((text,i)=>line(text,235.7+i*12.2,9.1));
+ // The supplied PDF contains a stray standalone 1.2 immediately before the actual 1.2 heading.
+ erase(343.8,359.2);
+ const filename=`KKP_${$('type').value}_${date.year}-${String(date.day).padStart(2,'0')}.pdf`;
+ download(await pdf.save(),filename,'application/pdf');
+}
 $('form').addEventListener('submit',async e=>{e.preventDefault();const button=$('generate');try{if(!window.__kkpContractAuthorized)throw Error('Administrator authorization required.');const c=configs[$('type').value],date=manilaDate(),data={name:clean($('name').value),address:clean($('address').value),idtype:clean($('idtype').value),idnumber:clean($('idnumber').value),coname:clean($('coname').value),coidtype:clean($('coidtype').value),coid:clean($('coid').value),amount:Number($('amount').value),rate:Number($('rate').value)};if(!data.name||!data.address)throw Error('Enter the participant name and address.');if(c.months===12&&(!Number.isFinite(data.amount)||data.amount<1||data.amount>999999999||!Number.isFinite(data.rate)||data.rate<0||data.rate>100))throw Error('Enter a valid capital amount and monthly rate.');button.disabled=true;$('status').textContent='Preparing your contract…';if(c.format==='docx')await generateDocx(c,data,date);else await generatePdf(c,data,date);$('status').textContent='Contract downloaded. Review all clauses, company details, IDs and notarization fields before signing.'}catch(err){$('status').textContent='Unable to generate: '+err.message}finally{button.disabled=false}});update();
 </script></body></html>
-
