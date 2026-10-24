@@ -427,6 +427,15 @@ body.kkp-application-window #inquiryForm:before{content:'KKP TRUCKING SERVICES �
 #plans .planhead div { color: #ffffff !important; }
 #plans .planhead div { font-size: 0.95rem; font-weight: 650; opacity: 1; margin-top: 6px; }
 #plans .planhead small { color: #e6f2ff !important; }
+
+
+/* Application confirmation shown only after Formspree confirms success. */
+#kkpApplicationSuccess{max-width:740px;margin:0 auto;padding:38px 28px;text-align:center}
+#kkpApplicationSuccess h2{color:#fff;margin:12px 0}
+#kkpApplicationSuccess p{color:#d7e6f9;line-height:1.7}
+#kkpApplicationSuccess .kkp-important-notice{text-align:left;background:#0d3563;border:1px solid #76b8fa;border-left:5px solid #f4bd43;border-radius:12px;padding:20px;margin:24px 0}
+#kkpApplicationSuccess .kkp-important-notice strong{color:#ffe3a0}
+#kkpApplicationSuccess .kkp-facebook-link{display:inline-flex;justify-content:center;align-items:center;gap:9px;padding:14px 22px;border-radius:12px;background:#1877f2;color:#fff!important;text-decoration:none;font-weight:800}
 </style>
 </head>
 <body>
@@ -490,23 +499,29 @@ if (kkpParams.get('workspace') === 'ledger') {
 <p>Circumferential Road, Cabanatuan City, Nueva Ecija. Map results are based on the provided location description; confirm the exact pin before visiting.</p>
 <iframe title="Map showing Kar Fuel area, Circumferential Road, Cabanatuan City" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Kar%20Fuel%2C%20Circumferential%20Road%2C%20Cabanatuan%20City%2C%20Nueva%20Ecija%2C%20Philippines&amp;output=embed"></iframe>
 <a class="kkp-map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Kar%20Fuel%2C%20Circumferential%20Road%2C%20Cabanatuan%20City%2C%20Nueva%20Ecija%2C%20Philippines" target="_blank" rel="noopener noreferrer">Open in Google Maps / Get Directions ↗</a>
-</div></div><form class="panel" id="inquiryForm" action="https://formspree.io/f/xwllednv" method="POST" enctype="multipart/form-data">
+</div></div><form class="panel" id="inquiryForm" action="https://formspree.io/f/xwllednv" method="POST">
 <h3>Inquiry / Plan Application</h3>
 <input type="hidden" name="_subject" value="New KKP Trucking Website Inquiry or Plan Application">
 <div class="field"><label for="inqName">Full name</label><input id="inqName" name="full_name" autocomplete="name" required></div>
 <div class="field"><label for="inqEmail">Email address</label><input id="inqEmail" name="email" type="email" autocomplete="email" required></div>
 <div class="field"><label for="inqPhone">Contact number</label><input id="inqPhone" name="phone" type="tel" autocomplete="tel" required></div>
 <div class="field"><label for="inqType">Inquiry / plan applied for</label><select id="inqType" name="inquiry_type" required><option value="Trucking / hauling">Trucking / hauling</option><option value="₱250,000 Plan">₱250,000 Plan</option><option value="₱500,000 Plan">₱500,000 Plan</option><option value="Other">Other</option></select></div>
-<div id="applicationDocuments" class="hidden" aria-label="Required plan application documents">
-  <div class="note" style="margin:16px 0"><strong>Required for plan applications:</strong> Upload a clear government-issued photo ID and a recent bank statement. Accepted formats: PDF, JPG, or PNG; maximum 10 MB per file. Do not upload passwords, PINs, or card security codes.</div>
-  <div class="field"><label for="governmentIdFile">Valid government-issued ID <span aria-hidden="true">*</span></label><input id="governmentIdFile" name="government_id" type="file" accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png" aria-describedby="governmentIdHelp"><span id="governmentIdHelp" class="smallprint">Upload a clear image or PDF of your valid government-issued ID.</span></div>
-  <div class="field"><label for="bankStatementFile">Recent bank statement <span aria-hidden="true">*</span></label><input id="bankStatementFile" name="bank_statement" type="file" accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png" aria-describedby="bankStatementHelp"><span id="bankStatementHelp" class="smallprint">Upload a recent bank statement as a PDF or clear image.</span></div>
-  <div class="field"><label style="display:flex;gap:10px;align-items:flex-start;color:inherit;font-weight:500"><input id="documentConsent" name="document_processing_consent" type="checkbox" value="Yes" style="width:auto;margin-top:5px"> <span>I understand that KKP will use these documents to review my application and that they will be submitted through the website's third-party form provider.</span></label></div>
-</div>
+<div class="note" id="applicationDocumentNotice" style="margin:16px 0"><strong>Application documents:</strong> A valid government-issued ID and recent bank statement may be requested separately by KKP after your initial application. Please do not send sensitive documents through this form.</div>
 <div class="field"><label for="inqMessage">Message / application details</label><textarea id="inqMessage" name="message" rows="4" required placeholder="Tell us about your inquiry or plan application. Please do not include passwords or sensitive financial account details."></textarea></div>
 <button class="btn btn-gold" type="submit">Send inquiry / application</button>
-<p id="inquiryMsg" class="formmsg smallprint">Your submission will be sent through Formspree. Required documents apply only to plan applications. Do not include passwords, PINs, or card security codes.</p>
-</form></div></div></section>
+<p id="inquiryMsg" class="formmsg smallprint">Your application will be sent through Formspree. KKP will contact you separately if supporting documents are needed. Do not include passwords, PINs, or card security codes.</p>
+</form>
+<div id="kkpApplicationSuccess" class="panel hidden" role="status" aria-live="polite" tabindex="-1">
+  <div aria-hidden="true" style="font-size:48px;color:#80e4af">✓</div>
+  <h2>Application Submitted Successfully!</h2>
+  <p>Thank you for your interest in KKP Trucking Services. Your application has been received.</p>
+  <div class="kkp-important-notice"><strong>IMPORTANT NOTICE</strong>
+    <p>Processing your application will require additional supporting documents and verification. A KKP live agent will assist you with the requirements and guide you through the next steps.</p>
+    <p>Please do not send sensitive documents or banking credentials through Facebook Messenger unless you have verified the official agent and secure submission process.</p>
+  </div>
+  <p>For assistance and inquiries, visit our official Facebook page.</p>
+  <a class="kkp-facebook-link" href="https://www.facebook.com/kkptruckingservices" target="_blank" rel="noopener noreferrer">Visit Our Official Facebook Page ↗</a>
+</div></div></div></section>
 <section class="section white" id="participant-portal"><div class="wrap"><div class="sectionhead"><div class="eyebrow">INVITATION-ONLY ACCESS</div><h2>Client Sign In</h2><p>Sign in with the email address invited by KKP to view your personal 24-month ledger. Accounts must be linked by an administrator.</p></div>
 <div class="adminlayout"><div class="adminbox"><h3>Client Sign In</h3><form id="participantLoginForm"><div class="field"><label for="participantEmail">Email address</label><input id="participantEmail" type="email" autocomplete="username" required></div><div class="field"><label for="participantPassword">Password</label><input id="participantPassword" type="password" autocomplete="current-password" required></div><button class="btn btn-gold" type="submit" id="participantLoginBtn">Sign in</button></form><div style="margin-top:18px;padding-top:16px;border-top:1px solid var(--line)"><h3 style="margin:0 0 8px">New client? Activate your account</h3><p class="smallprint">KKP uses invitation-only registration. KKP administrators send invitations by email. Your login email and unique temporary password will be sent to you. You may keep that password or change it after signing in. Your account can access only the ledger assigned to you.</p><a class="btn btn-outline" style="background:#fff;color:#08224a" href="mailto:kkpholdingsofficial2026@gmail.com?subject=KKP%20Client%20Account%20Invitation%20Request">Request client invitation</a><p class="smallprint">Already invited? Use the email and temporary password from your welcome email to sign in.</p></div><div id="participantSignedIn" class="hidden"><p class="formmsg success">Signed in as <strong id="participantSignedInEmail"></strong></p><div class="kkp-account-actions"><button type="button" class="btn btn-gold" id="participantChangePassword" aria-controls="participantSetupBox" aria-expanded="false">Change Password</button><button type="button" class="btn btn-outline" id="participantSignOut">Sign out</button></div></div><p id="participantLoginMsg" class="formmsg" role="status" aria-live="polite"></p></div>
 <div class="adminbox hidden" id="participantSetupBox"><h3>Change Your Password</h3><p class="smallprint">Choose a new password with at least 12 characters. Your ledger and account details will stay the same.</p><form id="participantSetupForm"><div class="field"><label for="participantNewPassword">New password (at least 12 characters)</label><input id="participantNewPassword" type="password" autocomplete="new-password" minlength="12" required></div><div class="field"><label for="participantConfirmPassword">Confirm password</label><input id="participantConfirmPassword" type="password" autocomplete="new-password" minlength="12" required></div><button type="submit" class="btn btn-gold">Save password</button></form><p id="participantSetupMsg" class="formmsg" role="status" aria-live="polite"></p></div></div>
@@ -561,36 +576,55 @@ if (selectedApplicationPlan === '250000' || selectedApplicationPlan === '500000'
 }
 
 
-// Plan applications require two supporting files; general hauling inquiries do not.
-const applicationForm = document.getElementById('inquiryForm');
+// Formspree submission intentionally contains text fields only.
+// Supporting documents are requested separately after initial review.
 const applicationType = document.getElementById('inqType');
-const applicationDocs = document.getElementById('applicationDocuments');
-const documentInputs = [document.getElementById('governmentIdFile'), document.getElementById('bankStatementFile')];
-const documentConsent = document.getElementById('documentConsent');
+const applicationDocumentNotice = document.getElementById('applicationDocumentNotice');
 function updateApplicationDocuments() {
-  const needsDocuments = applicationType.value === '₱250,000 Plan' || applicationType.value === '₱500,000 Plan';
-  applicationDocs.classList.toggle('hidden', !needsDocuments);
-  documentInputs.forEach(input => { input.required = needsDocuments; input.disabled = !needsDocuments; });
-  documentConsent.required = needsDocuments;
-  documentConsent.disabled = !needsDocuments;
+  const isPlan = applicationType.value === '₱250,000 Plan' || applicationType.value === '₱500,000 Plan';
+  applicationDocumentNotice.classList.toggle('hidden', !isPlan);
 }
 applicationType.addEventListener('change', updateApplicationDocuments);
-documentInputs.forEach(input => input.addEventListener('change', () => input.setCustomValidity('')));
-applicationForm.addEventListener('submit', event => {
-  const allowed = ['application/pdf','image/jpeg','image/png'];
-  for (const input of documentInputs) {
-    if (input.disabled || !input.files.length) continue;
-    const file = input.files[0];
-    if (!allowed.includes(file.type) || file.size > 10 * 1024 * 1024) {
-      event.preventDefault();
-      input.setCustomValidity('Upload a PDF, JPG, or PNG file no larger than 10 MB.');
-      input.reportValidity();
-      return;
+updateApplicationDocuments();
+
+// Submit without leaving the application tab. Display confirmation only after Formspree accepts the submission.
+const kkpInquiryForm = document.getElementById('inquiryForm');
+kkpInquiryForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const submitButton = kkpInquiryForm.querySelector('button[type="submit"]');
+  const message = document.getElementById('inquiryMsg');
+  submitButton.disabled = true;
+  submitButton.textContent = 'Submitting...';
+  message.textContent = 'Sending your application...';
+  try {
+    const response = await fetch(kkpInquiryForm.action, {
+      method: 'POST',
+      body: new FormData(kkpInquiryForm),
+      headers: { 'Accept': 'application/json' }
+    });
+    if (!response.ok) {
+      let errorMessage = 'Your application could not be submitted. Please try again.';
+      try {
+        const result = await response.json();
+        if (Array.isArray(result.errors) && result.errors.length) {
+          errorMessage = result.errors.map(e => e.message).filter(Boolean).join(' ');
+        }
+      } catch (_) {}
+      throw new Error(errorMessage);
     }
-    input.setCustomValidity('');
+    kkpInquiryForm.classList.add('hidden');
+    const confirmation = document.getElementById('kkpApplicationSuccess');
+    confirmation.classList.remove('hidden');
+    confirmation.focus();
+    confirmation.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  } catch (error) {
+    message.textContent = error.message || 'Submission failed. Please try again.';
+    message.classList.add('danger');
+  } finally {
+    submitButton.disabled = false;
+    submitButton.textContent = 'Send inquiry / application';
   }
 });
-updateApplicationDocuments();
 
 // Contact inquiries continue to submit directly to Formspree.
 // Supabase Auth + database-backed KKP ledger.
