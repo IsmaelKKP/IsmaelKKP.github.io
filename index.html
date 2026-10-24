@@ -404,6 +404,14 @@ body.kkp-ledger-window .topbar,body.kkp-ledger-window .navbar,body.kkp-ledger-wi
 body.kkp-ledger-window #admin{min-height:100vh;padding-top:35px!important}
 body.kkp-ledger-window #admin .adminlayout{grid-template-columns:1fr 1.3fr}
 @media(max-width:850px){body.kkp-ledger-window #admin .adminlayout{grid-template-columns:1fr}}
+
+/* Plan header contrast fix: text stays readable against blue and maroon cards. */
+#plans .planhead,
+#plans .planhead h3,
+#plans .planhead small,
+#plans .planhead div { color: #ffffff !important; }
+#plans .planhead div { font-size: 0.95rem; font-weight: 650; opacity: 1; margin-top: 6px; }
+#plans .planhead small { color: #e6f2ff !important; }
 </style>
 </head>
 <body>
@@ -437,8 +445,8 @@ body.kkp-ledger-window #admin .adminlayout{grid-template-columns:1fr 1.3fr}
 <dialog class="kkp-lightbox" id="kkpLightbox" aria-label="Full-size project photo"><button class="kkp-lightbox-close" type="button" id="kkpLightboxClose">Close ✕</button><div class="kkp-lightbox-inner"><img id="kkpLightboxImage" alt="Full-size KKP project photo"></div></dialog>
 <section class="section" id="plans"><div class="wrap"><div class="sectionhead"><div class="eyebrow">PLAN OPTIONS</div><h2>LOGISTICS / FINANCING / TRUCK OWNERSHIP PROGRAM</h2><p>The figures below reproduce the supplied plan assumptions for comparison. Review the written agreement for actual obligations and conditions.</p></div>
 <div class="plan-grid">
-<article class="plan"><div class="planhead"><small>MONTHLY INCOME + CAPITAL ACCUMULATION PLAN</small><h3>₱250,000 PLAN</h3><div>24-month illustrative term</div></div><div class="planbody"><div class="planprice">₱250,000</div><div class="muted">Initial capital participation</div><div class="metricrow"><span>Monthly cash allocation shown</span><strong>₱12,500</strong></div><div class="metricrow"><span>Monthly accumulation credit</span><strong>₱12,500</strong></div><div class="metricrow"><span>Accumulation after 24 months</span><strong>₱300,000</strong></div><div class="metricrow"><span>Projected total down-payment credit</span><strong>₱550,000</strong></div><a class="btn btn-navy plan-apply" data-plan="250000" href="#contact">Apply / inquire about this plan</a></div></article>
-<article class="plan featured"><div class="planhead"><small>MONTHLY INCOME + CAPITAL ACCUMULATION PLAN</small><h3>₱500,000 PLAN</h3><div>24-month illustrative term</div></div><div class="planbody"><div class="planprice">₱500,000</div><div class="muted">Initial capital participation</div><div class="metricrow"><span>Monthly cash allocation shown</span><strong>₱30,000</strong></div><div class="metricrow"><span>Monthly accumulation credit</span><strong>₱30,000</strong></div><div class="metricrow"><span>Accumulation after 24 months</span><strong>₱720,000</strong></div><div class="metricrow"><span>Projected total down-payment credit</span><strong>₱1,220,000</strong></div><a class="btn btn-gold plan-apply" data-plan="500000" href="#contact">Apply / inquire about this plan</a></div></article>
+<article class="plan"><div class="planhead"><small>MONTHLY INCOME + CAPITAL ACCUMULATION PLAN</small><h3>₱250,000 PLAN</h3><div>24-month illustrative term</div></div><div class="planbody"><div class="planprice">₱250,000</div><div class="muted">Initial capital participation</div><div class="metricrow"><span>Monthly cash allocation shown</span><strong>₱12,500</strong></div><div class="metricrow"><span>Monthly accumulation credit</span><strong>₱12,500</strong></div><div class="metricrow"><span>Accumulation after 24 months</span><strong>₱300,000</strong></div><div class="metricrow"><span>Projected total down-payment credit</span><strong>₱550,000</strong></div><a class="btn btn-navy plan-apply" data-plan="250000" href="./?apply_plan=250000#contact" target="_blank" rel="noopener noreferrer">Apply / inquire about this plan</a></div></article>
+<article class="plan featured"><div class="planhead"><small>MONTHLY INCOME + CAPITAL ACCUMULATION PLAN</small><h3>₱500,000 PLAN</h3><div>24-month illustrative term</div></div><div class="planbody"><div class="planprice">₱500,000</div><div class="muted">Initial capital participation</div><div class="metricrow"><span>Monthly cash allocation shown</span><strong>₱30,000</strong></div><div class="metricrow"><span>Monthly accumulation credit</span><strong>₱30,000</strong></div><div class="metricrow"><span>Accumulation after 24 months</span><strong>₱720,000</strong></div><div class="metricrow"><span>Projected total down-payment credit</span><strong>₱1,220,000</strong></div><a class="btn btn-gold plan-apply" data-plan="500000" href="./?apply_plan=500000#contact" target="_blank" rel="noopener noreferrer">Apply / inquire about this plan</a></div></article>
 </div>
 <aside class="kkp-terms" aria-labelledby="kkpTermsTitle">
   <div class="kkp-terms-header"><span class="kkp-terms-icon" aria-hidden="true">✓</span><h3 id="kkpTermsTitle">Program Terms &amp; Conditions</h3></div>
@@ -518,7 +526,16 @@ const planInfo = cap => cap===500000 ? {cap:500000,monthly:30000,cash:30000,labe
 document.getElementById('year').textContent=new Date().getFullYear();
 document.getElementById('menuBtn').addEventListener('click',()=>document.getElementById('navlinks').classList.toggle('open'));
 document.querySelectorAll('#navlinks a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navlinks').classList.remove('open')));
-document.querySelectorAll('.plan-apply').forEach(a=>a.addEventListener('click',()=>{document.getElementById('inqType').value=a.dataset.plan==='500000'?'₱500,000 Plan':'₱250,000 Plan';document.getElementById('inqType').dispatchEvent(new Event('change'));}));
+// Open each plan application in its own tab; select the chosen plan in that tab.
+const selectedApplicationPlan = new URLSearchParams(window.location.search).get('apply_plan');
+if (selectedApplicationPlan === '250000' || selectedApplicationPlan === '500000') {
+  const planSelect = document.getElementById('inqType');
+  if (planSelect) {
+    planSelect.value = selectedApplicationPlan === '500000' ? '₱500,000 Plan' : '₱250,000 Plan';
+    planSelect.dispatchEvent(new Event('change', { bubbles: true }));
+  }
+}
+
 
 // Plan applications require two supporting files; general hauling inquiries do not.
 const applicationForm = document.getElementById('inquiryForm');
