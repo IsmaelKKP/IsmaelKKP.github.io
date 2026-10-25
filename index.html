@@ -436,6 +436,27 @@ body.kkp-application-window #inquiryForm:before{content:'KKP TRUCKING SERVICES �
 #kkpApplicationSuccess .kkp-important-notice{text-align:left;background:#0d3563;border:1px solid #76b8fa;border-left:5px solid #f4bd43;border-radius:12px;padding:20px;margin:24px 0}
 #kkpApplicationSuccess .kkp-important-notice strong{color:#ffe3a0}
 #kkpApplicationSuccess .kkp-facebook-link{display:inline-flex;justify-content:center;align-items:center;gap:9px;padding:14px 22px;border-radius:12px;background:#1877f2;color:#fff!important;text-decoration:none;font-weight:800}
+
+/* Project Portfolio — 2-second fade + subtle zoom, with full-image visibility */
+.kkp-slideshow{isolation:isolate}
+.kkp-slide.active{animation:kkpPortfolioFade .75s ease both}
+.kkp-slide.active img{animation:kkpPortfolioZoom 2s ease-out both}
+@keyframes kkpPortfolioFade{from{opacity:.25}to{opacity:1}}
+@keyframes kkpPortfolioZoom{from{transform:scale(1.025)}to{transform:scale(1)}}
+@media(prefers-reduced-motion:reduce){.kkp-slide.active,.kkp-slide.active img{animation:none!important}}
+@media print{.kkp-slide:not(.active){display:none!important}.kkp-slide-arrow,.kkp-slide-footer{display:none!important}}
+
+/* Portfolio cinematic layout: every slide fills the frame without empty side panels.
+   A softly blurred copy of the same photo fills the background; the original remains uncropped. */
+.kkp-slideshow{background:#102a47!important;border-radius:22px!important}
+.kkp-slide{position:relative;overflow:hidden;background:#102a47!important}
+.kkp-slide::before{content:"";position:absolute;inset:-35px;background-image:var(--portfolio-image);background-size:cover;background-position:center;filter:blur(24px) brightness(.48) saturate(.95);transform:scale(1.12);pointer-events:none}
+.kkp-slide::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(2,14,31,.22),transparent 22%,transparent 78%,rgba(2,14,31,.22));pointer-events:none}
+.kkp-slide img{position:relative;z-index:1;width:auto!important;max-width:100%!important;height:min(66vw,610px)!important;max-height:610px;object-fit:contain!important;margin:0 auto;box-shadow:0 0 48px rgba(0,0,0,.25);background:transparent!important}
+.kkp-slide figcaption{position:relative;z-index:2;padding:15px 18px!important}
+.kkp-slide-arrow{z-index:4!important;background:rgba(4,25,52,.75)!important;box-shadow:0 5px 20px rgba(0,0,0,.2)}
+.kkp-slide-footer{background:linear-gradient(90deg,#071a34,#102e53,#071a34);padding:14px!important}
+@media(max-width:580px){.kkp-slide img{height:min(115vw,520px)!important;min-height:0!important}.kkp-slide::before{filter:blur(18px) brightness(.48)}}
 </style>
 </head>
 <body>
@@ -464,16 +485,19 @@ if (kkpParams.get('workspace') === 'ledger') {
 <div class="cards"><article class="card"><div class="iconbox">🚚</div><h3>Hauling / Stock piling</h3><p>Hauling and stockpiling support for construction materials and project sites, subject to availability and confirmed requirements.</p></article><article class="card"><div class="iconbox">📋</div><h3>Sub contracting</h3><p>Subcontracting support for hauling, logistics, and project-related work based on agreed scope, schedule, and terms.</p></article><article class="card"><div class="iconbox">🚛</div><h3>Truck dealership &amp; financing</h3><p>Truck acquisition and financing options for qualified customers, with program details discussed and confirmed directly with KKP.</p></article></div>
 </div></section>
 <section class="section white" id="gallery"><div class="wrap">
-<div class="sectionhead"><div class="eyebrow">KKP IN ACTION</div><h2>Our Trucks &amp; Project Operations</h2><p>View the complete photos in our automatic project slideshow. Select a photo to enlarge it.</p></div>
-<div class="kkp-slideshow" aria-label="KKP trucking photo slideshow" aria-roledescription="carousel">
-<figure class="kkp-slide active"><img src="assets/kkp_gallery_6.jpg" alt="Armor rock quarry operations in Botolan, Zambales" loading="eager" decoding="async"><figcaption>Armor rock quarry operations in Botolan, Zambales</figcaption></figure>
-<figure class="kkp-slide"><img src="assets/kkp_gallery_5.jpg" alt="Infrastructure & quarry operations" loading="lazy" decoding="async"><figcaption>Infrastructure & quarry operations</figcaption></figure>
-<figure class="kkp-slide"><img src="assets/kkp_gallery_4.jpg" alt="Equipment, planning & execution" loading="lazy" decoding="async"><figcaption>Equipment, planning & execution</figcaption></figure>
-<figure class="kkp-slide"><img src="assets/kkp_gallery_3.jpg" alt="Dump truck operations" loading="lazy" decoding="async"><figcaption>Dump truck operations</figcaption></figure>
-<figure class="kkp-slide"><img src="assets/kkp_gallery_2.jpg" alt="Hauling equipment" loading="lazy" decoding="async"><figcaption>Hauling equipment</figcaption></figure>
-<figure class="kkp-slide"><img src="assets/kkp_gallery_1.jpg" alt="Behind every haul" loading="lazy" decoding="async"><figcaption>Behind every haul</figcaption></figure>
+<div class="sectionhead"><div class="eyebrow">KKP IN ACTION</div><h2>Project Portfolio — Our Trucks &amp; Equipment</h2><p>View the complete photos in our automatic project slideshow. Select a photo to enlarge it.</p></div>
+<div class="kkp-slideshow" aria-label="KKP trucking project portfolio slideshow" aria-roledescription="carousel">
+<figure class="kkp-slide active" style="--portfolio-image:url('assets/kkp_gallery_6.jpg')"><img src="assets/kkp_gallery_6.jpg" alt="Behind Every Haul — KKP Trucking Services" loading="eager" decoding="async"><figcaption>Behind Every Haul — KKP Trucking Services</figcaption></figure>
+<figure class="kkp-slide" style="--portfolio-image:url('assets/kkp_gallery_3.jpg')"><img src="assets/kkp_gallery_3.jpg" alt="Capable Equipment, Efficient Planning, Dependable Operations" loading="lazy" decoding="async"><figcaption>Capable Equipment, Efficient Planning, Dependable Operations</figcaption></figure>
+<figure class="kkp-slide" style="--portfolio-image:url('assets/kkp_gallery_2.jpg')"><img src="assets/kkp_gallery_2.jpg" alt="Strong Infrastructure Begins Here — KKP Infra Builders" loading="lazy" decoding="async"><figcaption>Strong Infrastructure Begins Here — KKP Infra Builders</figcaption></figure>
+<figure class="kkp-slide" style="--portfolio-image:url('assets/kkp_gallery_1.jpg')"><img src="assets/kkp_gallery_1.jpg" alt="Armor Rock Quarry Operations — Botolan, Zambales" loading="lazy" decoding="async"><figcaption>Armor Rock Quarry Operations — Botolan, Zambales</figcaption></figure>
+<figure class="kkp-slide" style="--portfolio-image:url('assets/kkp_portfolio_1.jpg')"><img src="assets/kkp_portfolio_1.jpg" alt="KKP dump truck fleet at the project site" loading="eager" decoding="async"><figcaption>KKP dump truck fleet at the project site</figcaption></figure>
+<figure class="kkp-slide" style="--portfolio-image:url('assets/kkp_portfolio_2.jpg')"><img src="assets/kkp_portfolio_2.jpg" alt="Isuzu dump truck — front view" loading="lazy" decoding="async"><figcaption>Isuzu dump truck — front view</figcaption></figure>
+<figure class="kkp-slide" style="--portfolio-image:url('assets/kkp_portfolio_3.jpg')"><img src="assets/kkp_portfolio_3.jpg" alt="Green Isuzu dump truck — front view" loading="lazy" decoding="async"><figcaption>Green Isuzu dump truck — front view</figcaption></figure>
+<figure class="kkp-slide" style="--portfolio-image:url('assets/kkp_portfolio_4.jpg')"><img src="assets/kkp_portfolio_4.jpg" alt="Red dump truck — front view" loading="lazy" decoding="async"><figcaption>Red dump truck — front view</figcaption></figure>
+<figure class="kkp-slide" style="--portfolio-image:url('assets/kkp_portfolio_5.jpg')"><img src="assets/kkp_portfolio_5.jpg" alt="Excavator working at the construction site" loading="lazy" decoding="async"><figcaption>Excavator working at the construction site</figcaption></figure>
 <button type="button" class="kkp-slide-arrow prev" aria-label="Previous photo">&#8249;</button><button type="button" class="kkp-slide-arrow next" aria-label="Next photo">&#8250;</button>
-<div class="kkp-slide-footer"><button type="button" class="kkp-slide-action" id="kkpPause">Pause slideshow</button><span class="kkp-slide-counter" aria-live="polite">1 / 6</span><button type="button" class="kkp-slide-dot active" aria-label="Show photo 1" data-slide="0"></button><button type="button" class="kkp-slide-dot" aria-label="Show photo 2" data-slide="1"></button><button type="button" class="kkp-slide-dot" aria-label="Show photo 3" data-slide="2"></button><button type="button" class="kkp-slide-dot" aria-label="Show photo 4" data-slide="3"></button><button type="button" class="kkp-slide-dot" aria-label="Show photo 5" data-slide="4"></button><button type="button" class="kkp-slide-dot" aria-label="Show photo 6" data-slide="5"></button><button type="button" class="kkp-slide-action" id="kkpFullscreen">View full screen</button></div>
+<div class="kkp-slide-footer"><button type="button" class="kkp-slide-action" id="kkpPause">Pause slideshow</button><span class="kkp-slide-counter" aria-live="polite">1 / 9</span><button type="button" class="kkp-slide-dot active" aria-label="Show photo 1" data-slide="0"></button><button type="button" class="kkp-slide-dot" aria-label="Show photo 2" data-slide="1"></button><button type="button" class="kkp-slide-dot" aria-label="Show photo 3" data-slide="2"></button><button type="button" class="kkp-slide-dot" aria-label="Show photo 4" data-slide="3"></button><button type="button" class="kkp-slide-dot" aria-label="Show photo 5" data-slide="4"></button><button type="button" class="kkp-slide-dot" aria-label="Show photo 6" data-slide="5"></button><button type="button" class="kkp-slide-dot" aria-label="Show photo 7" data-slide="6"></button><button type="button" class="kkp-slide-dot" aria-label="Show photo 8" data-slide="7"></button><button type="button" class="kkp-slide-dot" aria-label="Show photo 9" data-slide="8"></button><button type="button" class="kkp-slide-action" id="kkpFullscreen">View full screen</button></div>
 </div></div></section>
 <dialog class="kkp-lightbox" id="kkpLightbox" aria-label="Full-size project photo"><button class="kkp-lightbox-close" type="button" id="kkpLightboxClose">Close ✕</button><div class="kkp-lightbox-inner"><img id="kkpLightboxImage" alt="Full-size KKP project photo"></div></dialog>
 <section class="section" id="plans"><div class="wrap"><div class="sectionhead"><div class="eyebrow">PLAN OPTIONS</div><h2>LOGISTICS / FINANCING / TRUCK OWNERSHIP PROGRAM</h2><p>The figures below reproduce the supplied plan assumptions for comparison. Review the written agreement for actual obligations and conditions.</p></div>
@@ -1048,7 +1072,7 @@ document.getElementById('participantExportCsv').addEventListener('click',()=>{
  let current=0,timer=null,playing=!window.matchMedia('(prefers-reduced-motion: reduce)').matches;
  function show(i){current=(i+slides.length)%slides.length;slides.forEach((s,n)=>{s.classList.toggle('active',n===current);s.setAttribute('aria-hidden',String(n!==current));});dots.forEach((d,n)=>{d.classList.toggle('active',n===current);d.setAttribute('aria-current',String(n===current));});counter.textContent=`${current+1} / ${slides.length}`;if(dialog.open){openImage();}}
  function stop(){if(timer)clearInterval(timer);timer=null;}
- function start(){stop();if(playing&&!dialog.open)timer=setInterval(()=>show(current+1),4500);}
+ function start(){stop();if(playing&&!dialog.open)timer=setInterval(()=>show(current+1),2000);}
  function move(n){show(current+n);start();}
  function openImage(){const img=slides[current].querySelector('img');large.src=img.currentSrc||img.src;large.alt=img.alt;}
  gallery.querySelector('.prev').addEventListener('click',()=>move(-1));gallery.querySelector('.next').addEventListener('click',()=>move(1));
