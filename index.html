@@ -555,6 +555,59 @@ if (kkpParams.get('workspace') === 'ledger') {
 <div class="adminlayout"><div class="adminbox" id="loginBox"><h3>KKP Admin sign in</h3><p class="smallprint">Use the email address and password for the account you created in your Supabase project.</p><form id="adminLoginForm"><div class="field"><label for="adminEmail">Administrator email</label><input id="adminEmail" type="email" autocomplete="username" required placeholder="admin@example.com"></div><div class="field"><label for="adminPassword">Password</label><input id="adminPassword" type="password" autocomplete="current-password" required placeholder="Enter your password"></div><button class="btn btn-navy" id="loginBtn" type="submit">Sign in securely</button></form><div id="authSignedIn" class="hidden"><p class="formmsg success">Signed in as <strong id="signedInEmail"></strong></p><button class="btn btn-outline" id="signOutBtn" type="button">Sign out</button></div><p id="loginMsg" class="formmsg" role="status" aria-live="polite"></p></div>
 <div class="adminbox hidden" id="ledgerLaunch"><h3>Participant Ledger</h3><p class="smallprint">Open the participant ledger management workspace in a separate browser tab. Your existing administrator login and Supabase records are used.</p><a class="btn btn-gold" href="./?workspace=ledger#admin" target="_blank" rel="noopener noreferrer">Open Participant Ledger ↗</a></div>
 <div class="adminbox hidden" id="ledgerTools"><h3>Participant ledger</h3><p class="muted">Participant records and monthly ledger entries are saved in the KKP Supabase database and protected by administrator-only access policies.</p><div class="field"><label for="participant">Participant full name</label><input id="participant" autocomplete="off" placeholder="e.g. Juan Dela Cruz"></div><div class="field"><label for="ledgerPlan">Plan</label><select id="ledgerPlan"><option value="250000">₱250,000 Plan</option><option value="500000">₱500,000 Plan</option></select></div><button class="btn btn-gold" id="createLedger" type="button">Load / create participant ledger</button><p id="ledgerMsg" class="formmsg smallprint" role="status" aria-live="polite"></p></div></div>
+
+<div class="adminbox hidden" id="kkpApplicationsPanel" style="margin-top:20px">
+  <div class="toolbar">
+    <h3>KKP Trucking Applications</h3>
+    <button class="btn btn-outline" type="button" id="refreshKkpApplications">
+      Refresh Applications
+    </button>
+  </div>
+
+  <p class="smallprint">
+    Review submitted applications, approve or reject applicants,
+    and manage application statuses.
+  </p>
+
+  <div class="dashstats">
+    <div class="tile">
+      <span>Total Applications</span>
+      <strong id="kkpTotalApplications">0</strong>
+    </div>
+    <div class="tile">
+      <span>Pending</span>
+      <strong id="kkpPendingApplications">0</strong>
+    </div>
+    <div class="tile">
+      <span>Approved</span>
+      <strong id="kkpApprovedApplications">0</strong>
+    </div>
+  </div>
+
+  <p id="kkpApplicationsMessage" class="formmsg" role="status"></p>
+
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Applicant</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Plan</th>
+          <th>Message</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="kkpApplicationsTable">
+        <tr>
+          <td colspan="8">Applications will appear here.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 <div class="adminbox hidden" id="clientInviteTools" style="margin-top:20px">
 <h3>Invite Client by Email</h3>
 <p class="smallprint">First create the client's ledger using the administrator tools above. Then select the correct ledger and send a secure email invitation. The client receives a unique temporary password by email and may change it later.</p>
@@ -724,6 +777,7 @@ async function refreshAuthUI(session) {
   const user = session && session.user ? session.user : null;
   loggedIn = false;
   document.getElementById('ledgerTools').classList.add('hidden');
+ document.getElementById('kkpApplicationsPanel').classList.add('hidden');
   document.getElementById('ledgerLaunch').classList.add('hidden');
   document.getElementById('kkpContractTools').classList.add('hidden');
   inviteTools.classList.add('hidden');
@@ -762,10 +816,12 @@ async function refreshAuthUI(session) {
     }
     loggedIn = true;
     document.getElementById('ledgerTools').classList.remove('hidden');
+   document.getElementById('kkpApplicationsPanel').classList.remove('hidden');
     document.getElementById('ledgerLaunch').classList.remove('hidden');
     document.getElementById('kkpContractTools').classList.remove('hidden');
     inviteTools.classList.remove('hidden');
     await refreshInviteLedgers();
+   await loadKkpApplications();
     setLoginMessage('Administrator authenticated. Database access is enabled for this account.', 'success');
     setParticipantMessage('Administrator signed in. Use the Admin Dashboard to manage ledgers.');
   } catch (error) {
@@ -1100,6 +1156,139 @@ document.getElementById('participantExportCsv').addEventListener('click',()=>{
   const a=document.createElement('a');a.href=url;a.download='my-kkp-ledger.csv';a.click();
   setTimeout(()=>URL.revokeObjectURL(url),1000);
 });
+
+async function loadKkpApplications() {
+  const tbody = document.getElementById('kkpApplicationsTable');
+  const message = document.getElementById('kkpApplicationsMessage');
+
+  if (!loggedIn) return;
+
+  message.textContent = 'Loading applications...';
+
+  try {
+    const { data, error } = await supabaseClient
+      .from('kkp_trucking_applications')
+      .select('id, full_name, email, phone, inquiry_type, message, status, created_at')
+      .order('created_at', { ascending: false });
+
+    if (error) throw error;
+
+    const applications = data || [];
+
+    document.getElementById('kkpTotalApplications').textContent =
+      applications.length;
+
+    document.getElementById('kkpPendingApplications').textContent =
+      applications.filter(a => a.status === 'pending').length;
+
+    document.getElementById('kkpApprovedApplications').textContent =
+      applications.filter(a => a.status === 'approved').length;
+
+    tbody.replaceChildren();
+
+    if (!applications.length) {
+      const row = tbody.insertRow();
+      const cell = row.insertCell();
+      cell.colSpan = 8;
+      cell.textContent = 'No applications found.';
+    }
+
+    for (const app of applications) {
+      const row = tbody.insertRow();
+
+      const values = [
+        new Date(app.created_at).toLocaleString('en-PH'),
+        app.full_name,
+        app.email,
+        app.phone || '',
+        app.inquiry_type || '',
+        app.message || '',
+        app.status
+      ];
+
+      values.forEach(value => {
+        const cell = row.insertCell();
+        cell.textContent = value;
+      });
+
+      const actions = row.insertCell();
+
+      if (app.status === 'pending') {
+        for (const [label, status] of [
+          ['Approve', 'approved'],
+          ['Reject', 'rejected']
+        ]) {
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'btn btn-outline';
+          button.textContent = label;
+          button.style.margin = '3px';
+
+          button.addEventListener('click', () =>
+            updateKkpApplicationStatus(app.id, status)
+          );
+
+          actions.appendChild(button);
+        }
+      } else {
+        actions.textContent = 'Reviewed';
+      }
+    }
+
+    message.textContent =
+      `${applications.length} application(s) loaded successfully.`;
+
+  } catch (error) {
+    console.error('Application loading error:', error);
+    message.textContent =
+      'Unable to load applications: ' + (error.message || 'Unknown error');
+  }
+}
+
+async function updateKkpApplicationStatus(applicationId, newStatus) {
+  if (!loggedIn) return;
+
+  if (!['approved', 'rejected'].includes(newStatus)) return;
+
+  const confirmed = window.confirm(
+    `Are you sure you want to ${newStatus === 'approved' ? 'approve' : 'reject'} this application?`
+  );
+
+  if (!confirmed) return;
+
+  const message = document.getElementById('kkpApplicationsMessage');
+  message.textContent = 'Updating application...';
+
+  try {
+    const { data, error } = await supabaseClient
+      .from('kkp_trucking_applications')
+      .update({
+        status: newStatus,
+        updated_at: new Date().toISOString()
+      })
+      .eq('id', applicationId)
+      .eq('status', 'pending')
+      .select('id');
+
+    if (error) throw error;
+
+    if (!data || data.length !== 1) {
+      throw new Error('Application was already reviewed or could not be updated.');
+    }
+
+    await loadKkpApplications();
+
+    document.getElementById('kkpApplicationsMessage').textContent =
+      `Application ${newStatus} successfully.`;
+
+  } catch (error) {
+    message.textContent =
+      'Unable to update application: ' + (error.message || 'Unknown error');
+  }
+}
+
+document.getElementById('refreshKkpApplications')
+  .addEventListener('click', loadKkpApplications);
 
 </script>
 
