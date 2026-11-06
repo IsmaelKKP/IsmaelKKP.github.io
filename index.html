@@ -751,6 +751,7 @@ const arrivedFromInvite = /(?:^|[&#])type=(?:invite|recovery)(?:&|$)/.test(windo
 const supabaseClient = window.supabase.createClient(KKP_SUPABASE_URL, KKP_SUPABASE_PUBLISHABLE_KEY);
 let loggedIn = false;
 let currentParticipantId = null;
+ let pendingLedgerApplicationId = null;
 let currentParticipantName = '';
 let currentPlanCap = 250000;
 let currentRows = [];
@@ -893,13 +894,49 @@ async function loadOrCreateParticipantLedger() {
   button.textContent = 'Loading database…';
   setLedgerMessage('Loading participant from the secure KKP database…');
   try {
-    let { data: participant, error } = await supabaseClient
+  
+if (pendingLedgerApplicationId) {
+  const { data: application, error: applicationError } =
+    await supabaseClient
+      .from('kkp_trucking_applications')
+      .select('id, status, participant_id, full_name, inquiry_type')
+      .eq('id', pendingLedgerApplicationId)
+      .single();
+
+  if (applicationError) throw applicationError;
+
+  if (application.status !== 'approved' || application.participant_id) {
+    throw new Error(
+      'This application is no longer eligible for ledger creation.'
+    );
+  }
+
+  const expectedPlan =
+    application.inquiry_type === '₱500,000 Plan' ? 500000 :
+    application.inquiry_type === '₱250,000 Plan' ? 250000 : null;
+
+  if (!expectedPlan ||
+      application.full_name.trim() !== name ||
+      expectedPlan !== cap) {
+    throw new Error(
+      'Applicant name or plan does not match the approved application.'
+    );
+  }
+}
+
+   let { data: participant, error } = await supabaseClient
       .from('kkp_participants')
       .select('id, full_name, plan_amount')
       .eq('full_name', name)
       .eq('plan_amount', cap)
       .maybeSingle();
     if (error) throw error;
+   if (pendingLedgerApplicationId && participant) {
+  throw new Error(
+    'A client ledger already exists with this name and plan. ' +
+    'Please verify the existing participant before linking this application.'
+  );
+}
     if (!participant) {
       const inserted = await supabaseClient
         .from('kkp_participants')
@@ -936,6 +973,28 @@ async function loadOrCreateParticipantLedger() {
     currentParticipantId = participant.id;
     currentParticipantName = participant.full_name;
     currentPlanCap = Number(participant.plan_amount);
+   if (pendingLedgerApplicationId) {
+  const { data: linkedApplication, error: linkError } = await supabaseClient
+    .from('kkp_trucking_applications')
+    .update({
+      participant_id: participant.id,
+      updated_at: new Date().toISOString()
+    })
+    .eq('id', pendingLedgerApplicationId)
+    .eq('status', 'approved')
+    .is('participant_id', null)
+    .select('id')
+    .maybeSingle();
+
+  if (linkError) throw linkError;
+
+  if (!linkedApplication) {
+    throw new Error('Application could not be linked. Please refresh and verify its status.');
+  }
+
+  pendingLedgerApplicationId = null;
+  await loadKkpApplications();
+}
     document.getElementById('ledgerTitle').textContent = participantLedgerTitle();
     document.getElementById('ledgerSub').textContent = '24-month KKP database ledger · ' + participant.id;
     document.getElementById('ledgerPanel').classList.remove('hidden');
@@ -1168,7 +1227,7 @@ async function loadKkpApplications() {
   try {
     const { data, error } = await supabaseClient
       .from('kkp_trucking_applications')
-      .select('id, full_name, email, phone, inquiry_type, message, status, created_at')
+    .select('id, full_name, email, phone, inquiry_type, message, status, participant_id, created_at')
       .order('created_at', { ascending: false });
 
     if (error) throw error;
@@ -1230,9 +1289,44 @@ async function loadKkpApplications() {
 
           actions.appendChild(button);
         }
-      } else {
-        actions.textContent = 'Reviewed';
+  
+} else if (app.status === 'approved') {
+  if (app.participant_id) {
+    actions.textContent = 'Ledger Linked';
+  } else {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'btn btn-outline';
+    button.textContent = 'Create Client Ledger';
+
+    button.addEventListener('click', () => {
+      const plan = app.inquiry_type === '₱500,000 Plan'
+        ? 500000
+        : app.inquiry_type === '₱250,000 Plan'
+          ? 250000
+          : null;
+
+      if (!plan) {
+        alert('This application does not have a supported plan.');
+        return;
       }
+pendingLedgerApplicationId = app.id;
+      document.getElementById('participant').value = app.full_name;
+      document.getElementById('ledgerPlan').value = String(plan);
+
+      document.getElementById('ledgerTools')
+        .scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      document.getElementById('kkpApplicationsMessage').textContent =
+        'Applicant details prepared. Review the name and plan before creating a ledger.';
+    });
+
+    actions.appendChild(button);
+  }
+} else {
+  actions.textContent = 'Reviewed';
+}
+
     }
 
     message.textContent =
