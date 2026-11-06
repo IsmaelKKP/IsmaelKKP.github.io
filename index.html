@@ -2,7 +2,7 @@
 <!doctype html>
 <html lang="en">
 <head> 
-  <link rel="icon" type="image/png" href="/kkp-logo.png">
+ <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script> <link rel="icon" type="image/png" href="/kkp-logo.png">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#071b35">
@@ -527,7 +527,12 @@ if (kkpParams.get('workspace') === 'ledger') {
 <div class="field"><label for="inqPhone">Contact number</label><input id="inqPhone" name="phone" type="tel" autocomplete="tel" required></div>
 <div class="field"><label for="inqType">Inquiry / plan applied for</label><select id="inqType" name="inquiry_type" required><option value="Trucking / hauling">Trucking / hauling</option><option value="₱250,000 Plan">₱250,000 Plan</option><option value="₱500,000 Plan">₱500,000 Plan</option><option value="Other">Other</option></select></div>
 <div class="note" id="applicationDocumentNotice" style="margin:16px 0"><strong>Application documents:</strong> A valid government-issued ID and recent bank statement may be requested separately by KKP after your initial application. Please do not send sensitive documents through this form.</div>
-<div class="field"><label for="inqMessage">Message / application details</label><textarea id="inqMessage" name="message" rows="4" required placeholder="Tell us about your inquiry or plan application. Please do not include passwords or sensitive financial account details."></textarea></div>
+<div class="field"><label for="inqMessage">Message / application details</label><textarea id="inqMessage" name="message" rows="4" required placeholder="Tell us about your inquiry or plan application. Please do not include passwords or sensitive financial account details."></textarea></div><div class="field">
+  <label>Security Verification</label>
+  <div class="cf-turnstile"
+       data-sitekey="0x4AAAAAAF1sEYgc4xWphrnp"
+       data-theme="light"></div>
+</div>
 <button class="btn btn-gold" type="submit">Send inquiry / application</button>
 <p id="inquiryMsg" class="formmsg smallprint">Your application will be sent through Formspree. KKP will contact you separately if supporting documents are needed. Do not include passwords, PINs, or card security codes.</p>
 </form>
@@ -608,38 +613,77 @@ applicationType.addEventListener('change', updateApplicationDocuments);
 updateApplicationDocuments();
 
 // Submit without leaving the application tab. Display confirmation only after Formspree accepts the submission.
+
 const kkpInquiryForm = document.getElementById('inquiryForm');
+
 kkpInquiryForm.addEventListener('submit', async (event) => {
   event.preventDefault();
+
   const submitButton = kkpInquiryForm.querySelector('button[type="submit"]');
   const message = document.getElementById('inquiryMsg');
+
+  const token = kkpInquiryForm.querySelector(
+    '[name="cf-turnstile-response"]'
+  )?.value;
+
+  if (!token) {
+    message.textContent = 'Please complete the security verification.';
+    message.classList.add('danger');
+    return;
+  }
+
   submitButton.disabled = true;
   submitButton.textContent = 'Submitting...';
+  message.classList.remove('danger');
   message.textContent = 'Sending your application...';
+
   try {
-    const response = await fetch(kkpInquiryForm.action, {
-      method: 'POST',
-      body: new FormData(kkpInquiryForm),
-      headers: { 'Accept': 'application/json' }
-    });
-    if (!response.ok) {
-      let errorMessage = 'Your application could not be submitted. Please try again.';
-      try {
-        const result = await response.json();
-        if (Array.isArray(result.errors) && result.errors.length) {
-          errorMessage = result.errors.map(e => e.message).filter(Boolean).join(' ');
-        }
-      } catch (_) {}
-      throw new Error(errorMessage);
+    const formData = new FormData(kkpInquiryForm);
+
+    const payload = {
+      full_name: formData.get('full_name'),
+      email: formData.get('email'),
+      phone: formData.get('phone'),
+      inquiry_type: formData.get('inquiry_type'),
+      message: formData.get('message'),
+      turnstile_token: token
+    };
+
+    const response = await fetch(
+      'https://ivmondultefemtjrqwbw.supabase.co/functions/v1/submit-trucking-application',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      }
+    );
+
+    const result = await response.json();
+
+    if (!response.ok || !result.success) {
+      throw new Error(result.error || 'Submission failed. Please try again.');
     }
+
     kkpInquiryForm.classList.add('hidden');
+
     const confirmation = document.getElementById('kkpApplicationSuccess');
     confirmation.classList.remove('hidden');
     confirmation.focus();
-    confirmation.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    confirmation.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+
   } catch (error) {
     message.textContent = error.message || 'Submission failed. Please try again.';
     message.classList.add('danger');
+
+    if (window.turnstile) {
+      window.turnstile.reset();
+    }
+
   } finally {
     submitButton.disabled = false;
     submitButton.textContent = 'Send inquiry / application';
